@@ -7,6 +7,9 @@ product ID. For example:
 The mapping from product_id to page slug is not yet determined. This source
 currently requires the page slug to be passed directly as the ticker.
 
+The page is server-rendered HTML; NAV and metadata are extracted from the
+DOM via regex. No inline JSON or structured data is present.
+
 TODO: Discover an API or lookup mechanism to resolve product_id -> page_slug.
 """
 
@@ -55,20 +58,36 @@ class CcbSource(BaseSource):
     def get_product_info(self, product_id: str) -> ProductInfo:
         # product_id is treated as the page slug until mapping is resolved
         html = self._fetch_page(product_id)
-        name = _extract(html, r'"productName"\s*:\s*"([^"]+)"') or _extract(
-            html, r'<title>([^<]+)</title>'
+
+        # Product name: <h4 class="cp-title">Name <span>(Code)</span></h4>
+        name = _extract(
+            html, r'<h4[^>]*class="cp-title"[^>]*>\s*([^<]+?)\s*(?:<span>|<)'
         ) or ""
-        register_code = _extract(html, r'"registerCode"\s*:\s*"([^"]+)"') or _extract(
-            html, r'登记编码[：:]\s*([A-Z0-9]{14,})'
+        name = name.strip()
+
+        # Register code (CBIRC 登记编码): not exposed on CCB product pages.
+        # The page only shows the internal product code (e.g. JXRXZDCY1Y815003A)
+        # in the <h4> title span, which is not the CBIRC register code.
+        register_code = None
+
+        # NAV + date from the 最新净值 (latest NAV) block:
+        #   <li class="float-left">
+        #     <p class="firtst">1.028568</p>
+        #     <p class="second">最新净值(2026-06-01)</p>
+        #   </li>
+        m = re.search(
+            r'<p\s+class="firtst">\s*([0-9.]+)\s*</p>\s*'
+            r'<p\s+class="second">\s*最新净值\((\d{4}-\d{2}-\d{2})\)',
+            html,
+            re.DOTALL,
         )
-        nav_str = _extract(html, r'"unitNav"\s*:\s*"?([0-9.]+)"?') or _extract(
-            html, r'"netValue"\s*:\s*"?([0-9.]+)"?'
-        )
-        nav = Decimal(nav_str) if nav_str else None
-        date_str = _extract(html, r'"navDate"\s*:\s*"([^"]+)"') or _extract(
-            html, r'"netValueDate"\s*:\s*"([^"]+)"'
-        )
-        nav_date = _parse_date(date_str) if date_str else None
+        if m:
+            nav_str, date_str = m.group(1), m.group(2)
+            nav = Decimal(nav_str)
+            nav_date = _parse_date(date_str)
+        else:
+            nav = None
+            nav_date = None
 
         return ProductInfo(
             issuer=self.issuer,
@@ -86,8 +105,9 @@ class CcbSource(BaseSource):
         return resp.text
 
 
-def _extract(html: str, pattern: str) -> Optional[str]:
-    m = re.search(pattern, html)
+def _extract(html: str, pattern: str, flags: int = 0) -> Optional[str]:
+    """Return group(1) of the first regex match, or None."""
+    m = re.search(pattern, html, flags)
     return m.group(1) if m else None
 
 
@@ -98,5 +118,6 @@ def _parse_date(s: str) -> Optional[datetime.date]:
         except ValueError:
             continue
     return None
+
 
 Source = CcbSource  # beanprice expects module.Source()

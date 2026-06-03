@@ -19,16 +19,27 @@ The mapping from product ID to page slug has not yet been determined. Until a lo
 GET https://www.wealthccb.com/product/<slug>.html
 ```
 
-NAV and metadata are embedded in the page HTML as inline JSON. The current implementation uses regex extraction to parse:
+The page is server-rendered HTML with **no inline JSON or structured data**. All data is extracted from the DOM via regex.
 
-| Pattern | Field |
-|---------|-------|
-| `"productName": "..."` | Product name |
-| `"registerCode": "..."` | CBIRC register code |
-| `"unitNav": <value>` | Unit NAV |
-| `"navDate": "..."` | NAV date |
+### Key HTML patterns
+
+| Data           | HTML pattern |
+|----------------|-------------|
+| Product name   | `<h4 class="cp-title">Name <span>(Code)</span></h4>` |
+| Latest NAV     | `<li…><p class="firtst">1.028568</p><p class="second">最新净值(2026-06-01)</p></li>` |
+| NAV date       | Extracted from `最新净值(YYYY-MM-DD)` in the same block |
+| Register code  | **Not exposed** on the product page |
+
+### NAV date format
+
+The NAV date in the "最新净值" label uses `YYYY-MM-DD` format (e.g. `2026-06-01`).
+
+### Historical data
+
+The page contains historical NAV series in inline JavaScript (`echartsBox()` calls with `xData`/`sData` arrays containing YYYYMMDD dates and numeric NAV values). This could be parsed for `get_prices_series()` support in the future.
 
 ## TODO
 
 - [ ] Discover an API or mapping to resolve user-facing product ID → page slug
-- [ ] Add example response once mapping is confirmed
+- [ ] Parse echarts JavaScript for historical NAV series support
+- [ ] Investigate whether an API endpoint serves JSON (check XHR requests made by the page)
