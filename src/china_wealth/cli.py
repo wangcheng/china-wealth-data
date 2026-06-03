@@ -1,11 +1,11 @@
 """CLI for fetching wealth product prices.
 
 Usage:
-  uv run python -m china_wealth.cli info   citic AF233364A
-  uv run python -m china_wealth.cli info   pingan LHCZGS2100141A
-  uv run python -m china_wealth.cli info   ccb 9783965
-  uv run python -m china_wealth.cli nav    citic AF233364A
-  uv run python -m china_wealth.cli nav    schroder-bocom Z7007024000248
+  uv run python -m china_wealth.cli info   citic_wm AF233364A
+  uv run python -m china_wealth.cli info   pingan_bank LHCZGS2100141A
+  uv run python -m china_wealth.cli info   ccb_wm 9783965
+  uv run python -m china_wealth.cli nav    citic_wm AF233364A
+  uv run python -m china_wealth.cli nav    chinawealth Z7007024000248/182481005A
   uv run python -m china_wealth.cli lookup Z7007024000248
 """
 
@@ -20,27 +20,27 @@ _TZ = ZoneInfo("Asia/Shanghai")
 
 
 def _usage():
-    print("Usage: china-wealth <command> [<issuer>] <product_id>", file=sys.stderr)
+    print("Usage: china-wealth <command> [<source>] <ticker>", file=sys.stderr)
     print("  Commands:", file=sys.stderr)
-    print("    info   <issuer> <product_id>  — product metadata and latest NAV", file=sys.stderr)
-    print("    nav    <issuer> <product_id>  — full NAV history (single request)", file=sys.stderr)
-    print("    lookup <register_code>        — look up any product by CBIRC register code", file=sys.stderr)
-    print("  e.g.  china-wealth info   citic AF233364A", file=sys.stderr)
-    print("        china-wealth nav    schroder-bocom Z7007024000248", file=sys.stderr)
+    print("    info   <source> <ticker>  — product metadata and latest NAV", file=sys.stderr)
+    print("    nav    <source> <ticker>  — full NAV history (single request)", file=sys.stderr)
+    print("    lookup <register_code>    — look up any product by CBIRC register code", file=sys.stderr)
+    print("  e.g.  china-wealth info   citic_wm AF233364A", file=sys.stderr)
+    print("        china-wealth nav    chinawealth Z7007024000248/182481005A", file=sys.stderr)
     print("        china-wealth lookup Z7007024000248", file=sys.stderr)
 
 
-def _get_source(issuer: str):
+def _get_source(source: str):
     try:
-        return get_source(issuer)
+        return get_source(source)
     except ValueError as e:
         print(f"Error: {e}", file=sys.stderr)
         sys.exit(1)
 
 
 def _print_info(info):
-    print(f"Issuer:        {info.issuer}")
-    print(f"Product ID:    {info.product_id}")
+    print(f"Source:        {info.source}")
+    print(f"Ticker:        {info.ticker}")
     print(f"Name:          {info.name}")
     print(f"Register code: {info.register_code or '(not available)'}")
     if info.nav is not None:
@@ -81,59 +81,49 @@ def _print_nav_series(entries, latest_fallback=None):
         print("(not available)")
 
 
-def cmd_info(issuer: str, product_id: str):
-    source = _get_source(issuer)
-    info = source.get_product_info(product_id)
+def cmd_info(source: str, ticker: str):
+    src = _get_source(source)
+    info = src.get_product_info(ticker)
     _print_info(info)
 
 
-def cmd_nav(issuer: str, product_id: str):
-    source = _get_source(issuer)
+def cmd_nav(source: str, ticker: str):
+    src = _get_source(source)
     begin = datetime.datetime(2000, 1, 1, tzinfo=_TZ)
     end = datetime.datetime(2099, 12, 31, tzinfo=_TZ)
-    entries = source.get_nav_series(product_id, begin, end)
-    latest = None if entries is not None else source.get_latest_price(product_id)
+    entries = src.get_nav_series(ticker, begin, end)
+    latest = None if entries is not None else src.get_latest_price(ticker)
     _print_nav_series(entries, latest)
 
 
 def cmd_lookup(register_code: str):
     """Look up any product by CBIRC register code via 中国理财网."""
     client = ChinaWealthClient()
-    b = client.get_product_detail(register_code)
+    p = client.get_product_info(register_code)
 
-    def _f(key, label, default="(不适用)"):
-        v = b.get(key)
-        print(f"  {label:<12} {v if v else default}")
+    def _v(val, default="(不适用)"):
+        return val if val else default
 
-    print(f"产品名称 Name:           {b.get('prodName', '')}")
-    print(f"登记编码 Register code:  {register_code}")
-    print(f"发行机构 Issuer:         {b.get('orgName', '')}")
-    print(f"起始日期 Start date:     {b.get('prodSdate', '')}")
-    print(f"结束日期 End date:       {b.get('prodEdate', '')}")
-    print()
-    print("基本信息 Product details:")
-    _f("prodOperateModeName",   "运作模式 Operation mode")
-    _f("prodRiskLevelName",     "风险等级 Risk level")
-    _f("prodCollectMethName",   "募集方式 Collection method")
-    _f("collCcyName",           "募集币种 Currency")
-    _f("prodInvestNatureName",  "投资性质 Asset type")
-    print()
-    print("业绩比较基准 Performance benchmark:")
-    floor = b.get("performanceCompareBaseFloor")
-    cap   = b.get("performanceCompareBaseCap")
-    rmk   = b.get("performanceCompareBaseRmk")
-    if floor or cap:
-        range_str = f"{floor}% – {cap}%" if floor and cap else f"{floor or cap}%"
-        print(f"  {range_str}")
-    if rmk:
-        print(f"  {rmk}")
-    if not floor and not cap and not rmk:
-        print("  (不适用 not available)")
-    print()
-    sub_shares = client.sub_share_codes(register_code)
-    print(f"份额代码 Sub-share codes:  {', '.join(sub_shares) if sub_shares else '(无 none)'}")
+    print(f"产品名称 Name:              {p.name}")
+    print(f"登记编码 Register code:     {p.register_code}")
+    print(f"发行机构 Issuer:            {p.issuer}")
+    print(f"起始日期 Start date:        {_v(p.start_date)}")
+    print(f"结束日期 End date:          {_v(p.end_date)}")
+    print(f"运作模式 Operation mode:    {_v(p.operation_mode)}")
+    print(f"风险等级 Risk level:        {_v(p.risk_level)}")
+    print(f"募集方式 Collection method: {_v(p.collection_method)}")
+    print(f"募集币种 Currency:          {_v(p.currency)}")
+    print(f"投资性质 Asset type:        {_v(p.asset_type)}")
+    print(f"NAV data on chinawealth?:   {'Y' if p.has_nav else 'N'}")
+    sub_shares = p.sub_share_codes
+    print(f"份额代码 Sub-share codes:")
     if sub_shares:
-        print(f"  (ticker: {register_code}/<sub_share_code>)")
+        for code in sub_shares:
+            print(f"  {code}")
+    else:
+        print("  (none)")
+    if sub_shares and p.has_nav:
+        print(f"  运行: china-wealth nav chinawealth {register_code}/<份额代码>")
 
 
 def main():
@@ -153,11 +143,11 @@ def main():
         if len(sys.argv) != 4:
             _usage()
             sys.exit(1)
-        issuer, product_id = sys.argv[2], sys.argv[3]
+        source, ticker = sys.argv[2], sys.argv[3]
         if command == "info":
-            cmd_info(issuer, product_id)
+            cmd_info(source, ticker)
         else:
-            cmd_nav(issuer, product_id)
+            cmd_nav(source, ticker)
 
     else:
         print(f"Error: unknown command '{command}'", file=sys.stderr)

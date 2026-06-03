@@ -32,7 +32,7 @@ from cryptography.hazmat.primitives import hashes, serialization
 from cryptography.hazmat.primitives.asymmetric import padding
 
 from china_wealth.source import SourcePrice
-from china_wealth.types import NavEntry, ProductInfo
+from china_wealth.types import NavEntry, ProductInfo, ProductShareInfo
 
 _BASE = "https://xinxipilu.chinawealth.com.cn/lcxp-platService"
 _TZ = ZoneInfo("Asia/Shanghai")
@@ -134,33 +134,44 @@ class ChinaWealthClient:
     # ------------------------------------------------------------------
     # Public API
 
-    def _fetch_basic(self, prod_reg_code: str) -> dict:
-        """Return prodBasicInfoVo dict from getProductDetail (cached)."""
+    def _fetch_data(self, prod_reg_code: str) -> dict:
+        """Return the full data dict from getProductDetail (cached)."""
         body = self._post(
             "/product/getProductDetail",
             {"prodRegCode": prod_reg_code, "pageNum": 1, "pageSize": 1},
         )
-        return (body.get("data") or {}).get("prodBasicInfoVo") or {}
+        return body.get("data") or {}
+
+    def _fetch_basic(self, prod_reg_code: str) -> dict:
+        """Return prodBasicInfoVo dict from getProductDetail (cached)."""
+        return self._fetch_data(prod_reg_code).get("prodBasicInfoVo") or {}
 
     def get_product_detail(self, prod_reg_code: str) -> dict:
         """Return the raw prodBasicInfoVo dict for the given register code."""
         return self._fetch_basic(prod_reg_code)
 
-    def get_product_info(self, prod_reg_code: str, issuer: str) -> ProductInfo:
-        """Return ProductInfo for the given register code.
-
-        NAV fields will be None — use get_latest_price / get_prices_series
-        with a specific sub-share code for NAV data.
-        Use sub_share_codes() to list available sub-shares.
-        """
-        basic = self._fetch_basic(prod_reg_code)
+    def get_product_info(self, prod_reg_code: str) -> ProductInfo:
+        """Return product-level metadata for the given register code."""
+        data = self._fetch_data(prod_reg_code)
+        basic = data.get("prodBasicInfoVo") or {}
+        nav_vo = data.get("productTypeNetValueVo") or {}
+        has_nav = bool((nav_vo.get("netValueVoList") or {}).get("list"))
         return ProductInfo(
-            issuer=issuer,
-            product_id=prod_reg_code,
+            issuer=basic.get("orgName", ""),
             name=basic.get("prodName", ""),
-            register_code=basic.get("prodRegCode"),
-            nav=None,
-            nav_date=None,
+            register_code=basic.get("prodRegCode", prod_reg_code),
+            sub_share_codes=self.sub_share_codes(prod_reg_code),
+            start_date=basic.get("prodSdate"),
+            end_date=basic.get("prodEdate"),
+            operation_mode=basic.get("prodOperateModeName"),
+            risk_level=basic.get("prodRiskLevelName"),
+            collection_method=basic.get("prodCollectMethName"),
+            currency=basic.get("collCcyName"),
+            asset_type=basic.get("prodInvestNatureName"),
+            benchmark_floor=basic.get("performanceCompareBaseFloor"),
+            benchmark_cap=basic.get("performanceCompareBaseCap"),
+            benchmark_note=basic.get("performanceCompareBaseRmk"),
+            has_nav=has_nav,
         )
 
     def sub_share_codes(self, prod_reg_code: str) -> List[str]:
