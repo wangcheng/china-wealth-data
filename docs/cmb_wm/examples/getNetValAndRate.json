@@ -1,0 +1,538 @@
+{
+  "code": 200,
+  "msg": "OK",
+  "data": [
+    {
+      "navDate": 1772640000000,
+      "nav": "1.0625",
+      "accuNav": "1.0625",
+      "tenThousandUnitIncome": null,
+      "annualizedYield": null,
+      "intRateAnlizdYield": null,
+      "netAsset": null
+    },
+    {
+      "navDate": 1772726400000,
+      "nav": "1.0629",
+      "accuNav": "1.0629",
+      "tenThousandUnitIncome": null,
+      "annualizedYield": null,
+      "intRateAnlizdYield": null,
+      "netAsset": null
+    },
+    {
+      "navDate": 1772985600000,
+      "nav": "1.0613",
+      "accuNav": "1.0613",
+      "tenThousandUnitIncome": null,
+      "annualizedYield": null,
+      "intRateAnlizdYield": null,
+      "netAsset": null
+    },
+    {
+      "navDate": 1773072000000,
+      "nav": "1.0629",
+      "accuNav": "1.0629",
+      "tenThousandUnitIncome": null,
+      "annualizedYield": null,
+      "intRateAnlizdYield": null,
+      "netAsset": null
+    },
+    {
+      "navDate": 1773158400000,
+      "nav": "1.0634",
+      "accuNav": "1.0634",
+      "tenThousandUnitIncome": null,
+      "annualizedYield": null,
+      "intRateAnlizdYield": null,
+      "netAsset": null
+    },
+    {
+      "navDate": 1773244800000,
+      "nav": "1.0631",
+      "accuNav": "1.0631",
+      "tenThousandUnitIncome": null,
+      "annualizedYield": null,
+      "intRateAnlizdYield": null,
+      "netAsset": null
+    },
+    {
+      "navDate": 1773331200000,
+      "nav": "1.0623",
+      "accuNav": "1.0623",
+      "tenThousandUnitIncome": null,
+      "annualizedYield": null,
+      "intRateAnlizdYield": null,
+      "netAsset": null
+    },
+    {
+      "navDate": 1773590400000,
+      "nav": "1.0621",
+      "accuNav": "1.0621",
+      "tenThousandUnitIncome": null,
+      "annualizedYield": null,
+      "intRateAnlizdYield": null,
+      "netAsset": null
+    },
+    {
+      "navDate": 1773676800000,
+      "nav": "1.0612",
+      "accuNav": "1.0612",
+      "tenThousandUnitIncome": null,
+      "annualizedYield": null,
+      "intRateAnlizdYield": null,
+      "netAsset": null
+    },
+    {
+      "navDate": 1773763200000,
+      "nav": "1.062",
+      "accuNav": "1.062",
+      "tenThousandUnitIncome": null,
+      "annualizedYield": null,
+      "intRateAnlizdYield": null,
+      "netAsset": null
+    },
+    {
+      "navDate": 1773849600000,
+      "nav": "1.0601",
+      "accuNav": "1.0601",
+      "tenThousandUnitIncome": null,
+      "annualizedYield": null,
+      "intRateAnlizdYield": null,
+      "netAsset": null
+    },
+    {
+      "navDate": 1773936000000,
+      "nav": "1.0595",
+      "accuNav": "1.0595",
+      "tenThousandUnitIncome": null,
+      "annualizedYield": null,
+      "intRateAnlizdYield": null,
+      "netAsset": null
+    },
+    {
+      "navDate": 1774195200000,
+      "nav": "1.0561",
+      "accuNav": "1.0561",
+      "tenThousandUnitIncome": null,
+      "annualizedYield": null,
+      "intRateAnlizdYield": null,
+      "netAsset": null
+    },
+    {
+      "navDate": 1774281600000,
+      "nav": "1.058",
+      "accuNav": "1.058",
+      "tenThousandUnitIncome": null,
+      "annualizedYield": null,
+      "intRateAnlizdYield": null,
+      "netAsset": null
+    },
+    {
+      "navDate": 1774368000000,
+      "nav": "1.0592",
+      "accuNav": "1.0592",
+      "tenThousandUnitIncome": null,
+      "annualizedYield": null,
+      "intRateAnlizdYield": null,
+      "netAsset": null
+    },
+    {
+      "navDate": 1774454400000,
+      "nav": "1.0583",
+      "accuNav": "1.0583",
+      "tenThousandUnitIncome": null,
+      "annualizedYield": null,
+      "intRateAnlizdYield": null,
+      "netAsset": null
+    },
+    {
+      "navDate": 1774540800000,
+      "nav": "1.0589",
+      "accuNav": "1.0589",
+      "tenThousandUnitIncome": null,
+      "annualizedYield": null,
+      "intRateAnlizdYield": null,
+      "netAsset": null
+    },
+    {
+      "navDate": 1774800000000,
+      "nav": "1.0595",
+      "accuNav": "1.0595",
+      "tenThousandUnitIncome": null,
+      "annualizedYield": null,
+      "intRateAnlizdYield": null,
+      "netAsset": null
+    },
+    {
+      "navDate": 1774886400000,
+      "nav": "1.0589",
+      "accuNav": "1.0589",
+      "tenThousandUnitIncome": null,
+      "annualizedYield": null,
+      "intRateAnlizdYield": null,
+      "netAsset": null
+    },
+    {
+      "navDate": 1774972800000,
+      "nav": "1.0604",
+      "accuNav": "1.0604",
+      "tenThousandUnitIncome": null,
+      "annualizedYield": null,
+      "intRateAnlizdYield": null,
+      "netAsset": null
+    },
+    {
+      "navDate": 1775059200000,
+      "nav": "1.0599",
+      "accuNav": "1.0599",
+      "tenThousandUnitIncome": null,
+      "annualizedYield": null,
+      "intRateAnlizdYield": null,
+      "netAsset": null
+    },
+    {
+      "navDate": 1775145600000,
+      "nav": "1.0597",
+      "accuNav": "1.0597",
+      "tenThousandUnitIncome": null,
+      "annualizedYield": null,
+      "intRateAnlizdYield": null,
+      "netAsset": null
+    },
+    {
+      "navDate": 1775491200000,
+      "nav": "1.0605",
+      "accuNav": "1.0605",
+      "tenThousandUnitIncome": null,
+      "annualizedYield": null,
+      "intRateAnlizdYield": null,
+      "netAsset": null
+    },
+    {
+      "navDate": 1775577600000,
+      "nav": "1.0633",
+      "accuNav": "1.0633",
+      "tenThousandUnitIncome": null,
+      "annualizedYield": null,
+      "intRateAnlizdYield": null,
+      "netAsset": null
+    },
+    {
+      "navDate": 1775664000000,
+      "nav": "1.0629",
+      "accuNav": "1.0629",
+      "tenThousandUnitIncome": null,
+      "annualizedYield": null,
+      "intRateAnlizdYield": null,
+      "netAsset": null
+    },
+    {
+      "navDate": 1775750400000,
+      "nav": "1.0636",
+      "accuNav": "1.0636",
+      "tenThousandUnitIncome": null,
+      "annualizedYield": null,
+      "intRateAnlizdYield": null,
+      "netAsset": null
+    },
+    {
+      "navDate": 1776009600000,
+      "nav": "1.0636",
+      "accuNav": "1.0636",
+      "tenThousandUnitIncome": null,
+      "annualizedYield": null,
+      "intRateAnlizdYield": null,
+      "netAsset": null
+    },
+    {
+      "navDate": 1776096000000,
+      "nav": "1.0649",
+      "accuNav": "1.0649",
+      "tenThousandUnitIncome": null,
+      "annualizedYield": null,
+      "intRateAnlizdYield": null,
+      "netAsset": null
+    },
+    {
+      "navDate": 1776182400000,
+      "nav": "1.0645",
+      "accuNav": "1.0645",
+      "tenThousandUnitIncome": null,
+      "annualizedYield": null,
+      "intRateAnlizdYield": null,
+      "netAsset": null
+    },
+    {
+      "navDate": 1776268800000,
+      "nav": "1.0657",
+      "accuNav": "1.0657",
+      "tenThousandUnitIncome": null,
+      "annualizedYield": null,
+      "intRateAnlizdYield": null,
+      "netAsset": null
+    },
+    {
+      "navDate": 1776355200000,
+      "nav": "1.0656",
+      "accuNav": "1.0656",
+      "tenThousandUnitIncome": null,
+      "annualizedYield": null,
+      "intRateAnlizdYield": null,
+      "netAsset": null
+    },
+    {
+      "navDate": 1776614400000,
+      "nav": "1.0663",
+      "accuNav": "1.0663",
+      "tenThousandUnitIncome": null,
+      "annualizedYield": null,
+      "intRateAnlizdYield": null,
+      "netAsset": null
+    },
+    {
+      "navDate": 1776700800000,
+      "nav": "1.067",
+      "accuNav": "1.067",
+      "tenThousandUnitIncome": null,
+      "annualizedYield": null,
+      "intRateAnlizdYield": null,
+      "netAsset": null
+    },
+    {
+      "navDate": 1776787200000,
+      "nav": "1.0674",
+      "accuNav": "1.0674",
+      "tenThousandUnitIncome": null,
+      "annualizedYield": null,
+      "intRateAnlizdYield": null,
+      "netAsset": null
+    },
+    {
+      "navDate": 1776873600000,
+      "nav": "1.0666",
+      "accuNav": "1.0666",
+      "tenThousandUnitIncome": null,
+      "annualizedYield": null,
+      "intRateAnlizdYield": null,
+      "netAsset": null
+    },
+    {
+      "navDate": 1776960000000,
+      "nav": "1.0665",
+      "accuNav": "1.0665",
+      "tenThousandUnitIncome": null,
+      "annualizedYield": null,
+      "intRateAnlizdYield": null,
+      "netAsset": null
+    },
+    {
+      "navDate": 1777219200000,
+      "nav": "1.0666",
+      "accuNav": "1.0666",
+      "tenThousandUnitIncome": null,
+      "annualizedYield": null,
+      "intRateAnlizdYield": null,
+      "netAsset": null
+    },
+    {
+      "navDate": 1777305600000,
+      "nav": "1.0663",
+      "accuNav": "1.0663",
+      "tenThousandUnitIncome": null,
+      "annualizedYield": null,
+      "intRateAnlizdYield": null,
+      "netAsset": null
+    },
+    {
+      "navDate": 1777392000000,
+      "nav": "1.0682",
+      "accuNav": "1.0682",
+      "tenThousandUnitIncome": null,
+      "annualizedYield": null,
+      "intRateAnlizdYield": null,
+      "netAsset": null
+    },
+    {
+      "navDate": 1777478400000,
+      "nav": "1.0679",
+      "accuNav": "1.0679",
+      "tenThousandUnitIncome": null,
+      "annualizedYield": null,
+      "intRateAnlizdYield": null,
+      "netAsset": null
+    },
+    {
+      "navDate": 1777996800000,
+      "nav": "1.0695",
+      "accuNav": "1.0695",
+      "tenThousandUnitIncome": null,
+      "annualizedYield": null,
+      "intRateAnlizdYield": null,
+      "netAsset": null
+    },
+    {
+      "navDate": 1778083200000,
+      "nav": "1.0701",
+      "accuNav": "1.0701",
+      "tenThousandUnitIncome": null,
+      "annualizedYield": null,
+      "intRateAnlizdYield": null,
+      "netAsset": null
+    },
+    {
+      "navDate": 1778169600000,
+      "nav": "1.07",
+      "accuNav": "1.07",
+      "tenThousandUnitIncome": null,
+      "annualizedYield": null,
+      "intRateAnlizdYield": null,
+      "netAsset": null
+    },
+    {
+      "navDate": 1778428800000,
+      "nav": "1.0712",
+      "accuNav": "1.0712",
+      "tenThousandUnitIncome": null,
+      "annualizedYield": null,
+      "intRateAnlizdYield": null,
+      "netAsset": null
+    },
+    {
+      "navDate": 1778515200000,
+      "nav": "1.0714",
+      "accuNav": "1.0714",
+      "tenThousandUnitIncome": null,
+      "annualizedYield": null,
+      "intRateAnlizdYield": null,
+      "netAsset": null
+    },
+    {
+      "navDate": 1778601600000,
+      "nav": "1.0723",
+      "accuNav": "1.0723",
+      "tenThousandUnitIncome": null,
+      "annualizedYield": null,
+      "intRateAnlizdYield": null,
+      "netAsset": null
+    },
+    {
+      "navDate": 1778688000000,
+      "nav": "1.0705",
+      "accuNav": "1.0705",
+      "tenThousandUnitIncome": null,
+      "annualizedYield": null,
+      "intRateAnlizdYield": null,
+      "netAsset": null
+    },
+    {
+      "navDate": 1778774400000,
+      "nav": "1.0694",
+      "accuNav": "1.0694",
+      "tenThousandUnitIncome": null,
+      "annualizedYield": null,
+      "intRateAnlizdYield": null,
+      "netAsset": null
+    },
+    {
+      "navDate": 1779033600000,
+      "nav": "1.0691",
+      "accuNav": "1.0691",
+      "tenThousandUnitIncome": null,
+      "annualizedYield": null,
+      "intRateAnlizdYield": null,
+      "netAsset": null
+    },
+    {
+      "navDate": 1779120000000,
+      "nav": "1.0698",
+      "accuNav": "1.0698",
+      "tenThousandUnitIncome": null,
+      "annualizedYield": null,
+      "intRateAnlizdYield": null,
+      "netAsset": null
+    },
+    {
+      "navDate": 1779206400000,
+      "nav": "1.0701",
+      "accuNav": "1.0701",
+      "tenThousandUnitIncome": null,
+      "annualizedYield": null,
+      "intRateAnlizdYield": null,
+      "netAsset": null
+    },
+    {
+      "navDate": 1779292800000,
+      "nav": "1.068",
+      "accuNav": "1.068",
+      "tenThousandUnitIncome": null,
+      "annualizedYield": null,
+      "intRateAnlizdYield": null,
+      "netAsset": null
+    },
+    {
+      "navDate": 1779379200000,
+      "nav": "1.0692",
+      "accuNav": "1.0692",
+      "tenThousandUnitIncome": null,
+      "annualizedYield": null,
+      "intRateAnlizdYield": null,
+      "netAsset": null
+    },
+    {
+      "navDate": 1779638400000,
+      "nav": "1.0702",
+      "accuNav": "1.0702",
+      "tenThousandUnitIncome": null,
+      "annualizedYield": null,
+      "intRateAnlizdYield": null,
+      "netAsset": null
+    },
+    {
+      "navDate": 1779724800000,
+      "nav": "1.0705",
+      "accuNav": "1.0705",
+      "tenThousandUnitIncome": null,
+      "annualizedYield": null,
+      "intRateAnlizdYield": null,
+      "netAsset": null
+    },
+    {
+      "navDate": 1779811200000,
+      "nav": "1.0694",
+      "accuNav": "1.0694",
+      "tenThousandUnitIncome": null,
+      "annualizedYield": null,
+      "intRateAnlizdYield": null,
+      "netAsset": null
+    },
+    {
+      "navDate": 1779897600000,
+      "nav": "1.0693",
+      "accuNav": "1.0693",
+      "tenThousandUnitIncome": null,
+      "annualizedYield": null,
+      "intRateAnlizdYield": null,
+      "netAsset": null
+    },
+    {
+      "navDate": 1779984000000,
+      "nav": "1.0691",
+      "accuNav": "1.0691",
+      "tenThousandUnitIncome": null,
+      "annualizedYield": null,
+      "intRateAnlizdYield": null,
+      "netAsset": null
+    },
+    {
+      "navDate": 1780243200000,
+      "nav": "1.069",
+      "accuNav": "1.069",
+      "tenThousandUnitIncome": null,
+      "annualizedYield": null,
+      "intRateAnlizdYield": null,
+      "netAsset": null
+    }
+  ],
+  "returnCode": null
+}
