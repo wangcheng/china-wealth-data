@@ -15,7 +15,7 @@ import requests
 from requests.adapters import HTTPAdapter
 
 from china_wealth.source import BaseSource, SourcePrice
-from china_wealth.types import ProductInfo
+from china_wealth.types import NavEntry, ProductInfo
 
 _BASE = "https://wechat.citic-wealth.com/cms.product/api/custom/productInfo"
 _TZ = ZoneInfo("Asia/Shanghai")
@@ -64,6 +64,8 @@ class CiticSource(BaseSource):
         detail = self._fetch_detail(product_id)
         nav_str = detail.get("nav")
         nav = Decimal(str(nav_str)) if nav_str is not None else None
+        total_nav_str = detail.get("totalNav")
+        accumulated_nav = Decimal(str(total_nav_str)) if total_nav_str is not None else None
         date_str = detail.get("navDate")
         nav_date = (
             datetime.datetime.strptime(date_str, "%Y%m%d").date() if date_str else None
@@ -75,6 +77,7 @@ class CiticSource(BaseSource):
             register_code=detail.get("registCode"),  # note: "registCode" not "registerCode"
             nav=nav,
             nav_date=nav_date,
+            accumulated_nav=accumulated_nav,
         )
 
     def get_prices_series(
@@ -96,6 +99,28 @@ class CiticSource(BaseSource):
                     quote_currency="CNY",
                 ))
         return sorted(result, key=lambda p: p.time)
+
+    def get_nav_series(
+        self,
+        ticker: str,
+        time_begin: datetime.datetime,
+        time_end: datetime.datetime,
+    ) -> Optional[List[NavEntry]]:
+        entries = self._fetch_nav_list(ticker)
+        if entries is None:
+            return None
+        result = []
+        for entry in entries:
+            ts = datetime.datetime.strptime(entry["navDate"], "%Y%m%d").replace(tzinfo=_TZ)
+            if time_begin <= ts <= time_end:
+                total = entry.get("totalNav")
+                result.append(NavEntry(
+                    date=ts.date(),
+                    nav=Decimal(str(entry["nav"])),
+                    accumulated_nav=Decimal(str(total)) if total is not None else None,
+                    currency="CNY",
+                ))
+        return sorted(result, key=lambda e: e.date)
 
     def _fetch_nav(self, product_id: str) -> Optional[dict]:
         """Return the latest single NAV entry (first item of productNavList)."""

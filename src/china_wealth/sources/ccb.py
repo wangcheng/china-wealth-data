@@ -11,6 +11,16 @@ The page is server-rendered HTML; NAV and metadata are extracted from the
 DOM via regex. No inline JSON or structured data is present.
 
 TODO: Discover an API or lookup mechanism to resolve product_id -> page_slug.
+
+TODO: Replace `_extract_accumulated_nav` regex with dukpy (Duktape JS engine)
+  to evaluate the embedded echartsBox() script directly. This would be robust
+  against whitespace and code formatting changes. Plan:
+  1. Add `dukpy` to pyproject.toml dependencies.
+  2. Extract the <script> block containing echartsBox.
+  3. Stub browser globals ($, echarts, document, etc.) as no-ops.
+  4. Call echartsBox("all", false, true) and echartsBox("all", false, false)
+     to get the accumulated and unit sData arrays.
+  5. Read the last element of each array as the latest NAV values.
 """
 
 import datetime
@@ -70,11 +80,9 @@ class CcbSource(BaseSource):
         # in the <h4> title span, which is not the CBIRC register code.
         register_code = None
 
-        # NAV + date from the 最新净值 (latest NAV) block:
-        #   <li class="float-left">
-        #     <p class="firtst">1.028568</p>
-        #     <p class="second">最新净值(2026-06-01)</p>
-        #   </li>
+        # Unit NAV + date from the 最新净值 block:
+        #   <p class="firtst">1.028568</p>
+        #   <p class="second">最新净值(2026-06-01)</p>
         m = re.search(
             r'<p\s+class="firtst">\s*([0-9.]+)\s*</p>\s*'
             r'<p\s+class="second">\s*最新净值\((\d{4}-\d{2}-\d{2})\)',
@@ -82,12 +90,17 @@ class CcbSource(BaseSource):
             re.DOTALL,
         )
         if m:
-            nav_str, date_str = m.group(1), m.group(2)
-            nav = Decimal(nav_str)
-            nav_date = _parse_date(date_str)
+            nav = Decimal(m.group(1))
+            nav_date = _parse_date(m.group(2))
         else:
             nav = None
             nav_date = None
+
+        # Accumulated NAV: extracted from the latest (last) entry of the
+        # bool=true sData array in the "all" echartsBox branch. The page
+        # embeds both unit and accumulated NAV series as parallel JS arrays;
+        # the bool=true branch is 累计净值, bool=false is 单位净值.
+        accumulated_nav = _extract_accumulated_nav(html)
 
         return ProductInfo(
             issuer=self.issuer,
@@ -96,6 +109,7 @@ class CcbSource(BaseSource):
             register_code=register_code,
             nav=nav,
             nav_date=nav_date,
+            accumulated_nav=accumulated_nav,
         )
 
     def _fetch_page(self, slug: str) -> str:
@@ -103,6 +117,28 @@ class CcbSource(BaseSource):
         resp = requests.get(url, headers=_HEADERS, timeout=15)
         resp.raise_for_status()
         return resp.text
+
+
+def _extract_accumulated_nav(html: str) -> Optional[Decimal]:
+    """Extract the latest accumulated NAV (累计净值) from the JS chart data.
+
+    The page embeds parallel unit/accumulated NAV arrays in echartsBox():
+      if (bool) { sData = [...累计净值...] } else { sData = [...单位净值...] }
+    We find the last (most recent) value from the bool=true array in the
+    成立以来 (all-time) section, which follows the last `} else {` branch.
+    """
+    # Find the accumulated sData array: the bool=true branch of the last
+    # echartsBox time block. Match `if (bool) { sData = [ ... ]; }` and
+    # take the final occurrence (成立以来 section comes last).
+    pattern = r'if\s*\(bool\)\s*\{\s*sData\s*=\s*\[([\d\s.,]+)\]\s*;'
+    matches = re.findall(pattern, html)
+    if not matches:
+        return None
+    # last match = 成立以来 section
+    numbers = re.findall(r'[\d.]+', matches[-1])
+    if not numbers:
+        return None
+    return Decimal(numbers[-1])
 
 
 def _extract(html: str, pattern: str, flags: int = 0) -> Optional[str]:

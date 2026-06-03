@@ -55,6 +55,9 @@ class PinganSource(BaseSource):
         nav_str = data.get("netValue") or data.get("nav") or data.get("unitNav")
         nav = Decimal(str(nav_str)) if nav_str else None
 
+        total_str = data.get("totalNetValue") or data.get("totNav")
+        accumulated_nav = Decimal(str(total_str)) if total_str else None
+
         date_str = data.get("netValueDate") or data.get("navDate")
         nav_date = _parse_date(date_str) if date_str else None
 
@@ -65,6 +68,7 @@ class PinganSource(BaseSource):
             register_code=data.get("bankFundRegisterCode"),
             nav=nav,
             nav_date=nav_date,
+            accumulated_nav=accumulated_nav,
         )
 
     def _fetch(self, product_id: str) -> dict:

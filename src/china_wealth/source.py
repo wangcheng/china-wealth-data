@@ -9,7 +9,7 @@ from abc import ABC, abstractmethod
 from decimal import Decimal
 from typing import List, Optional, NamedTuple
 
-from china_wealth.types import ProductInfo
+from china_wealth.types import NavEntry, ProductInfo
 
 
 # Matches beanprice's SourcePrice NamedTuple exactly so sources are drop-in
@@ -60,3 +60,27 @@ class BaseSource(ABC):
     ) -> Optional[List[SourcePrice]]:
         """Return NAV series between two dates. Override if supported."""
         return None
+
+    def get_nav_series(
+        self,
+        ticker: str,
+        time_begin: datetime.datetime,
+        time_end: datetime.datetime,
+    ) -> Optional[List[NavEntry]]:
+        """Return richer NAV series including accumulated NAV where available.
+
+        Override if the source can provide accumulated NAV. The default
+        implementation falls back to get_prices_series with accumulated_nav=None.
+        """
+        series = self.get_prices_series(ticker, time_begin, time_end)
+        if series is None:
+            return None
+        return [
+            NavEntry(
+                date=p.time.date() if p.time else None,
+                nav=p.price,
+                accumulated_nav=None,
+                currency=p.quote_currency or "CNY",
+            )
+            for p in series
+        ]
