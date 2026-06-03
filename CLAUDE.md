@@ -28,6 +28,28 @@ This is a `src/` layout Python package (`src/china_wealth/`). The package has tw
 - `sources/__init__.py` — `get_source(issuer)` registry, maps issuer strings to source classes.
 - `chinawealth.py` — `ChinaWealthClient`, a low-level HTTP client for 中国理财网. Not a `BaseSource` subclass — used as a backend by issuers whose products are registered there. NAV is not guaranteed (many issuers don't publish it). The `lookup` CLI command uses this client directly with a CBIRC register code.
 
+## Development workflow
+
+When adding or improving an issuer, the developer writes initial thoughts and
+drops example API responses in `docs/<issuer>/`. The expected flow is:
+
+1. **Developer provides a draft** — `docs/<issuer>/README.md` with initial notes
+   on the API (endpoint, auth, known fields) and one or more example response
+   files in `docs/<issuer>/examples/`.
+
+2. **AI reads the examples carefully** — inspect every field in the response,
+   identify the correct fields for NAV, accumulated NAV, date, register code,
+   and product name. Don't assume field names match other issuers.
+
+3. **AI implements the source** — create or update
+   `src/china_wealth/sources/<issuer>.py`. Extract all available data; if both
+   unit NAV and accumulated NAV are present, populate both.
+
+4. **AI updates the docs** — replace the developer's draft in
+   `docs/<issuer>/README.md` with accurate, complete documentation: endpoint
+   URLs, request parameters, response field reference table, pagination notes,
+   and any quirks discovered during implementation.
+
 ### Adding a new issuer
 
 1. Create `src/china_wealth/sources/<issuer>.py` subclassing `BaseSource`.
