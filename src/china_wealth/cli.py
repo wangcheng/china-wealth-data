@@ -48,7 +48,7 @@ def _print_info(info):
         if info.accumulated_nav is not None:
             print(f"Accum. NAV:    {info.accumulated_nav} {info.currency}")
     else:
-        print("Latest NAV:    (not available)")
+        print(f"Latest NAV:    (not available — run: china-wealth nav {info.source} {info.ticker})")
 
 
 def _print_nav_series(entries, latest_fallback=None):
