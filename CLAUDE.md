@@ -8,8 +8,10 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 uv sync                          # install deps and create .venv
 uv run pytest                    # run all tests
 uv run pytest tests/test_registry.py::test_unknown_issuer_raises  # run single test
-uv run china-wealth <issuer> <product_id>   # run CLI
-uv run python -m china_wealth.cli citic AF233364A  # CLI without install
+uv run china-wealth info   <issuer> <product_id>   # product info + latest NAV
+uv run china-wealth nav    <issuer> <product_id>   # full NAV history
+uv run china-wealth lookup <register_code>         # look up any product by CBIRC code
+uv run python -m china_wealth.cli info citic AF233364A  # CLI without install
 ```
 
 ## Architecture
@@ -24,6 +26,7 @@ This is a `src/` layout Python package (`src/china_wealth/`). The package has tw
 - `source.py` — `BaseSource` ABC and `SourcePrice` NamedTuple. `SourcePrice` is intentionally identical to beanprice's own `SourcePrice` so sources are drop-in compatible without requiring beanprice to be installed.
 - `types.py` — `ProductInfo` dataclass: richer metadata (name, register code, nav, nav_date) returned by `get_product_info()`. Not part of the beanprice interface.
 - `sources/__init__.py` — `get_source(issuer)` registry, maps issuer strings to source classes.
+- `chinawealth.py` — `ChinaWealthClient`, a low-level HTTP client for 中国理财网. Not a `BaseSource` subclass — used as a backend by issuers whose products are registered there. NAV is not guaranteed (many issuers don't publish it). The `lookup` CLI command uses this client directly with a CBIRC register code.
 
 ### Adding a new issuer
 
@@ -31,6 +34,10 @@ This is a `src/` layout Python package (`src/china_wealth/`). The package has tw
 2. Implement `issuer`, `get_latest_price`, and `get_product_info`. Historical methods are optional.
 3. Add `Source = <ClassName>` at the bottom (required for bean-price).
 4. Register in `sources/__init__.py`.
+
+### Schroder BOCOM (施罗德交银)
+
+`sources/schroder_bocom.py` delegates fully to `ChinaWealthClient`. Ticker format is `<register_code>/<sub_share_code>` (e.g. `Z7007024000248/182481005A`). A product may have multiple sub-shares with different NAVs — use `china-wealth lookup <register_code>` to list them. NAV history is fetched via `getNetValueList` (not `getProductDetail`).
 
 ### CCB status
 
@@ -44,9 +51,9 @@ CITIC's server requires legacy TLS renegotiation disabled in Python 3.10+. `citi
 
 Key non-obvious field names discovered from real API responses (see `docs/*/README.md`):
 
-| Issuer | Register code field | NAV field | NAV date field |
-|--------|--------------------|-----------|-----------------|
-| CITIC detail | `registCode` | `nav` | `navDate` (`YYYYMMDD`) |
-| CITIC nav list | — | `data.productNavList[0].nav` | `navDate` |
-| Ping An | `bankFundRegisterCode` | `netValue` (string) | `navDate` (`YYYYMMDD`) |
-| CCB | N/A (not on page) | `p.firtst` in 最新净值 block | `最新净值(YYYY-MM-DD)` |
+| Issuer         | Register code field    | NAV field                    | NAV date field         |
+| -------------- | ---------------------- | ---------------------------- | ---------------------- |
+| CITIC detail   | `registCode`           | `nav`                        | `navDate` (`YYYYMMDD`) |
+| CITIC nav list | —                      | `data.productNavList[0].nav` | `navDate`              |
+| Ping An        | `bankFundRegisterCode` | `netValue` (string)          | `navDate` (`YYYYMMDD`) |
+| CCB            | N/A (not on page)      | `p.firtst` in 最新净值 block | `最新净值(YYYY-MM-DD)` |
