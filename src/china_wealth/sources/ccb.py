@@ -1,0 +1,102 @@
+"""CCB Wealth (建信理财) price source.
+
+CCB product pages use a numeric page slug that differs from the user-facing
+product ID. For example:
+  https://www.wealthccb.com/product/9783965.html
+
+The mapping from product_id to page slug is not yet determined. This source
+currently requires the page slug to be passed directly as the ticker.
+
+TODO: Discover an API or lookup mechanism to resolve product_id -> page_slug.
+"""
+
+import datetime
+import re
+from decimal import Decimal
+from typing import Optional
+from zoneinfo import ZoneInfo
+
+import requests
+
+from china_wealth.source import BaseSource, SourcePrice
+from china_wealth.types import ProductInfo
+
+_TZ = ZoneInfo("Asia/Shanghai")
+_BASE_URL = "https://www.wealthccb.com/product/{slug}.html"
+
+_HEADERS = {
+    "User-Agent": "Mozilla/5.0 (compatible; china-wealth-data)",
+    "Referer": "https://www.wealthccb.com/",
+}
+
+
+class CcbSource(BaseSource):
+    """Price source for CCB Wealth (建信理财) products.
+
+    Until a product_id -> page_slug mapping is available, pass the numeric
+    page slug as the ticker (e.g. "9783965").
+    """
+
+    @property
+    def issuer(self) -> str:
+        return "ccb"
+
+    def get_latest_price(self, ticker: str) -> Optional[SourcePrice]:
+        info = self.get_product_info(ticker)
+        if info.nav is None:
+            return None
+        ts = (
+            datetime.datetime.combine(info.nav_date, datetime.time(15, 0), tzinfo=_TZ)
+            if info.nav_date
+            else None
+        )
+        return SourcePrice(price=info.nav, time=ts, quote_currency="CNY")
+
+    def get_product_info(self, product_id: str) -> ProductInfo:
+        # product_id is treated as the page slug until mapping is resolved
+        html = self._fetch_page(product_id)
+        name = _extract(html, r'"productName"\s*:\s*"([^"]+)"') or _extract(
+            html, r'<title>([^<]+)</title>'
+        ) or ""
+        register_code = _extract(html, r'"registerCode"\s*:\s*"([^"]+)"') or _extract(
+            html, r'登记编码[：:]\s*([A-Z0-9]{14,})'
+        )
+        nav_str = _extract(html, r'"unitNav"\s*:\s*"?([0-9.]+)"?') or _extract(
+            html, r'"netValue"\s*:\s*"?([0-9.]+)"?'
+        )
+        nav = Decimal(nav_str) if nav_str else None
+        date_str = _extract(html, r'"navDate"\s*:\s*"([^"]+)"') or _extract(
+            html, r'"netValueDate"\s*:\s*"([^"]+)"'
+        )
+        nav_date = _parse_date(date_str) if date_str else None
+
+        return ProductInfo(
+            issuer=self.issuer,
+            product_id=product_id,
+            name=name,
+            register_code=register_code,
+            nav=nav,
+            nav_date=nav_date,
+        )
+
+    def _fetch_page(self, slug: str) -> str:
+        url = _BASE_URL.format(slug=slug)
+        resp = requests.get(url, headers=_HEADERS, timeout=15)
+        resp.raise_for_status()
+        return resp.text
+
+
+def _extract(html: str, pattern: str) -> Optional[str]:
+    m = re.search(pattern, html)
+    return m.group(1) if m else None
+
+
+def _parse_date(s: str) -> Optional[datetime.date]:
+    for fmt in ("%Y%m%d", "%Y-%m-%d", "%Y/%m/%d"):
+        try:
+            return datetime.datetime.strptime(s, fmt).date()
+        except ValueError:
+            continue
+    return None
+
+Source = CcbSource  # beanprice expects module.Source()
