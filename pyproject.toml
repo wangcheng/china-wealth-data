@@ -10,6 +10,7 @@ readme = "README.md"
 license = { text = "MIT" }
 requires-python = ">=3.9"
 dependencies = [
+    "cryptography>=47.0.0",
     "requests>=2.28",
 ]
 
@@ -23,4 +24,8 @@ dev = ["pytest", "pytest-cov"]
 packages = ["src/china_wealth"]
 
 [dependency-groups]
-dev = ["pytest", "pytest-cov"]
+dev = [
+    "cryptography>=47.0.0",
+    "pytest",
+    "pytest-cov",
+]
