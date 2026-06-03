@@ -1,16 +1,16 @@
 """CCB Wealth (建信理财) price source.
 
-CCB product pages use a numeric page slug that differs from the user-facing
-product ID. For example:
-  https://www.wealthccb.com/product/9783965.html
+Product search: https://www.wealthccb.com/productList.html
+Product detail: https://www.wealthccb.com/product/<slug>.html
 
-The mapping from product_id to page slug is not yet determined. This source
-currently requires the page slug to be passed directly as the ticker.
+CCB product pages use a numeric page slug that differs from the user-facing
+product ID. Find the slug by browsing the product list and following the link
+to the detail page. Pass the numeric slug directly as the ticker (e.g. "9783965").
 
 The page is server-rendered HTML; NAV and metadata are extracted from the
 DOM via regex. No inline JSON or structured data is present.
 
-TODO: Discover an API or lookup mechanism to resolve product_id -> page_slug.
+TODO: Discover an API or lookup mechanism to resolve user-facing product ID -> page slug.
 
 TODO: Replace `_extract_accumulated_nav` regex with dukpy (Duktape JS engine)
   to evaluate the embedded echartsBox() script directly. This would be robust
@@ -32,7 +32,7 @@ from zoneinfo import ZoneInfo
 import requests
 
 from china_wealth.source import BaseSource, SourcePrice
-from china_wealth.types import ProductInfo
+from china_wealth.types import ProductShareInfo
 
 _TZ = ZoneInfo("Asia/Shanghai")
 _BASE_URL = "https://www.wealthccb.com/product/{slug}.html"
@@ -43,16 +43,16 @@ _HEADERS = {
 }
 
 
-class CcbSource(BaseSource):
+class CcbWmSource(BaseSource):
     """Price source for CCB Wealth (建信理财) products.
 
-    Until a product_id -> page_slug mapping is available, pass the numeric
-    page slug as the ticker (e.g. "9783965").
+    Until a user-facing product ID -> page slug mapping is available, pass the
+    numeric page slug as the ticker (e.g. "9783965").
     """
 
     @property
-    def issuer(self) -> str:
-        return "ccb"
+    def source(self) -> str:
+        return "ccb_wm"
 
     def get_latest_price(self, ticker: str) -> Optional[SourcePrice]:
         info = self.get_product_info(ticker)
@@ -65,24 +65,17 @@ class CcbSource(BaseSource):
         )
         return SourcePrice(price=info.nav, time=ts, quote_currency="CNY")
 
-    def get_product_info(self, product_id: str) -> ProductInfo:
-        # product_id is treated as the page slug until mapping is resolved
-        html = self._fetch_page(product_id)
+    def get_product_info(self, ticker: str) -> ProductShareInfo:
+        html = self._fetch_page(ticker)
 
-        # Product name: <h4 class="cp-title">Name <span>(Code)</span></h4>
         name = _extract(
             html, r'<h4[^>]*class="cp-title"[^>]*>\s*([^<]+?)\s*(?:<span>|<)'
         ) or ""
         name = name.strip()
 
         # Register code (CBIRC 登记编码): not exposed on CCB product pages.
-        # The page only shows the internal product code (e.g. JXRXZDCY1Y815003A)
-        # in the <h4> title span, which is not the CBIRC register code.
         register_code = None
 
-        # Unit NAV + date from the 最新净值 block:
-        #   <p class="firtst">1.028568</p>
-        #   <p class="second">最新净值(2026-06-01)</p>
         m = re.search(
             r'<p\s+class="firtst">\s*([0-9.]+)\s*</p>\s*'
             r'<p\s+class="second">\s*最新净值\((\d{4}-\d{2}-\d{2})\)',
@@ -96,15 +89,11 @@ class CcbSource(BaseSource):
             nav = None
             nav_date = None
 
-        # Accumulated NAV: extracted from the latest (last) entry of the
-        # bool=true sData array in the "all" echartsBox branch. The page
-        # embeds both unit and accumulated NAV series as parallel JS arrays;
-        # the bool=true branch is 累计净值, bool=false is 单位净值.
         accumulated_nav = _extract_accumulated_nav(html)
 
-        return ProductInfo(
-            issuer=self.issuer,
-            product_id=product_id,
+        return ProductShareInfo(
+            source=self.source,
+            ticker=ticker,
             name=name,
             register_code=register_code,
             nav=nav,
@@ -127,14 +116,10 @@ def _extract_accumulated_nav(html: str) -> Optional[Decimal]:
     We find the last (most recent) value from the bool=true array in the
     成立以来 (all-time) section, which follows the last `} else {` branch.
     """
-    # Find the accumulated sData array: the bool=true branch of the last
-    # echartsBox time block. Match `if (bool) { sData = [ ... ]; }` and
-    # take the final occurrence (成立以来 section comes last).
     pattern = r'if\s*\(bool\)\s*\{\s*sData\s*=\s*\[([\d\s.,]+)\]\s*;'
     matches = re.findall(pattern, html)
     if not matches:
         return None
-    # last match = 成立以来 section
     numbers = re.findall(r'[\d.]+', matches[-1])
     if not numbers:
         return None
@@ -142,7 +127,6 @@ def _extract_accumulated_nav(html: str) -> Optional[Decimal]:
 
 
 def _extract(html: str, pattern: str, flags: int = 0) -> Optional[str]:
-    """Return group(1) of the first regex match, or None."""
     m = re.search(pattern, html, flags)
     return m.group(1) if m else None
 
@@ -156,4 +140,4 @@ def _parse_date(s: str) -> Optional[datetime.date]:
     return None
 
 
-Source = CcbSource  # beanprice expects module.Source()
+Source = CcbWmSource  # beanprice expects module.Source()

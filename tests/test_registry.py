@@ -5,13 +5,13 @@ from china_wealth.sources import get_source
 from china_wealth.source import BaseSource
 
 
-@pytest.mark.parametrize("issuer", ["citic", "pingan", "ccb"])
-def test_get_source_returns_base_source(issuer):
-    src = get_source(issuer)
+@pytest.mark.parametrize("source", ["citic_wm", "pingan_bank", "ccb_wm", "chinawealth"])
+def test_get_source_returns_base_source(source):
+    src = get_source(source)
     assert isinstance(src, BaseSource)
-    assert src.issuer == issuer
+    assert src.source == source
 
 
-def test_unknown_issuer_raises():
-    with pytest.raises(ValueError, match="Unknown issuer"):
+def test_unknown_source_raises():
+    with pytest.raises(ValueError, match="Unknown source"):
         get_source("unknown_bank")

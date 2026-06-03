@@ -5,6 +5,24 @@
 CITIC Wealth (信银理财) is the wealth management subsidiary of China CITIC Bank (中信银行).
 Products are identified by a `prodCode` such as `AF233364A`.
 
+## Finding a Product
+
+The product list page is at:
+
+```
+https://www.citic-wealth.com/wechat/product/#/productMarket
+```
+
+The product detail page URL contains the `fundCode` query parameter:
+
+```
+https://www.citic-wealth.com/wechat/product/#/productMarketDetailWeb?fundCode=<prodCode>&productType=1&navDecimalPlaces=
+```
+
+The `fundCode` value (e.g. `AF265283K`) is the same `prodCode` used by all API calls below.
+
+The CBIRC register code (登记编码) is returned by the detail API as `registCode`. It also appears in the product's 产品基本信息 section and 产品说明书 PDF.
+
 ## API Endpoints
 
 Base URL: `https://wechat.citic-wealth.com/cms.product/api/custom/productInfo`

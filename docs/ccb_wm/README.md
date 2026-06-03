@@ -4,14 +4,22 @@
 
 CCB Wealth (建信理财有限责任公司) is the wealth management subsidiary of China Construction Bank (建设银行).
 
-## Known Issue: Product ID vs Page Slug
+## Finding a Product and Its Slug
 
 CCB product pages use a numeric page slug that is **different** from the user-facing product ID. For example:
 
 - User-facing ID: `AF233364A` (format matches other issuers)
 - Page URL: `https://www.wealthccb.com/product/9783965.html`
 
-The mapping from product ID to page slug has not yet been determined. Until a lookup API or static mapping is available, the numeric slug must be passed directly as the ticker.
+**To find the slug for a product:**
+
+1. Browse or search the product list at `https://www.wealthccb.com/productList.html`
+2. Click through to the product detail page — the URL will be `https://www.wealthccb.com/product/<slug>.html`
+3. Use the numeric slug as the ticker (e.g. `9783965`)
+
+The CBIRC register code (登记编码) is **not exposed** on the CCB product page. To find it, check the product's 产品基本信息 section or the 产品说明书 PDF — it is documented there. Once known, cross-reference with `china-wealth lookup <register_code>` via 中国理财网.
+
+Until a lookup API or static mapping from user-facing ID to slug is available, the numeric slug must be passed directly as the ticker.
 
 ## Page Structure
 

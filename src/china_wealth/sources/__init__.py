@@ -1,21 +1,21 @@
-"""Registry of issuer sources."""
+"""Registry of price sources."""
 
-from china_wealth.sources.ccb import CcbSource
-from china_wealth.sources.citic import CiticSource
-from china_wealth.sources.pingan import PinganSource
-from china_wealth.sources.schroder_bocom import SchroderBocomSource
+from china_wealth.sources.ccb_wm import CcbWmSource
+from china_wealth.sources.citic_wm import CiticWmSource
+from china_wealth.sources.pingan_bank import PinganBankSource
+from china_wealth.sources.chinawealth import ChinaWealthSource
 
 _SOURCES = {
-    "citic": CiticSource,
-    "pingan": PinganSource,
-    "ccb": CcbSource,
-    "schroder-bocom": SchroderBocomSource,
+    "citic_wm": CiticWmSource,
+    "pingan_bank": PinganBankSource,
+    "ccb_wm": CcbWmSource,
+    "chinawealth": ChinaWealthSource,
 }
 
 
-def get_source(issuer: str):
-    """Return an instantiated source for the given issuer name."""
-    issuer = issuer.lower()
-    if issuer not in _SOURCES:
-        raise ValueError(f"Unknown issuer '{issuer}'. Available: {list(_SOURCES)}")
-    return _SOURCES[issuer]()
+def get_source(source: str):
+    """Return an instantiated source for the given source name."""
+    source = source.lower()
+    if source not in _SOURCES:
+        raise ValueError(f"Unknown source '{source}'. Available: {list(_SOURCES)}")
+    return _SOURCES[source]()

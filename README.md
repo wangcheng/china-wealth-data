@@ -1,19 +1,52 @@
 # china-wealth-data
 
-A Python library and CLI for fetching NAV (Net Asset Value) data from Chinese bank wealth management products.
+用于获取中国银行理财产品净值数据的 Python 库和命令行工具。
 
-Supported issuers: CITIC (中信理财), Ping An (平安理财), CCB (建信理财), Schroder BOCOM (施罗德交银理财).
+## 基本概念
 
-## Features
+理解以下概念有助于选择正确的数据源。
 
-- Fetch latest NAV and product metadata (name, registration code) by issuer + product ID
-- Historical NAV series where available
-- Look up any product by CBIRC register code (登记编码) via 中国理财网
-- Compatible as a [bean-price](https://github.com/beancount/beanprice) source for Beancount workflows
+**发行机构（Issuer）** — 创建并管理理财产品的金融机构，如平安理财、信银理财、交银施罗德理财。一个机构下有多个产品。
 
-## Installation
+**产品（Product）** — 在银保监会登记的具体理财产品，以登记编码标识（如 `Z7007024000248`）。一个产品属于一个发行机构，可能包含多个份额，各份额净值不同。
 
-Requires [uv](https://docs.astral.sh/uv/).
+**份额（Share）** — 产品下的具体份额，有独立的份额代码和净值（如 `182481005A`）。份额是实际持有和交易的单位，本工具中的 ticker 始终对应一个份额。
+
+**数据源（Source）** — 本工具获取净值数据的后端接口。数据源不等于发行机构——一个数据源可能覆盖多个发行机构的产品。
+
+## 如何选择数据源
+
+不同产品需要使用不同数据源：
+
+- **`pingan_bank`** — 适用于所有在平安银行平台销售的产品，不限于平安理财自有产品。在[平安银行理财产品列表](https://b.pingan.com.cn/aum/m/inventory_search.html?dataType=07&sellingType=FINANCESUB)中找到产品，将 `prdCode` 作为 ticker 使用。该数据源潜在覆盖平安银行代销的多家机构产品。
+
+- **`citic_wm`** — 适用于信银理财产品。在[信银理财产品列表](https://www.citic-wealth.com/wechat/product/#/productMarket)中找到产品，将 `fundCode` 作为 ticker 使用。
+
+- **`ccb_wm`** — 适用于建信理财产品。在[建信理财产品列表](https://www.wealthccb.com/productList.html)中找到产品详情页，将 URL 中的数字页面 slug 作为 ticker 使用。
+
+- **`chinawealth`** — 适用于上述数据源未覆盖的发行机构。中国理财网（xinxipilu.chinawealth.com.cn）是银保监会官方登记平台，理论上覆盖全国所有理财产品。但**并非所有机构都在此公布净值数据**，许多机构仅有基本产品信息而无价格。已知交银施罗德理财会在此更新净值。使用前建议先执行 `china-wealth lookup <登记编码>` 确认该产品是否有净值数据。
+
+我们会持续新增各机构专属数据源。当专属数据源存在时，优先使用专属源而非 `chinawealth`，数据更稳定可靠。
+
+## 支持的数据源
+
+| 数据源 key    | 数据后端         | 覆盖机构示例                              | Ticker 格式                        | 历史净值             |
+| ------------- | ---------------- | ----------------------------------------- | ---------------------------------- | -------------------- |
+| `citic_wm`    | 信银理财 API     | 信银理财                                  | `AF233364A`                        | 支持                 |
+| `pingan_bank` | 平安银行 API     | 平安理财及平安银行代销的其他机构产品        | `LHCZGS2100141A`                   | 支持（最近 20 条）   |
+| `ccb_wm`      | 建信理财网页     | 建信理财                                  | 数字页面 slug（如 `9783965`）       | 不支持               |
+| `chinawealth` | 中国理财网 API   | 所有登记机构，如交银施罗德理财             | `<登记编码>/<份额代码>`            | 支持（最近 10 条）   |
+
+## 功能特性
+
+- 通过数据源 + ticker 获取最新净值及产品元数据（名称、登记编码）
+- 支持历史净值查询（部分数据源）
+- 通过银保监会登记编码查询任意产品信息（via 中国理财网）
+- 兼容 [bean-price](https://github.com/beancount/beanprice)，可用于 Beancount 记账工作流
+
+## 安装
+
+需要 [uv](https://docs.astral.sh/uv/)。
 
 ```bash
 git clone https://github.com/yourname/china-wealth-data
@@ -21,50 +54,50 @@ cd china-wealth-data
 uv sync
 ```
 
-## CLI Usage
+## 命令行使用
 
-### `info` — product metadata and latest NAV
-
-```bash
-uv run china-wealth info <issuer> <product_id>
-```
+### `info` — 产品元数据和最新净值
 
 ```bash
-uv run china-wealth info citic AF233364A
-uv run china-wealth info pingan LHCZGS2100141A
-uv run china-wealth info schroder-bocom Z7007024000248/182481005A
-```
-
-### `nav` — NAV history
-
-```bash
-uv run china-wealth nav <issuer> <product_id>
+uv run china-wealth info <数据源> <ticker>
 ```
 
 ```bash
-uv run china-wealth nav citic AF233364A
-uv run china-wealth nav schroder-bocom Z7007024000248/182481005A
+uv run china-wealth info citic_wm AF233364A
+uv run china-wealth info pingan_bank LHCZGS2100141A
+uv run china-wealth info chinawealth Z7007024000248/182481005A
 ```
 
-Sample output:
+### `nav` — 历史净值
+
+```bash
+uv run china-wealth nav <数据源> <ticker>
+```
+
+```bash
+uv run china-wealth nav citic_wm AF233364A
+uv run china-wealth nav chinawealth Z7007024000248/182481005A
+```
+
+输出示例：
 
 ```
-Date            NAV  Currency
-----------------------------------
-2026-05-20   1.0373  CNY
-2026-05-21   1.0374  CNY
+Date            Unit NAV    Accum. NAV  Currency
+------------------------------------------------
+2026-05-20      1.0373      1.0450      CNY
+2026-05-21      1.0374      1.0451      CNY
 ...
 ```
 
-### `lookup` — look up any product by CBIRC register code
+### `lookup` — 通过登记编码查询产品
 
-Queries 中国理财网 directly. NAV is not guaranteed — many issuers do not publish NAV there.
+直接查询中国理财网。净值数据不保证存在——许多机构不在此发布净值。
 
 ```bash
 uv run china-wealth lookup Z7007024000248
 ```
 
-Sample output:
+输出示例：
 
 ```
 产品名称 Name:           施罗德交银理财得润固收添益日日开2号理财产品
@@ -82,83 +115,73 @@ Sample output:
 
 业绩比较基准 Performance benchmark:
   1.46% – 2.51%
-  20260212调整业绩比较基准上限为2.51%，下限为1.46%。
 
 份额代码 Sub-share codes:  182481005A, 182481005B
   (ticker: Z7007024000248/<sub_share_code>)
 ```
 
-## Python Library Usage
+## Python 库使用
 
 ```python
 from china_wealth.sources import get_source
 
-source = get_source("citic")
+source = get_source("citic_wm")
 
-# Latest NAV
+# 最新净值
 result = source.get_latest_price("AF233364A")
-print(result.price)           # Decimal NAV
-print(result.time)            # timezone-aware datetime
+print(result.price)           # Decimal 净值
+print(result.time)            # 带时区的 datetime
 print(result.quote_currency)  # "CNY"
 
-# Product metadata
+# 产品元数据
 info = source.get_product_info("AF233364A")
-print(info.name)           # product name
-print(info.register_code)  # e.g. "Z7002623001159"
+print(info.name)           # 产品名称
+print(info.register_code)  # 如 "Z7002623001159"
 ```
 
-For Schroder BOCOM, the ticker includes the sub-share code:
+中国理财网数据源的 ticker 需包含份额代码：
 
 ```python
-source = get_source("schroder-bocom")
+source = get_source("chinawealth")
 result = source.get_latest_price("Z7007024000248/182481005A")
 ```
 
-## bean-price Usage
+## bean-price 使用
 
-Add a `price:` metadata directive to your Beancount commodity using the fully-qualified module path:
+在 Beancount commodity 中添加 `price:` 元数据，使用完整模块路径：
 
 ```beancount
 2020-01-01 commodity CITIC_AF233364A
-  price: "CNY:china_wealth.sources.citic/AF233364A"
+  price: "CNY:china_wealth.sources.citic_wm/AF233364A"
 
-2020-01-01 commodity SCHRODER_BOCOM
-  price: "CNY:china_wealth.sources.schroder_bocom/Z7007024000248/182481005A"
+2020-01-01 commodity JTHS_BOCOM
+  price: "CNY:china_wealth.sources.chinawealth/Z7007024000248/182481005A"
 ```
 
-Then run:
+然后运行：
 
 ```bash
 uv run bean-price your_file.beancount
 ```
 
-## Supported Issuers
-
-| Issuer                        | Key              | Product ID format                  | NAV history          |
-| ----------------------------- | ---------------- | ---------------------------------- | -------------------- |
-| CITIC 中信理财                | `citic`          | `AF233364A`                        | Yes                  |
-| Ping An 平安理财              | `pingan`         | `LHCZGS2100141A`                   | No                   |
-| CCB 建信理财                  | `ccb`            | numeric page slug (e.g. `9783965`) | No                   |
-| Schroder BOCOM 施罗德交银理财 | `schroder-bocom` | `<register_code>/<sub_share_code>` | Yes (10 most recent) |
-
-## Project Structure
+## 项目结构
 
 ```
 src/china_wealth/
 ├── __init__.py
-├── types.py           # ProductInfo dataclass
-├── source.py          # BaseSource abstract class + SourcePrice
-├── chinawealth.py     # ChinaWealthClient (中国理财网 HTTP client)
-├── cli.py             # CLI entry point
+├── types.py           # ProductInfo（产品级）和 ProductShareInfo（份额级）
+├── source.py          # BaseSource 抽象类 + SourcePrice
+├── chinawealth.py     # ChinaWealthClient（中国理财网 HTTP 客户端）
+├── cli.py             # 命令行入口
 └── sources/
-    ├── __init__.py        # Registry: get_source(issuer)
-    ├── citic.py
-    ├── pingan.py
-    ├── ccb.py
-    └── schroder_bocom.py  # delegates to ChinaWealthClient
+    ├── __init__.py        # 注册表：get_source(source)
+    ├── citic_wm.py        # 信银理财
+    ├── pingan_bank.py     # 平安银行（平安理财及代销产品）
+    ├── ccb_wm.py          # 建信理财（HTML 抓取）
+    └── chinawealth.py     # 中国理财网（委托 ChinaWealthClient）
 ```
 
-API documentation and example responses for each issuer are in [docs/](docs/).
+各数据源的 API 文档和响应示例见 [docs/](docs/)。
 
 ## License
 

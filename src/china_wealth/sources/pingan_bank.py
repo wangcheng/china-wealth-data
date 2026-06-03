@@ -1,4 +1,10 @@
-"""Ping An Wealth (平安理财) price source.
+"""Ping An Bank (平安银行) wealth product price source.
+
+Sells products from 平安理财 and other issuers. Products are identified by
+a `prdCode` such as `LHCZGS2100141A`.
+
+Product search: https://b.pingan.com.cn/aum/m/inventory_search.html?dataType=07&sellingType=FINANCESUB
+Product detail: https://b.pingan.com.cn/fin/mobile/finance_current_detail.html?prdCode=<prdCode>&templateId=PrdTempINI602&useCdn=1
 
 API endpoints:
   Product detail:  GET finacDetail.do?prdCode=<id>&sceneCode=PrdTempINI606&access_source=H5
@@ -21,7 +27,7 @@ from zoneinfo import ZoneInfo
 import requests
 
 from china_wealth.source import BaseSource, SourcePrice
-from china_wealth.types import NavEntry, ProductInfo
+from china_wealth.types import NavEntry, ProductShareInfo
 
 _TZ = ZoneInfo("Asia/Shanghai")
 _BASE = "https://rmb.pingan.com.cn/bron/ibank/pop/finachild/bootpage"
@@ -35,12 +41,12 @@ _HEADERS = {
 }
 
 
-class PinganSource(BaseSource):
-    """Price source for Ping An Wealth (平安理财) products."""
+class PinganBankSource(BaseSource):
+    """Price source for products sold through Ping An Bank (平安银行)."""
 
     @property
-    def issuer(self) -> str:
-        return "pingan"
+    def source(self) -> str:
+        return "pingan_bank"
 
     def get_latest_price(self, ticker: str) -> Optional[SourcePrice]:
         info = self.get_product_info(ticker)
@@ -53,8 +59,8 @@ class PinganSource(BaseSource):
         )
         return SourcePrice(price=info.nav, time=ts, quote_currency="CNY")
 
-    def get_product_info(self, product_id: str) -> ProductInfo:
-        data = self._fetch_detail(product_id)
+    def get_product_info(self, ticker: str) -> ProductShareInfo:
+        data = self._fetch_detail(ticker)
         latest_rate = data.get("latestRate") or {}
         nav_str = (latest_rate.get("nav") or data.get("netValue")
                    or data.get("nav") or data.get("unitNav"))
@@ -66,9 +72,9 @@ class PinganSource(BaseSource):
         date_str = data.get("netValueDate") or data.get("navDate")
         nav_date = _parse_date(date_str) if date_str else None
 
-        return ProductInfo(
-            issuer=self.issuer,
-            product_id=product_id,
+        return ProductShareInfo(
+            source=self.source,
+            ticker=ticker,
             name=data.get("prdName") or data.get("productName", ""),
             register_code=data.get("bankFundRegisterCode"),
             nav=nav,
@@ -82,7 +88,6 @@ class PinganSource(BaseSource):
         time_begin: datetime.datetime,
         time_end: datetime.datetime,
     ) -> Optional[List[NavEntry]]:
-        # endDate = end_time date in YYYYMMDD; fetch latest 20 entries in one request
         end_date = time_end.strftime("%Y%m%d")
         entries = self._fetch_nav_list(ticker, end_date=end_date)
         result = []
@@ -120,10 +125,10 @@ class PinganSource(BaseSource):
             for e in entries
         ]
 
-    def _fetch_detail(self, product_id: str) -> dict:
+    def _fetch_detail(self, ticker: str) -> dict:
         resp = requests.get(
             f"{_BASE}/finacDetail.do",
-            params={"prdCode": product_id, "sceneCode": "PrdTempINI606", "access_source": "H5"},
+            params={"prdCode": ticker, "sceneCode": "PrdTempINI606", "access_source": "H5"},
             headers=_HEADERS,
             timeout=15,
         )
@@ -134,11 +139,11 @@ class PinganSource(BaseSource):
             data = data[0] if data else {}
         return data
 
-    def _fetch_nav_list(self, product_id: str, end_date: str) -> List[dict]:
+    def _fetch_nav_list(self, ticker: str, end_date: str) -> List[dict]:
         resp = requests.get(
             f"{_BASE}/finaChildQuotationList.do",
             params={
-                "prdCode": product_id,
+                "prdCode": ticker,
                 "pageNum": 1,
                 "pageSize": 20,
                 "endDate": end_date,
@@ -160,4 +165,5 @@ def _parse_date(s: str) -> Optional[datetime.date]:
             continue
     return None
 
-Source = PinganSource  # beanprice expects module.Source()
+
+Source = PinganBankSource  # beanprice expects module.Source()

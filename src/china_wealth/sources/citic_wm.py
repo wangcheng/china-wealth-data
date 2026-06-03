@@ -15,7 +15,7 @@ import requests
 from requests.adapters import HTTPAdapter
 
 from china_wealth.source import BaseSource, SourcePrice
-from china_wealth.types import NavEntry, ProductInfo
+from china_wealth.types import NavEntry, ProductShareInfo
 
 _BASE = "https://wechat.citic-wealth.com/cms.product/api/custom/productInfo"
 _TZ = ZoneInfo("Asia/Shanghai")
@@ -42,12 +42,12 @@ def _session() -> requests.Session:
     return s
 
 
-class CiticSource(BaseSource):
+class CiticWmSource(BaseSource):
     """Price source for CITIC Wealth (中信理财) products."""
 
     @property
-    def issuer(self) -> str:
-        return "citic"
+    def source(self) -> str:
+        return "citic_wm"
 
     def get_latest_price(self, ticker: str) -> Optional[SourcePrice]:
         data = self._fetch_nav(ticker)
@@ -59,9 +59,8 @@ class CiticSource(BaseSource):
         )
         return SourcePrice(price=nav, time=nav_date, quote_currency="CNY")
 
-    def get_product_info(self, product_id: str) -> ProductInfo:
-        # getTAProductDetail already includes latest nav/navDate directly on data
-        detail = self._fetch_detail(product_id)
+    def get_product_info(self, ticker: str) -> ProductShareInfo:
+        detail = self._fetch_detail(ticker)
         nav_str = detail.get("nav")
         nav = Decimal(str(nav_str)) if nav_str is not None else None
         total_nav_str = detail.get("totalNav")
@@ -70,9 +69,9 @@ class CiticSource(BaseSource):
         nav_date = (
             datetime.datetime.strptime(date_str, "%Y%m%d").date() if date_str else None
         )
-        return ProductInfo(
-            issuer=self.issuer,
-            product_id=product_id,
+        return ProductShareInfo(
+            source=self.source,
+            ticker=ticker,
             name=detail.get("prodName", ""),
             register_code=detail.get("registCode"),  # note: "registCode" not "registerCode"
             nav=nav,
@@ -122,19 +121,17 @@ class CiticSource(BaseSource):
                 ))
         return sorted(result, key=lambda e: e.date)
 
-    def _fetch_nav(self, product_id: str) -> Optional[dict]:
-        """Return the latest single NAV entry (first item of productNavList)."""
-        entries = self._fetch_nav_list(product_id)
+    def _fetch_nav(self, ticker: str) -> Optional[dict]:
+        entries = self._fetch_nav_list(ticker)
         if not entries:
             return None
-        # productNavList is sorted newest-first
         return entries[0]
 
-    def _fetch_nav_list(self, product_id: str) -> Optional[list]:
+    def _fetch_nav_list(self, ticker: str) -> Optional[list]:
         url = f"{_BASE}/getTAProductNav"
         resp = _session().get(
             url,
-            params={"prodCode": product_id, "queryUnit": "1"},
+            params={"prodCode": ticker, "queryUnit": "1"},
             headers=_HEADERS,
             timeout=15,
         )
@@ -143,11 +140,11 @@ class CiticSource(BaseSource):
         data = body.get("data") or {}
         return data.get("productNavList") or data.get("productNavPic")
 
-    def _fetch_detail(self, product_id: str) -> dict:
+    def _fetch_detail(self, ticker: str) -> dict:
         url = f"{_BASE}/getTAProductDetail"
         resp = _session().get(
             url,
-            params={"prodCode": product_id, "prodType": "2"},
+            params={"prodCode": ticker, "prodType": "2"},
             headers=_HEADERS,
             timeout=15,
         )
@@ -158,4 +155,5 @@ class CiticSource(BaseSource):
             data = data[0] if data else {}
         return data
 
-Source = CiticSource  # beanprice expects module.Source()
+
+Source = CiticWmSource  # beanprice expects module.Source()

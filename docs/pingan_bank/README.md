@@ -5,6 +5,24 @@
 Ping An Wealth (平安理财有限责任公司) is the wealth management subsidiary of Ping An Bank (平安银行).
 Products are identified by a `prdCode` such as `LHCZGS2100141A`.
 
+## Finding a Product
+
+Ping An Bank's product search page lists all wealth products sold through the bank — including products from 平安理财 and other issuers:
+
+```
+https://b.pingan.com.cn/aum/m/inventory_search.html?dataType=07&sellingType=FINANCESUB
+```
+
+The product detail page (mobile/H5) uses a `prdCode` query parameter:
+
+```
+https://b.pingan.com.cn/fin/mobile/finance_current_detail.html?prdCode=<prdCode>&templateId=PrdTempINI602&useCdn=1
+```
+
+The `prdCode` shown in the URL is the same ID used by all API calls below.
+
+The CBIRC register code (登记编码) is returned by the detail API as `bankFundRegisterCode`. It also appears in the product's 产品基本信息 section and 产品说明书 PDF.
+
 ## API Endpoints
 
 Base URL: `https://rmb.pingan.com.cn/bron/ibank/pop/finachild/bootpage`
