@@ -1,34 +1,37 @@
 """Ping An Wealth (平安理财) price source.
 
-The Ping An product detail page is an H5 page that returns JSON via an
-embedded API. We POST to the same endpoint the page's JS calls.
+API endpoints:
+  Product detail:  GET finacDetail.do?prdCode=<id>&sceneCode=PrdTempINI606&access_source=H5
+  NAV history:     GET finaChildQuotationList.do?prdCode=<id>&pageNum=1&pageSize=20
+                     &endDate=<YYYYMMDD>&access_source=H5
 
-Page URL pattern:
-  https://rmb.pingan.com.cn/bron/ibank/pop/finachild/bootpage/finacDetail.do
-    ?prdCode=<id>&sceneCode=PrdTempINI606&access_source=H5
+Both endpoints are under:
+  https://rmb.pingan.com.cn/bron/ibank/pop/finachild/bootpage/
+
+NAV history response fields per entry: nav, totNav, yeildDate (sic, YYYYMMDD).
+Server caps pageSize at 20; use endDate pagination for older entries (single request
+gives latest 20).
 """
 
 import datetime
 from decimal import Decimal
-from typing import Optional
+from typing import List, Optional
 from zoneinfo import ZoneInfo
 
 import requests
 
 from china_wealth.source import BaseSource, SourcePrice
-from china_wealth.types import ProductInfo
+from china_wealth.types import NavEntry, ProductInfo
 
 _TZ = ZoneInfo("Asia/Shanghai")
-
-_DETAIL_URL = (
-    "https://rmb.pingan.com.cn/bron/ibank/pop/finachild/bootpage/finacDetail.do"
-)
+_BASE = "https://rmb.pingan.com.cn/bron/ibank/pop/finachild/bootpage"
 
 _HEADERS = {
-    "User-Agent": "Mozilla/5.0 (Linux; Android 10; Mobile) AppleWebKit/537.36 "
-    "(KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36",
-    "Referer": "https://rmb.pingan.com.cn/",
-    "Accept": "application/json, text/plain, */*",
+    "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 "
+    "(KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+    "Referer": "https://b.pingan.com.cn/",
+    "Accept": "*/*",
+    "Origin": "https://b.pingan.com.cn",
 }
 
 
@@ -51,11 +54,13 @@ class PinganSource(BaseSource):
         return SourcePrice(price=info.nav, time=ts, quote_currency="CNY")
 
     def get_product_info(self, product_id: str) -> ProductInfo:
-        data = self._fetch(product_id)
-        nav_str = data.get("netValue") or data.get("nav") or data.get("unitNav")
+        data = self._fetch_detail(product_id)
+        latest_rate = data.get("latestRate") or {}
+        nav_str = (latest_rate.get("nav") or data.get("netValue")
+                   or data.get("nav") or data.get("unitNav"))
         nav = Decimal(str(nav_str)) if nav_str else None
 
-        total_str = data.get("totalNetValue") or data.get("totNav")
+        total_str = latest_rate.get("totNav") or data.get("totalNetValue") or data.get("totNav")
         accumulated_nav = Decimal(str(total_str)) if total_str else None
 
         date_str = data.get("netValueDate") or data.get("navDate")
@@ -71,12 +76,72 @@ class PinganSource(BaseSource):
             accumulated_nav=accumulated_nav,
         )
 
-    def _fetch(self, product_id: str) -> dict:
+    def get_nav_series(
+        self,
+        ticker: str,
+        time_begin: datetime.datetime,
+        time_end: datetime.datetime,
+    ) -> Optional[List[NavEntry]]:
+        # endDate = end_time date in YYYYMMDD; fetch latest 20 entries in one request
+        end_date = time_end.strftime("%Y%m%d")
+        entries = self._fetch_nav_list(ticker, end_date=end_date)
+        result = []
+        for e in entries:
+            d = _parse_date(e.get("yeildDate") or e.get("issDate") or "")
+            if d is None:
+                continue
+            ts = datetime.datetime.combine(d, datetime.time(), tzinfo=_TZ)
+            if time_begin <= ts <= time_end:
+                nav = Decimal(str(e["nav"]))
+                tot = e.get("totNav")
+                result.append(NavEntry(
+                    date=d,
+                    nav=nav,
+                    accumulated_nav=Decimal(str(tot)) if tot else None,
+                    currency="CNY",
+                ))
+        return sorted(result, key=lambda e: e.date)
+
+    def get_prices_series(
+        self,
+        ticker: str,
+        time_begin: datetime.datetime,
+        time_end: datetime.datetime,
+    ) -> Optional[List[SourcePrice]]:
+        entries = self.get_nav_series(ticker, time_begin, time_end)
+        if entries is None:
+            return None
+        return [
+            SourcePrice(
+                price=e.nav,
+                time=datetime.datetime.combine(e.date, datetime.time(), tzinfo=_TZ),
+                quote_currency=e.currency,
+            )
+            for e in entries
+        ]
+
+    def _fetch_detail(self, product_id: str) -> dict:
         resp = requests.get(
-            _DETAIL_URL,
+            f"{_BASE}/finacDetail.do",
+            params={"prdCode": product_id, "sceneCode": "PrdTempINI606", "access_source": "H5"},
+            headers=_HEADERS,
+            timeout=15,
+        )
+        resp.raise_for_status()
+        body = resp.json()
+        data = body.get("data") or body.get("result") or body
+        if isinstance(data, list):
+            data = data[0] if data else {}
+        return data
+
+    def _fetch_nav_list(self, product_id: str, end_date: str) -> List[dict]:
+        resp = requests.get(
+            f"{_BASE}/finaChildQuotationList.do",
             params={
                 "prdCode": product_id,
-                "sceneCode": "PrdTempINI606",
+                "pageNum": 1,
+                "pageSize": 20,
+                "endDate": end_date,
                 "access_source": "H5",
             },
             headers=_HEADERS,
@@ -84,11 +149,7 @@ class PinganSource(BaseSource):
         )
         resp.raise_for_status()
         body = resp.json()
-        # Ping An wraps response: {"code": 0, "data": {...}}
-        data = body.get("data") or body.get("result") or body
-        if isinstance(data, list):
-            data = data[0] if data else {}
-        return data
+        return (body.get("data") or {}).get("list") or []
 
 
 def _parse_date(s: str) -> Optional[datetime.date]:

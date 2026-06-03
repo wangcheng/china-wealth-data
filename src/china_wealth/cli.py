@@ -77,7 +77,6 @@ def _print_nav_series(entries, latest_fallback=None):
         print(f"{'Date':<12}  {'Unit NAV':>12}  Currency")
         print("-" * 34)
         print(f"{date_str:<12}  {latest_fallback.price:>12}  {latest_fallback.quote_currency or ''}")
-        print("(history not supported by this issuer; showing latest NAV only)")
     else:
         print("(not available)")
 
