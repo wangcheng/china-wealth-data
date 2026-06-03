@@ -34,7 +34,7 @@ This is a `src/` layout Python package (`src/china_wealth/`). The package has tw
 
 ### CCB status
 
-CCB (`sources/ccb.py`) is a stub. CCB product pages use a numeric page slug (`9783965`) that differs from the user-facing product ID. Until a lookup API is found, the slug must be passed directly as the ticker. NAV is extracted from HTML via regex.
+CCB (`sources/ccb.py`) is implemented via HTML scraping. CCB product pages use a numeric page slug (`9783965`) that differs from the user-facing product ID. Until a lookup API is found, the slug must be passed directly as the ticker. NAV is extracted from `<p class="firtst">` blocks in the server-rendered HTML. The CBIRC register code is NOT exposed on CCB product pages (returns `None`).
 
 ### CITIC SSL
 
@@ -49,3 +49,4 @@ Key non-obvious field names discovered from real API responses (see `docs/*/READ
 | CITIC detail | `registCode` | `nav` | `navDate` (`YYYYMMDD`) |
 | CITIC nav list | — | `data.productNavList[0].nav` | `navDate` |
 | Ping An | `bankFundRegisterCode` | `netValue` (string) | `navDate` (`YYYYMMDD`) |
+| CCB | N/A (not on page) | `p.firtst` in 最新净值 block | `最新净值(YYYY-MM-DD)` |
