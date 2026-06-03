@@ -1,15 +1,15 @@
 """Registry of issuer sources."""
 
 from china_wealth.sources.ccb import CcbSource
-from china_wealth.sources.chinawealth import ChinaWealthSource
 from china_wealth.sources.citic import CiticSource
 from china_wealth.sources.pingan import PinganSource
+from china_wealth.sources.schroder_bocom import SchroderBocomSource
 
 _SOURCES = {
-    "chinawealth": ChinaWealthSource,
     "citic": CiticSource,
     "pingan": PinganSource,
     "ccb": CcbSource,
+    "schroder-bocom": SchroderBocomSource,
 }
 
 
