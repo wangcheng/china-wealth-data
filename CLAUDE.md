@@ -72,6 +72,10 @@ drops example API responses in `docs/<source>/`. The expected flow is:
 3. Add `Source = <ClassName>` at the bottom (required for bean-price).
 4. Register in `sources/__init__.py`.
 
+### get_product_info vs get_latest_price
+
+`get_product_info` should make the **minimum number of API calls** needed to return name and register code. Do not fetch NAV inside `get_product_info` unless the source's detail API returns it for free in the same response (e.g. citic_wm, pingan_bank). If NAV requires a separate API call, leave `nav`/`nav_date`/`accumulated_nav` as `None` in `get_product_info` and let `get_latest_price` fetch it independently. Users are directed to use the `nav` command for price data.
+
 ### chinawealth source (交银施罗德 and others)
 
 `sources/chinawealth.py` delegates fully to `ChinaWealthClient`. Ticker format is `<register_code>/<sub_share_code>` (e.g. `Z7007024000248/182481005A`). A product may have multiple sub-shares with different NAVs — use `china-wealth lookup <register_code>` to list them. NAV history is fetched via `getNetValueList` (not `getProductDetail`).

@@ -17,6 +17,7 @@
 | `citic_wm`    | 信银理财 API   | 信银理财                                   | `AF233364A`                   | 支持               |
 | `pingan_bank` | 平安银行 API   | 平安理财及平安银行代销的其他机构产品       | `LHCZGS2100141A`              | 支持（最近 20 条） |
 | `ccb_wm`      | 建信理财网页   | 建信理财                                   | 数字页面 slug（如 `9783965`） | 不支持             |
+| `cmb_wm`      | 招银理财 API   | 招银理财                                   | `17977D`                      | 支持               |
 
 ### 基本概念
 
@@ -39,6 +40,8 @@
 - **`citic_wm`** — 适用于信银理财产品。在[信银理财产品列表](https://www.citic-wealth.com/wechat/product/#/productMarket)中找到产品，将 `fundCode` 作为 ticker 使用。
 
 - **`ccb_wm`** — 适用于建信理财产品。在[建信理财产品列表](https://www.wealthccb.com/productList.html)中找到产品详情页，将 URL 中的数字页面 slug 作为 ticker 使用。
+
+- **`cmb_wm`** — 适用于招银理财产品。在[招银理财产品列表](https://www.cmbchinawm.com/publicOffering)中找到产品，将 `prodTradeCode`（如 `17977D`）作为 ticker 使用。
 
 我们会持续新增各机构专属数据源。当专属数据源存在时，优先使用专属源而非 `chinawealth`，数据更稳定可靠。
 
@@ -95,6 +98,7 @@ uv run china-wealth info <数据源> <ticker>
 ```bash
 uv run china-wealth info citic_wm AF233364A
 uv run china-wealth info pingan_bank LHCZGS2100141A
+uv run china-wealth info cmb_wm 17977D
 uv run china-wealth info chinawealth Z7007024000248/182481005A
 ```
 
@@ -106,6 +110,7 @@ uv run china-wealth nav <数据源> <ticker>
 
 ```bash
 uv run china-wealth nav citic_wm AF233364A
+uv run china-wealth nav cmb_wm 17977D
 uv run china-wealth nav chinawealth Z7007024000248/182481005A
 ```
 
@@ -153,6 +158,9 @@ result = source.get_latest_price("Z7007024000248/182481005A")
 2020-01-01 commodity CITIC_AF233364A
   price: "CNY:china_wealth.sources.citic_wm/AF233364A"
 
+2020-01-01 commodity CMB_17977D
+  price: "CNY:china_wealth.sources.cmb_wm/17977D"
+
 2020-01-01 commodity JTHS_BOCOM
   price: "CNY:china_wealth.sources.chinawealth/Z7007024000248/182481005A"
 ```
@@ -177,6 +185,7 @@ src/china_wealth/
     ├── citic_wm.py        # 信银理财
     ├── pingan_bank.py     # 平安银行（平安理财及代销产品）
     ├── ccb_wm.py          # 建信理财（HTML 抓取）
+    ├── cmb_wm.py          # 招银理财（SM2 加密 API）
     └── chinawealth.py     # 中国理财网（委托 ChinaWealthClient）
 ```
 
