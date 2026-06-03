@@ -1,0 +1,142 @@
+{
+  "code": "0000",
+  "msg": "invoke success",
+  "data": {
+    "subsEndDays": null,
+    "prodName": "信银理财安盈象固收稳利日开8号理财产品",
+    "prodNameShort": "安盈象固收稳利日开8号A",
+    "prodCode": "AF233364A",
+    "respProductType": "1",
+    "productType": "2",
+    "respProductTypeStr": "每日购",
+    "registCode": "Z7002623001159",
+    "subsBeginDate": "20231204",
+    "subsEndDate": "20231206",
+    "referenceType": "03",
+    "benchmarks": "中债-新综合全价(1 年以下)指数",
+    "monIncomeRate": 0.013596,
+    "monIncomeRateDays": 90.0,
+    "lastNavDate": "20260304",
+    "totalYearIncomeRate": 0.019073,
+    "totalYearIncomeRateDays": 909.0,
+    "firstNavDate": "20231206",
+    "openYearIncomeRate": null,
+    "openYearIncomeRateDays": null,
+    "openIntervalDays": null,
+    "preOpenNavDate": "",
+    "opencycleYearIncomeRate": null,
+    "opencycleBeginDate": "",
+    "opencycleEndDate": "",
+    "benchmarksBasisCal": "本理财产品为固定收益率类产品，主要投向为信用债等资产，并结合一定的杠杆操作和交易策略对组合收益进行增厚，根据同业参考情况，中债-新综合全价(1年以下)指数是债券类资产的代表指数，作为业绩比较基准在资管行业中被广泛使用，本产品定位为中短期限固收稳健系列产品，因此产品业绩比较基准设为中债-新综合全价(1年以下)指数指数。业绩比较基准是基于产品性质、投资策略、过往经验等因素对产品设定的投资目标，不是预期收益率，不代表产品的未来表现和实际收益，不构成对产品收益的承诺，投资须谨慎。",
+    "navDecimalPlaces": "4",
+    "nav": 1.0475,
+    "totalNav": 1.0475,
+    "navDate": "20260602",
+    "rateNavDate": "20260602",
+    "sevenDaysIncomeRate": null,
+    "tenThousandIncomeAmt": null,
+    "outTenThousandIncomeAmt": null,
+    "prodLifecycle": "6",
+    "raiseType": "0",
+    "riskLevel": "2",
+    "riskLevelStr": "PR2-中低风险",
+    "distributorInfoList": [
+      {
+        "distributorCode": "CTW,CW1,CW2,CW4",
+        "distributorName": "信银理财直销"
+      },
+      { "distributorCode": "008,932", "distributorName": "中信银行" }
+    ],
+    "hisDatumTab": {
+      "setUpIncomeRate": 0.019073,
+      "setUpIncomeRateDesc": "2023-12-06至2026-06-02之间的累计净值差计算得出的涨跌幅折合成的年化收益率。<br><br>1．区间收益率（涨跌幅）：指的是某个时间段内（如一个月、三个月、成立以来等）产品净值的变动情况，计算方式为（期末累计净值-期初累计净值）÷期初单位净值×100%。2.区间年化收益率：指的是基于某个时间段（如一个月、三个月、成立以来等）的实际涨跌幅，按照365天进行折算所得出的收益率， 计算方式为（期末累计净值-期初累计净值）÷期初单位净值÷周期天数×365×100%。3.完整会计年度收益率：是指在一个完整的会计年度（通常是12个月）内，本理财产品所获得的收益率。4.区间计算规则: 产品成立日即运作起始日，过往业绩计算的起始日期为成立日前一日(一般为募集截止日)，该日净值为1。5.说明:以上收益率是根据理财产品在该时间段内的实际收益情况计算得出，赎回成本未计入，仅是一个参考指标，并非最终持有的到期收益率，投资者所能获得的最终收益以理财产品管理人实际支付为准。6.数据来源：信银理财。7. 数据核对：过往业绩相关数据已经托管人核对。8.风险提示：理财产品过往业绩不代表其未来表现，不等于理财产品实际收益，投资须谨慎。",
+      "setUpIncomeRateStartDate": "2023.12.06",
+      "setUpIncomeRateEndDate": "2026.06.02",
+      "hisDatumList": [
+        {
+          "benchMark": "中债-新综合全价(1 年以下)指数",
+          "startDate": "2023.12.07起",
+          "endDate": null,
+          "benchMarkDesc": "本理财产品为固定收益率类产品，主要投向为信用债等资产，并结合一定的杠杆操作和交易策略对组合收益进行增厚，根据同业参考情况，中债-新综合全价(1年以下)指数是债券类资产的代表指数，作为业绩比较基准在资管行业中被广泛使用，本产品定位为中短期限固收稳健系列产品，因此产品业绩比较基准设为中债-新综合全价(1年以下)指数指数。业绩比较基准是基于产品性质、投资策略、过往经验等因素对产品设定的投资目标，不是预期收益率，不代表产品的未来表现和实际收益，不构成对产品收益的承诺，投资须谨慎。"
+        }
+      ],
+      "hisDatumBottomDesc": "本页面展示自2022年3月11日以来的业绩比较基准变动情况，本产品全部业绩比较基准及测算依据说明详见信银理财官方网站。"
+    },
+    "intervalYearIncomeDesc": "<p>1.区间年化收益率：指的是基于某个时间段（如一个月、三个月、成立以来等）的实际涨跌幅，按照365天进行折算所得出的收益率， 计算方式为（期末累计净值-期初累计净值）÷期初单位净值÷周期天数×365×100%。2.说明:以上收益率是根据理财产品在该时间段内的实际收益情况计算得出，赎回成本未计入，仅是一个参考指标，并非最终持有的到期收益率，投资者所能获得的最终收益以理财产品管理人实际支付为准。3.数据来源：信银理财。4.数据核对：过往业绩相关数据已经托管人核对。5.风险提示：理财产品过往业绩不代表其未来表现，不等于理财产品实际收益，投资须谨慎。</p>",
+    "intervalIncomeDesc": "<p>1.区间收益率（涨跌幅）：指的是某个时间段内（如一个月、三个月、成立以来等）产品净值的变动情况，计算方式为（期末累计净值-期初累计净值）÷期初单位净值×100%。2.说明:以上收益率是根据理财产品在该时间段内的实际收益情况计算得出，赎回成本未计入，仅是一个参考指标，并非最终持有的到期收益率，投资者所能获得的最终收益以理财产品管理人实际支付为准。3.数据来源：信银理财。4.数据核对：过往业绩相关数据已经托管人核对。5.风险提示：理财产品过往业绩不代表其未来表现，不等于理财产品实际收益，投资须谨慎</p>",
+    "hisPerformanceList": [
+      {
+        "name": "近1月",
+        "lastYear": null,
+        "startDate": "2026.04.30",
+        "endDate": "2026.06.02",
+        "yield": 0.014802,
+        "yieldStr": null,
+        "changeRange": 0.001338
+      },
+      {
+        "name": "近3月",
+        "lastYear": null,
+        "startDate": "2026.03.04",
+        "endDate": "2026.06.02",
+        "yield": 0.013596,
+        "yieldStr": null,
+        "changeRange": 0.003352
+      },
+      {
+        "name": "近6月",
+        "lastYear": null,
+        "startDate": "2025.12.04",
+        "endDate": "2026.06.02",
+        "yield": 0.013446,
+        "yieldStr": null,
+        "changeRange": 0.006631
+      },
+      {
+        "name": "近1年",
+        "lastYear": null,
+        "startDate": "2025.05.30",
+        "endDate": "2026.06.02",
+        "yield": 0.013728,
+        "yieldStr": null,
+        "changeRange": 0.01384
+      },
+      {
+        "name": "近2年",
+        "lastYear": null,
+        "startDate": "2024.05.31",
+        "endDate": "2026.06.02",
+        "yield": 0.016321,
+        "yieldStr": null,
+        "changeRange": 0.032732
+      },
+      {
+        "name": "成立以来",
+        "lastYear": null,
+        "startDate": "2023.12.06",
+        "endDate": "2026.06.02",
+        "yield": 0.019073,
+        "yieldStr": null,
+        "changeRange": 0.0475
+      },
+      {
+        "name": "2025年",
+        "lastYear": "2025",
+        "startDate": "2024.12.31",
+        "endDate": "2025.12.31",
+        "yield": 0.01471,
+        "yieldStr": null,
+        "changeRange": 0.01471
+      },
+      {
+        "name": "2024年",
+        "lastYear": "2024",
+        "startDate": "2023.12.31",
+        "endDate": "2024.12.31",
+        "yield": 0.024384,
+        "yieldStr": null,
+        "changeRange": 0.024451
+      }
+    ]
+  }
+}

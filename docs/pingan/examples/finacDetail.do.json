@@ -1,0 +1,563 @@
+{
+  "data": {
+    "nextOpenStartDate": "20260603",
+    "rollingWay": "1",
+    "endDate": "20991231",
+    "isNewNav": "1",
+    "activeMarketingTime": "4",
+    "indexContent": "2.05%",
+    "saleStartDate": "20220713",
+    "latestRate": {
+      "halfyearIncrease": 0.91,
+      "nav": 1.0884,
+      "seasonIncrease": 0.51,
+      "annualYearIncrease": 1.67,
+      "annualIncrease": 1.69,
+      "totNav": 1.0884,
+      "seasonYearIncrease": 2.05,
+      "halfyearYearIncrease": 1.84,
+      "monthIncrease": 0.18,
+      "fromEstablishIncrease": 8.84,
+      "sinceAnnualRate": 2.27,
+      "sinceThisYearIncrease": 0.87,
+      "sinceThisYearRate": 2.07,
+      "monthYearIncrease": 2.03
+    },
+    "isPensionsTaxDefered": "0",
+    "redeemStartDate": "20260618",
+    "purchaseRule": "1.00元起购，0.01元递增，认/申购费0；\u003Cbr/\u003E现在买入，预计06月05日确认份额；每笔购买申请所在交易日（交易日16:00前视为当日，16:00后为下一交易日）16:00（不含）前允许撤销，之后不可撤销",
+    "rateType": "3",
+    "popId": "FINAC_LHCZGS2100141A",
+    "taCode": "PAWM",
+    "prdType": "20",
+    "coreIndexTips": "",
+    "periodQuotationFirstScreen": {
+      "totalSize": 0,
+      "pageNo": 1,
+      "dataList": [],
+      "pageSize": 10
+    },
+    "indexNameTipVo": {
+      "totalNetValueHint": "",
+      "weeklyYearIncreaseOldHint": "",
+      "monthlyIncreaseHint": "",
+      "currentPeriodYieldHint": "",
+      "sinceEstablishIncreaseHint": "",
+      "weeklyYearIncreaseHint": "",
+      "sinceEstablishYearRateHint": "",
+      "quarterMaxRetreatHint": "",
+      "semiAnnualIncreaseOldHint": "",
+      "dailyIncreaseHint": "",
+      "annualIndexIncreaHint": "",
+      "semiAnnualIndexIncreaHint": "",
+      "planRateRemarkHint": "本理财产品为固定收益类产品，主要投资于固定收益类资产。根据产品风险收益特征，本理财产品选取代表性指数作为业绩基准，其中，中债-综合全价(总值)指数由中央国债登记结算有限责任公司发布，是中债指数应用最广泛的指数之一，能够较好地反映境内人民币债券市场价格走势，适合作为本理财产品固收类资产的业绩比较基准。管理人根据拟投资产类别及配置比例，结合市场利率水平、组合久期、投资策略过往历史表现等因素，综合得出本理财产品的业绩比较基准。 本理财产品为净值型产品，业绩表现将随市场波动，具有不确定性。业绩比较基准是本理财产品管理人基于产品性质、投资策略、过往经验等因素对产品设定的投资目标。业绩比较基准不是预期收益率，不代表产品的未来表现和实际收益，不构成管理人对产品收益的承诺。",
+      "annualMaxRetreatHint": "",
+      "monthlyYearIncreaseHint": "",
+      "semiAnnualMaxRetreatHint": "",
+      "semiAnnualIncreaseHint": "",
+      "netValueHint": "",
+      "sinceThisYearRateHint": "",
+      "dailyIncreaseOldHint": "",
+      "investTermHint": "",
+      "sinceEstablishMaxRetreatHint": "",
+      "weeklyIncreaseHint": "",
+      "quarterIndexIncreaHint": "",
+      "annualIncreaseHint": "",
+      "annualYearIncreaseHint": "",
+      "dailyYearIncreaseOldHint": "",
+      "currentPeriodIncreaseHint": "",
+      "productDetailsPage": ["03"],
+      "quarterYearIncreaseHint": "",
+      "sinceThisYearIncreaseHint": "",
+      "semiAnnualYearIncreaseHint": "",
+      "regularListPage": ["03"],
+      "dailyYearIncreaseHint": "",
+      "quarterIncreaseHint": ""
+    },
+    "redeemTimepointDesc": {
+      "descText": "1.预估开放赎回日期由产品管理机构回传，以产品合同及公告为准。#2.一般情况下，在对应日期8:00后可提交赎回申请。"
+    },
+    "p515RegularHoldFlag": "0",
+    "bankFundRegisterCode": "Z7003322000117",
+    "prdTypeName": "代销平安理财",
+    "prdName": "灵活成长14天持有A",
+    "netValue": "1.0884",
+    "indexName": "近三月年化",
+    "accountEffectDays": 3,
+    "buyPersonTimes": "93358",
+    "pminHold": "0",
+    "sellingPoint": {},
+    "prdTags": [
+      {
+        "updateDate": 1593706462085,
+        "tagCode": "riskLevel_2",
+        "remark": "产品整体风险程度较低，收益波动较小，虽然存在一些可能造成产品本金损失对产品本金和收益安全产生不利影响的因素，但产品本金出现损失的可能性较小。",
+        "productClassificationCode": "pro0001",
+        "classification": "通用",
+        "type": "1",
+        "userID": "WANGHONGTAI539",
+        "isDisplay": "0",
+        "classificationCode": "c004572",
+        "productClassification": "通用",
+        "tagType": "1",
+        "name": "中低风险",
+        "status": "1",
+        "createDate": 1593706462085
+      },
+      {
+        "name": "非保本"
+      },
+      {
+        "name": "1元起购"
+      },
+      {
+        "updateDate": 1715584154858,
+        "tagCode": "s000691",
+        "remark": "暂无信息",
+        "productClassificationCode": "pro0001",
+        "classification": "产品系列",
+        "type": "1",
+        "userID": "LINJING658",
+        "isDisplay": "0",
+        "classificationCode": "cda000006",
+        "hideInList": "1",
+        "productClassification": "通用",
+        "updateBy": "XIAYUAN443",
+        "tagType": "1",
+        "name": "购买T+1确认",
+        "status": "1",
+        "createDate": 1602583006360
+      },
+      {
+        "updateDate": 1667351443187,
+        "tagCode": "s001331",
+        "remark": "暂无信息",
+        "productClassificationCode": "pro0001",
+        "classification": "产品系列",
+        "type": "1",
+        "userID": "ZHENGSHAOFANG835",
+        "isDisplay": "0",
+        "classificationCode": "cda000006",
+        "hideInList": "1",
+        "productClassification": "通用",
+        "updateBy": "QINMINGXUE360",
+        "tagType": "1",
+        "name": "交易时段赎回一般T+2到账",
+        "status": "1",
+        "createDate": 1663839564958
+      },
+      {
+        "updateDate": 1760435470750,
+        "tagCode": "sd001909",
+        "remark": "如遇管理人数据传输异常、资金清算延时等特殊情况，可能晚于上午8点到账",
+        "productClassificationCode": "pro0001",
+        "classification": "产品标签",
+        "type": "1",
+        "tagLevel": "P5",
+        "userID": "EX-LIANGQIAOMIN403",
+        "isDisplay": "0",
+        "classificationCode": "cpa000010",
+        "hideInList": "0",
+        "productClassification": "通用",
+        "updateBy": "EX-LIANGQIAOMIN403",
+        "tagType": "1",
+        "name": "最快8点到账",
+        "status": "1",
+        "createDate": 1760349811489
+      }
+    ],
+    "saleEndTime": "170000",
+    "purNotarizeNaturalDaysTips": "",
+    "agentProdType": "515",
+    "prdManager": "平安理财",
+    "consultWindowShow": "Y",
+    "investTermTitle": "持有期满",
+    "finaAccountYearQuotation": [
+      {
+        "accountYearIncrease": "1.45",
+        "accountAnnualYearIncrease": "1.45",
+        "accountYear": "2025",
+        "prdCode": "LHCZGS2100141A"
+      },
+      {
+        "accountYearIncrease": "2.62",
+        "accountAnnualYearIncrease": "2.61",
+        "accountYear": "2024",
+        "prdCode": "LHCZGS2100141A"
+      },
+      {
+        "accountYearIncrease": "2.89",
+        "accountAnnualYearIncrease": "2.89",
+        "accountYear": "2023",
+        "prdCode": "LHCZGS2100141A"
+      }
+    ],
+    "indexContentSecond": "14天",
+    "totalNetValue": "1.0884",
+    "startDate": "20220714",
+    "status": "0",
+    "limitReleaseSwitch": "1",
+    "fundFeeRateList": [
+      {
+        "areaUnit": "0",
+        "maxRegion": 99999999999999,
+        "feeStartDate": "2022-07-29",
+        "feeType": "300",
+        "feeRate": 0.08,
+        "feeEndDate": "2023-09-30",
+        "chargeUnit": "1",
+        "minRegion": 0
+      },
+      {
+        "areaUnit": "0",
+        "maxRegion": 99999999999999,
+        "feeStartDate": "2023-10-01",
+        "feeType": "300",
+        "feeRate": 0.15,
+        "feeEndDate": "2024-12-31",
+        "chargeUnit": "1",
+        "minRegion": 0
+      },
+      {
+        "areaUnit": "0",
+        "maxRegion": 99999999999999,
+        "feeStartDate": "2025-01-01",
+        "feeType": "300",
+        "feeRate": 0.17,
+        "feeEndDate": "2099-12-31",
+        "chargeUnit": "1",
+        "minRegion": 0
+      },
+      {
+        "areaUnit": "0",
+        "maxRegion": 99999999999999,
+        "feeStartDate": "2022-07-29",
+        "feeType": "301",
+        "feeEndDate": "2023-09-30",
+        "chargeUnit": "1",
+        "minRegion": 0
+      },
+      {
+        "areaUnit": "0",
+        "maxRegion": 99999999999999,
+        "feeStartDate": "2023-10-01",
+        "feeType": "301",
+        "feeEndDate": "2024-12-31",
+        "chargeUnit": "1",
+        "minRegion": 0
+      },
+      {
+        "areaUnit": "0",
+        "maxRegion": 99999999999999,
+        "feeStartDate": "2025-01-01",
+        "feeType": "301",
+        "feeEndDate": "2099-12-31",
+        "chargeUnit": "1",
+        "minRegion": 0
+      },
+      {
+        "areaUnit": "0",
+        "maxRegion": 99999999999999,
+        "feeStartDate": "2022/07/14",
+        "feeType": "500",
+        "feeRate": 0.15,
+        "feeEndDate": "2024/12/31",
+        "chargeUnit": "1",
+        "minRegion": 0
+      },
+      {
+        "areaUnit": "0",
+        "maxRegion": 99999999999999,
+        "feeStartDate": "2025/01/01",
+        "feeType": "500",
+        "feeRate": 0.17,
+        "feeEndDate": "2099/12/31",
+        "chargeUnit": "1",
+        "minRegion": 0
+      },
+      {
+        "areaUnit": "0",
+        "maxRegion": 99999999999999,
+        "feeStartDate": "2022/07/14",
+        "feeType": "501",
+        "feeRate": 0.02,
+        "feeEndDate": "2099/12/31",
+        "chargeUnit": "1",
+        "minRegion": 0
+      }
+    ],
+    "pfirstAmt": "1",
+    "indexAnalysisInfoSwitch": {
+      "IncreaseOrderNo": "",
+      "benchMarkCmpOrderNo": "",
+      "retreatOrderNo": "",
+      "IncreaseSwitch": "",
+      "upProbabilitySwitch": "",
+      "sharpeRatioSwitch": "",
+      "switch": "1",
+      "upProbabilityOrderNo": "",
+      "sharpeRatioOrderNo": "",
+      "retreatSwitch": "",
+      "historyProfitOrderNo": "",
+      "benchMarkCmpSwitch": "",
+      "historyProfitSwitch": "",
+      "switchCmp": "1"
+    },
+    "redeemBaseUnit": "0.01",
+    "riskLevel": "2",
+    "prdMarketConfig": {
+      "maturityRevokeSwitchFlag": "0",
+      "commentEnable": "0",
+      "prdCode": "LHCZGS2100141A",
+      "queryIndexQuotationPageSwitch": "1",
+      "minPurchaseCount": "200",
+      "onlyShowOpenDayIndex": "0",
+      "indexTrendList": [
+        {
+          "indexName": "业绩走势",
+          "indexCode": "navIncrease",
+          "indexSwitch": "ON"
+        },
+        {
+          "indexName": "单位净值",
+          "indexCode": "netValue",
+          "indexSwitch": "ON"
+        },
+        {
+          "indexName": "累计净值",
+          "indexCode": "totalNav",
+          "indexSwitch": "ON"
+        },
+        {
+          "indexName": "累计收益",
+          "indexCode": "totalIncome",
+          "indexSwitch": "ON"
+        }
+      ],
+      "prdType": "20",
+      "indexTrendAllSwitch": "ON",
+      "finaCalenderConfig": {},
+      "hiddenYearRateDatas": "0",
+      "maturitySwitchFlag": "OFF",
+      "firstChannelFlagSwitch": "OFF",
+      "hiddenIncrsRate": "0"
+    },
+    "subUnit": "0.01",
+    "prdManagerCode": "PAWM",
+    "startInterestDate": "20260605",
+    "redeemRule": "赎回费0；本产品设有最短持有期14个自然日，最短持有期内封闭运作不能赎回；每笔赎回申请所在交易日（交易日16:00前视为当日，16:00后为下一交易日）16:00（不含）前允许撤销，之后不可撤销",
+    "saleEndDate": "20220713",
+    "pappAmt": "0.01",
+    "tradeCalendar": "3",
+    "indexAnalysisExists": true,
+    "prdCode": "LHCZGS2100141A",
+    "systemTime": "2026-06-03 16:38:00",
+    "taInfo": {
+      "taDescription": "本产品是代销产品，产品管理机构为平安理财有限责任公司(简称“平安理财”)，平安银行作为本产品的代理销售机构。\n平安理财是平安银行全资子公司，作为以“受人之托，代客理财”为宗旨的独立法人平台，将为本产品提供专业的投资、风险等服务。\n购买前请您确认已充分了解该产品相关特点、投资方向、风险收益等特征及相关产品协议。",
+      "taCode": "PAWM",
+      "taName": "平安理财有限责任公司",
+      "navScale": 4
+    },
+    "prdSaleStatus": "ON_SALE",
+    "operationMode": "1",
+    "latelyOpenDay": "20260604",
+    "currencyName": "RMB",
+    "investTargetDesc": "投资于债权类资产的比例不低于80%，投资于权益类资产的比例不高于20%，投资于商品及金融衍生品类资产的比例合计不高于20%；杠杆水平不超过140%。",
+    "closeTime": "160000",
+    "fortuneVo": {
+      "fortuneUrl": "https://b.pingan.com.cn/aum/wisdom/index.html?source=MA020_fortuneHome_h54592&outerSource=JJLC_WISDOM_h54592#/key/h54592",
+      "fortuneIcon": "https://cdn.sdb.com.cn/brcp/wefiles/cdn/openDownload/F6156f388c2a4429db1835750a35a929b.jpg",
+      "fortuneName": "平安理财"
+    },
+    "currency": "156",
+    "consumerRightProtectTips": "理财非存款，产品有风险，投资须谨慎。金融消费者不得利用金融产品和服务从事违法活动。",
+    "tranCodeList": ["100201", "100202"],
+    "confirmNavDate": "20260604",
+    "openTime": "093000",
+    "historyRateDescConfig": {
+      "yearRateDesc": "年化非涨跌幅，近X月年化，从上一自然日向前追溯X个月，按近X月涨幅/近X月天数*365*100%计算得出。",
+      "pctChgDesc": "涨跌幅：涨跌幅根据产品实际的累计净值涨跌计算得出，近X月涨跌幅=[T日累计净值-（T-X个月）日累计净值]/（T-X个月）日累计净值*100%。",
+      "accountPctChgDesc": "涨跌幅：涨跌幅根据产品实际的累计净值涨跌计算得出，近X月涨跌幅=[T日累计净值-（T-X个月）日累计净值]/（T-X个月）日累计净值*100%；会计年度涨跌幅=(本年12月31日日终净值-上一年12月31日终净值)/上一年12月31日终净值*100%。",
+      "accountYearRateDesc": "年化非涨跌幅，近X月年化，从上一自然日向前追溯X个月，按近X月涨幅/近X月天数*365*100%计算得出；会计年度年化收益率=会计年度涨幅/期间天数*365*100%。"
+    },
+    "productSeriesCodes": ["gps400018"],
+    "incomeRule": "以赎回申请所在交易日（交易日16:00前视为当日，16:00后为下一交易日）理财产品份额净值为基准计算赎回金额，赎回金额＝赎回份数×赎回申请所在交易日产品份额净值-其他费用（如有）",
+    "saleStartTime": "093000",
+    "navDate": "20260602",
+    "customIncomeIndexSubIndexOne": {
+      "indexType": "customization",
+      "indexName": "最低持有",
+      "indexIconTips": "",
+      "indexContent": "14天",
+      "indexValue": "14天"
+    },
+    "remainQuotaPct": 0.5056,
+    "isInWorkTime": "0",
+    "customIncomeIndexSubIndex": {
+      "indexType": "planRateRemark",
+      "indexName": "业绩比较基准",
+      "indexContent": "中债-综合全价(总值)指数收益率*50.00%+中国人民银行公布的活期存款利率*50.00%",
+      "indexValue": "中债-综合全价(总值)指数收益率*50.00%+中国人民银行公布的活期存款利率*50.00%"
+    },
+    "accountEffectDaysUnit": "交易日",
+    "investTerm": {
+      "investTermDay": 14,
+      "investTermTypeName": "最低持有",
+      "unitCode": "0",
+      "investTermText": "每天可赎回",
+      "investTermUnit": "天",
+      "investTerm": "14"
+    },
+    "estabDate": "20220714",
+    "investTermDesc": "每天可赎回",
+    "customIncomeIndexSubIndexTwo": {
+      "indexType": "customization",
+      "indexName": "持有期满",
+      "indexIconTips": "",
+      "indexContent": "每天可赎回",
+      "indexValue": "每天可赎回"
+    },
+    "indexNameSecond": "最低持有",
+    "enchashmentRule": "预计一般T+2个交易日，最晚T+3个交易日内到账。T为赎回申请所在交易日，遇非交易日顺延下一交易日，具体以实际到账为准",
+    "remainQuota": "5005874390.34",
+    "customIncomeIndexMainIndexOne": {
+      "indexType": "latestRate.monthYearIncrease",
+      "indexName": "近一月年化",
+      "indexContent": "2.03%",
+      "indexValue": "2.03%"
+    },
+    "pminRed": "0.01",
+    "closeTimeDescr": "16:00",
+    "openPeriod": "1",
+    "templateComponents": {
+      "Timeline": {
+        "componentType": "Timeline",
+        "componentData": {
+          "timeline": {
+            "directText": "",
+            "elements": [
+              {
+                "bottomText2": {
+                  "leftCss": "",
+                  "rightCss": "",
+                  "boxClass": "",
+                  "color": "#ffffff",
+                  "positionCss": "",
+                  "style": "0",
+                  "parentClass": "",
+                  "text": "买入",
+                  "align": "LEFT",
+                  "extendStyle": ""
+                },
+                "scale": 85,
+                "lineColor": "#ff7214",
+                "style": "l0",
+                "bottomText1": {
+                  "leftCss": "",
+                  "rightCss": "",
+                  "boxClass": "",
+                  "color": "#e7e7e7",
+                  "positionCss": "",
+                  "style": "0",
+                  "parentClass": "",
+                  "text": "现在",
+                  "align": "LEFT",
+                  "extendStyle": ""
+                },
+                "elementType": "COMMON",
+                "extendStyle": "",
+                "pointColor": "#ff7214"
+              },
+              {
+                "topText1": {
+                  "leftCss": "",
+                  "rightCss": "",
+                  "boxClass": "",
+                  "color": "#ffffff",
+                  "positionCss": "",
+                  "style": "0",
+                  "parentClass": "",
+                  "text": "最低持有期",
+                  "align": "LEFT",
+                  "extendStyle": ""
+                },
+                "bottomText2": {
+                  "leftCss": "",
+                  "rightCss": "",
+                  "boxClass": "",
+                  "color": "#ffffff",
+                  "positionCss": "",
+                  "style": "0",
+                  "parentClass": "",
+                  "text": "确认份额",
+                  "align": "LEFT",
+                  "extendStyle": ""
+                },
+                "scale": 85,
+                "lineColor": "#e7e7e7",
+                "style": "l0",
+                "bottomText1": {
+                  "leftCss": "",
+                  "rightCss": "",
+                  "boxClass": "",
+                  "color": "#e7e7e7",
+                  "positionCss": "",
+                  "style": "0",
+                  "parentClass": "",
+                  "text": "06-05",
+                  "align": "LEFT",
+                  "extendStyle": ""
+                },
+                "elementType": "COMMON",
+                "extendStyle": "",
+                "pointColor": "#ff7214"
+              },
+              {
+                "topText1": {
+                  "leftCss": "",
+                  "rightCss": "",
+                  "boxClass": "",
+                  "color": "#ffffff",
+                  "positionCss": "",
+                  "style": "0",
+                  "parentClass": "",
+                  "text": "每日可赎回",
+                  "align": "LEFT",
+                  "extendStyle": ""
+                },
+                "scale": 170,
+                "lineColor": "#e7e7e7",
+                "style": "l0",
+                "bottomText1": {
+                  "leftCss": "",
+                  "rightCss": "",
+                  "boxClass": "",
+                  "color": "#e7e7e7",
+                  "positionCss": "",
+                  "style": "0",
+                  "parentClass": "",
+                  "text": "06-18",
+                  "align": "LEFT",
+                  "extendStyle": ""
+                },
+                "elementType": "COMMON",
+                "extendStyle": "",
+                "pointColor": "#e7e7e7"
+              },
+              {
+                "pointType": "ARROW",
+                "elementType": "END",
+                "pointColor": "#e7e7e7"
+              }
+            ],
+            "directUrl": "",
+            "timelineName": "开放期时间轴"
+          }
+        },
+        "componentName": "时间轴"
+      }
+    }
+  },
+  "responseCode": "000000",
+  "responseMsg": "成功"
+}
