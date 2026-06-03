@@ -7,7 +7,7 @@
 - 通过数据源 + ticker 获取最新净值及产品元数据（名称、登记编码）
 - 支持历史净值查询（部分数据源）
 - 通过银保监会登记编码查询任意产品信息（via 中国理财网）
-- 兼容 [bean-price](https://github.com/beancount/beanprice)，可用于 Beancount 记账工作流
+- 兼容 [bean-price](https://github.com/beancount/beanprice)，可用于 Beancount 记账工作流（WIP）
 
 ## 支持的数据源
 
@@ -148,27 +148,6 @@ print(info.register_code)  # 如 "Z7002623001159"
 ```python
 source = get_source("chinawealth")
 result = source.get_latest_price("Z7007024000248/182481005A")
-```
-
-## bean-price 使用
-
-在 Beancount commodity 中添加 `price:` 元数据，使用完整模块路径：
-
-```beancount
-2020-01-01 commodity CITIC_AF233364A
-  price: "CNY:china_wealth.sources.citic_wm/AF233364A"
-
-2020-01-01 commodity CMB_17977D
-  price: "CNY:china_wealth.sources.cmb_wm/17977D"
-
-2020-01-01 commodity JTHS_BOCOM
-  price: "CNY:china_wealth.sources.chinawealth/Z7007024000248/182481005A"
-```
-
-然后运行：
-
-```bash
-uv run bean-price your_file.beancount
 ```
 
 ## 项目结构
