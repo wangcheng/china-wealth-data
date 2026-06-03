@@ -5,7 +5,7 @@ Usage:
   uv run python -m china_wealth.cli info   pingan_bank LHCZGS2100141A
   uv run python -m china_wealth.cli info   ccb_wm 9783965
   uv run python -m china_wealth.cli nav    citic_wm AF233364A
-  uv run python -m china_wealth.cli nav    chinawealth Z7007024000248/182481005A
+  uv run python -m china_wealth.cli nav    chinawealth Z7007024000248_182481005A
   uv run python -m china_wealth.cli lookup Z7007024000248
 """
 
@@ -26,7 +26,7 @@ def _usage():
     print("    nav    <source> <ticker>  — full NAV history (single request)", file=sys.stderr)
     print("    lookup <register_code>    — look up any product by CBIRC register code", file=sys.stderr)
     print("  e.g.  china-wealth info   citic_wm AF233364A", file=sys.stderr)
-    print("        china-wealth nav    chinawealth Z7007024000248/182481005A", file=sys.stderr)
+    print("        china-wealth nav    chinawealth Z7007024000248_182481005A", file=sys.stderr)
     print("        china-wealth lookup Z7007024000248", file=sys.stderr)
 
 
@@ -123,7 +123,7 @@ def cmd_lookup(register_code: str):
     else:
         print("  (none)")
     if sub_shares and p.has_nav:
-        print(f"  运行: china-wealth nav chinawealth {register_code}/<份额代码>")
+        print(f"  运行: china-wealth nav chinawealth {register_code}_<份额代码>")
 
 
 def main():

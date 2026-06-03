@@ -78,7 +78,7 @@ drops example API responses in `docs/<source>/`. The expected flow is:
 
 ### chinawealth source (交银施罗德 and others)
 
-`sources/chinawealth.py` delegates fully to `ChinaWealthClient`. Ticker format is `<register_code>/<sub_share_code>` (e.g. `Z7007024000248/182481005A`). A product may have multiple sub-shares with different NAVs — use `china-wealth lookup <register_code>` to list them. NAV history is fetched via `getNetValueList` (not `getProductDetail`).
+`sources/chinawealth.py` delegates fully to `ChinaWealthClient`. Ticker format is `<register_code>_<sub_share_code>` (e.g. `Z7007024000248_182481005A`). A product may have multiple sub-shares with different NAVs — use `china-wealth lookup <register_code>` to list them. NAV history is fetched via `getNetValueList` (not `getProductDetail`).
 
 ### CCB status
 

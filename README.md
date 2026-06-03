@@ -13,7 +13,7 @@
 
 | 数据源 key    | 数据后端       | 覆盖机构示例                               | Ticker 格式                   | 历史净值           |
 | ------------- | -------------- | ------------------------------------------ | ----------------------------- | ------------------ |
-| `chinawealth` | 中国理财网 API | 理论上所有产品，但不是所有产品都有净值数据 | `<登记编码>/<份额代码>`       | 支持（最近 10 条） |
+| `chinawealth` | 中国理财网 API | 理论上所有产品，但不是所有产品都有净值数据 | `<登记编码>_<份额代码>`       | 支持（最近 10 条） |
 | `citic_wm`    | 信银理财 API   | 信银理财                                   | `AF233364A`                   | 支持               |
 | `pingan_bank` | 平安银行 API   | 平安理财及平安银行代销的其他机构产品       | `LHCZGS2100141A`              | 支持（最近 20 条） |
 | `ccb_wm`      | 建信理财网页   | 建信理财                                   | 数字页面 slug（如 `9783965`） | 不支持             |
@@ -33,7 +33,7 @@
 
 ### 如何选择数据源和 ticker
 
-- **`chinawealth`** — 中国理财网（xinxipilu.chinawealth.com.cn）是银保监会官方登记平台，理论上覆盖全国所有理财产品。但**并非所有机构都在此公布净值数据**，许多机构仅有基本产品信息而无价格。已知施罗德交银理财会在此更新净值。使用前建议先执行 `china-wealth lookup <登记编码>` 确认该产品是否有净值数据。如果有，使用 `<登记编码>/<份额代码>` 作为 ticker。
+- **`chinawealth`** — 中国理财网（xinxipilu.chinawealth.com.cn）是银保监会官方登记平台，理论上覆盖全国所有理财产品。但**并非所有机构都在此公布净值数据**，许多机构仅有基本产品信息而无价格。已知施罗德交银理财会在此更新净值。使用前建议先执行 `china-wealth lookup <登记编码>` 确认该产品是否有净值数据。如果有，使用 `<登记编码>_<份额代码>` 作为 ticker。
 
 - **`pingan_bank`** — 适用于所有在平安银行平台销售的产品，不限于平安理财自有产品。在[平安银行理财产品列表](https://b.pingan.com.cn/aum/m/inventory_search.html?dataType=07&sellingType=FINANCESUB)中找到产品，将 `prdCode` 作为 ticker 使用。
 
@@ -86,7 +86,7 @@ NAV data on chinawealth?:   Y
 份额代码 Sub-share codes:
   182481005A
   182481005B
-  运行: china-wealth nav chinawealth Z7007024000248/182481005A
+  运行: china-wealth nav chinawealth Z7007024000248_182481005A
 ```
 
 ### `info` — 产品元数据和最新净值
@@ -99,7 +99,7 @@ uv run china-wealth info <数据源> <ticker>
 uv run china-wealth info citic_wm AF233364A
 uv run china-wealth info pingan_bank LHCZGS2100141A
 uv run china-wealth info cmb_wm 17977D
-uv run china-wealth info chinawealth Z7007024000248/182481005A
+uv run china-wealth info chinawealth Z7007024000248_182481005A
 ```
 
 ### `nav` — 历史净值
@@ -111,7 +111,7 @@ uv run china-wealth nav <数据源> <ticker>
 ```bash
 uv run china-wealth nav citic_wm AF233364A
 uv run china-wealth nav cmb_wm 17977D
-uv run china-wealth nav chinawealth Z7007024000248/182481005A
+uv run china-wealth nav chinawealth Z7007024000248_182481005A
 ```
 
 输出示例：
@@ -147,7 +147,7 @@ print(info.register_code)  # 如 "Z7002623001159"
 
 ```python
 source = get_source("chinawealth")
-result = source.get_latest_price("Z7007024000248/182481005A")
+result = source.get_latest_price("Z7007024000248_182481005A")
 ```
 
 ## 项目结构

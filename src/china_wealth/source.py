@@ -31,7 +31,7 @@ class BaseSource(ABC):
     Historical methods are optional — return None if not supported.
 
     The ticker string passed by bean-price identifies the product
-    (e.g. "AF233364A" for citic_wm, "<register_code>/<sub_share_code>" for chinawealth).
+    (e.g. "AF233364A" for citic_wm, "<register_code>_<sub_share_code>" for chinawealth).
     """
 
     @property

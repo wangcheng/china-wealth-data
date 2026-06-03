@@ -3,7 +3,7 @@
 This is a low-level client, not a BaseSource subclass. Issuers whose products
 are published on 中国理财网 can use this client.
 
-Ticker format: "<register_code>/<sub_share_code>", e.g. "Z7007024000248/182481005A".
+Ticker format: "<register_code>_<sub_share_code>", e.g. "Z7007024000248_182481005A".
 Use get_product_info(register_code) to discover available sub-share codes.
 
 Note: many issuers do not publish NAV data on 中国理财网. The API will return

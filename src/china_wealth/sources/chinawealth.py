@@ -3,8 +3,8 @@
 Uses ChinaWealthClient as the data backend. Any issuer whose products are
 registered on xinxipilu.chinawealth.com.cn can be accessed via this source.
 
-Ticker format: "<register_code>/<sub_share_code>"
-  e.g. "Z7007024000248/182481005A"
+Ticker format: "<register_code>_<sub_share_code>"
+  e.g. "Z7007024000248_182481005A"
 
 Run `china-wealth lookup <register_code>` to see available sub-share codes.
 
@@ -26,11 +26,11 @@ USE_ACCUMULATED_NAV = False
 
 
 def _parse_ticker(ticker: str) -> tuple[str, str]:
-    parts = ticker.split("/", 1)
+    parts = ticker.split("_", 1)
     if len(parts) != 2 or not parts[0] or not parts[1]:
         raise ValueError(
-            f"Invalid ticker '{ticker}'. Expected '<register_code>/<sub_share_code>', "
-            "e.g. 'Z7007024000248/182481005A'."
+            f"Invalid ticker '{ticker}'. Expected '<register_code>_<sub_share_code>', "
+            "e.g. 'Z7007024000248_182481005A'."
         )
     return parts[0], parts[1]
 
