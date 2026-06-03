@@ -1,0 +1,51 @@
+# CLAUDE.md
+
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+
+## Commands
+
+```bash
+uv sync                          # install deps and create .venv
+uv run pytest                    # run all tests
+uv run pytest tests/test_registry.py::test_unknown_issuer_raises  # run single test
+uv run china-wealth <issuer> <product_id>   # run CLI
+uv run python -m china_wealth.cli citic AF233364A  # CLI without install
+```
+
+## Architecture
+
+This is a `src/` layout Python package (`src/china_wealth/`). The package has two roles:
+
+1. **Python library** — call `get_source(issuer)` from `china_wealth.sources` to get a source instance, then call `get_latest_price(product_id)` or `get_product_info(product_id)`.
+2. **bean-price source** — each issuer module exposes a `Source` alias at module level so beanprice can do `module.Source()`. The `price:` metadata in a `.beancount` file uses the full module path, e.g. `china_wealth.sources.citic/AF233364A`.
+
+### Key abstractions
+
+- `source.py` — `BaseSource` ABC and `SourcePrice` NamedTuple. `SourcePrice` is intentionally identical to beanprice's own `SourcePrice` so sources are drop-in compatible without requiring beanprice to be installed.
+- `types.py` — `ProductInfo` dataclass: richer metadata (name, register code, nav, nav_date) returned by `get_product_info()`. Not part of the beanprice interface.
+- `sources/__init__.py` — `get_source(issuer)` registry, maps issuer strings to source classes.
+
+### Adding a new issuer
+
+1. Create `src/china_wealth/sources/<issuer>.py` subclassing `BaseSource`.
+2. Implement `issuer`, `get_latest_price`, and `get_product_info`. Historical methods are optional.
+3. Add `Source = <ClassName>` at the bottom (required for bean-price).
+4. Register in `sources/__init__.py`.
+
+### CCB status
+
+CCB (`sources/ccb.py`) is a stub. CCB product pages use a numeric page slug (`9783965`) that differs from the user-facing product ID. Until a lookup API is found, the slug must be passed directly as the ticker. NAV is extracted from HTML via regex.
+
+### CITIC SSL
+
+CITIC's server requires legacy TLS renegotiation disabled in Python 3.10+. `citic.py` uses a custom `_LegacyTLSAdapter` with `ssl.OP_LEGACY_SERVER_CONNECT` mounted on every session. Other issuers use plain `requests.get`.
+
+### API response field reference
+
+Key non-obvious field names discovered from real API responses (see `docs/*/README.md`):
+
+| Issuer | Register code field | NAV field | NAV date field |
+|--------|--------------------|-----------|-----------------|
+| CITIC detail | `registCode` | `nav` | `navDate` (`YYYYMMDD`) |
+| CITIC nav list | — | `data.productNavList[0].nav` | `navDate` |
+| Ping An | `bankFundRegisterCode` | `netValue` (string) | `navDate` (`YYYYMMDD`) |
