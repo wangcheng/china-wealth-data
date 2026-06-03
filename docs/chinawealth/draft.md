@@ -1,3 +1,5 @@
+request is signed
+
 ```shell
 curl 'https://xinxipilu.chinawealth.com.cn/lcxp-platService/product/getProductDetail' \
   -H 'Accept: application/json, text/plain, */*' \
@@ -15,4 +17,11 @@ curl 'https://xinxipilu.chinawealth.com.cn/lcxp-platService/product/getProductDe
   -H 'sec-ch-ua-platform: "macOS"' \
   -H 'signature: S/xjSrC2k1MP1RON2svGAt/N0mr9narQN9iqJ1R4CczZ2Vj7CL+ONNL/9bhDLCnMrNncbO//AHIndvsIusnzU4oSFQTPYQCpZpQhfpzpFy5gNJE5inPkUO6amztZxUHOcwM0V3RkTUQZGIuL1fLcVfcbyTYX+K92c09F568vhC0XeTEz637N8EIeHSMq4fszfLZaWeZA17dU2lQiOOSQLlCpaH6N3/AaDfmrAj1MDlL8P/nABCP2Tqly8/452+VMpOQwLDlNEddEfT1PHxDGOS1eL0bTiA7Qq6KdRF2VVfzQsAIoQaMPVNN1UTwU9thorXT0RZ4fqIctdzfKcHnirg==' \
   --data-raw '{"prodRegCode":"Z7007024000248","pageNum":1,"pageSize":1}'
+```
+
+```
+curl --request POST \
+  --url https://xinxipilu.chinawealth.com.cn/lcxp-platService/product/getInitData \
+  --header 'content-type: application/json' \
+  --data '{}'
 ```
