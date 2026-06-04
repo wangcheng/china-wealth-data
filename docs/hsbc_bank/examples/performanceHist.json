@@ -1,0 +1,2214 @@
+{
+  "numOf1Month": 21,
+  "numOf3Month": 62,
+  "numOf6Month": 118,
+  "numOf1Year": 243,
+  "numOfThisYear": 0,
+  "performanceList": [
+    {
+      "unitNetWorth": 1.0381,
+      "cumulativeNetWorth": 1.0381,
+      "date": "2026-06-03"
+    },
+    {
+      "unitNetWorth": 1.038,
+      "cumulativeNetWorth": 1.038,
+      "date": "2026-06-02"
+    },
+    {
+      "unitNetWorth": 1.0379,
+      "cumulativeNetWorth": 1.0379,
+      "date": "2026-06-01"
+    },
+    {
+      "unitNetWorth": 1.0378,
+      "cumulativeNetWorth": 1.0378,
+      "date": "2026-05-29"
+    },
+    {
+      "unitNetWorth": 1.0377,
+      "cumulativeNetWorth": 1.0377,
+      "date": "2026-05-28"
+    },
+    {
+      "unitNetWorth": 1.0377,
+      "cumulativeNetWorth": 1.0377,
+      "date": "2026-05-27"
+    },
+    {
+      "unitNetWorth": 1.0376,
+      "cumulativeNetWorth": 1.0376,
+      "date": "2026-05-26"
+    },
+    {
+      "unitNetWorth": 1.0375,
+      "cumulativeNetWorth": 1.0375,
+      "date": "2026-05-25"
+    },
+    {
+      "unitNetWorth": 1.0374,
+      "cumulativeNetWorth": 1.0374,
+      "date": "2026-05-22"
+    },
+    {
+      "unitNetWorth": 1.0374,
+      "cumulativeNetWorth": 1.0374,
+      "date": "2026-05-21"
+    },
+    {
+      "unitNetWorth": 1.0373,
+      "cumulativeNetWorth": 1.0373,
+      "date": "2026-05-20"
+    },
+    {
+      "unitNetWorth": 1.0372,
+      "cumulativeNetWorth": 1.0372,
+      "date": "2026-05-19"
+    },
+    {
+      "unitNetWorth": 1.0372,
+      "cumulativeNetWorth": 1.0372,
+      "date": "2026-05-18"
+    },
+    {
+      "unitNetWorth": 1.0371,
+      "cumulativeNetWorth": 1.0371,
+      "date": "2026-05-15"
+    },
+    {
+      "unitNetWorth": 1.037,
+      "cumulativeNetWorth": 1.037,
+      "date": "2026-05-14"
+    },
+    {
+      "unitNetWorth": 1.037,
+      "cumulativeNetWorth": 1.037,
+      "date": "2026-05-13"
+    },
+    {
+      "unitNetWorth": 1.0369,
+      "cumulativeNetWorth": 1.0369,
+      "date": "2026-05-12"
+    },
+    {
+      "unitNetWorth": 1.0369,
+      "cumulativeNetWorth": 1.0369,
+      "date": "2026-05-11"
+    },
+    {
+      "unitNetWorth": 1.0367,
+      "cumulativeNetWorth": 1.0367,
+      "date": "2026-05-08"
+    },
+    {
+      "unitNetWorth": 1.0367,
+      "cumulativeNetWorth": 1.0367,
+      "date": "2026-05-07"
+    },
+    {
+      "unitNetWorth": 1.0366,
+      "cumulativeNetWorth": 1.0366,
+      "date": "2026-05-06"
+    },
+    {
+      "unitNetWorth": 1.0364,
+      "cumulativeNetWorth": 1.0364,
+      "date": "2026-04-30"
+    },
+    {
+      "unitNetWorth": 1.0364,
+      "cumulativeNetWorth": 1.0364,
+      "date": "2026-04-29"
+    },
+    {
+      "unitNetWorth": 1.0363,
+      "cumulativeNetWorth": 1.0363,
+      "date": "2026-04-28"
+    },
+    {
+      "unitNetWorth": 1.0362,
+      "cumulativeNetWorth": 1.0362,
+      "date": "2026-04-27"
+    },
+    {
+      "unitNetWorth": 1.0361,
+      "cumulativeNetWorth": 1.0361,
+      "date": "2026-04-24"
+    },
+    {
+      "unitNetWorth": 1.036,
+      "cumulativeNetWorth": 1.036,
+      "date": "2026-04-23"
+    },
+    {
+      "unitNetWorth": 1.036,
+      "cumulativeNetWorth": 1.036,
+      "date": "2026-04-22"
+    },
+    {
+      "unitNetWorth": 1.036,
+      "cumulativeNetWorth": 1.036,
+      "date": "2026-04-21"
+    },
+    {
+      "unitNetWorth": 1.0359,
+      "cumulativeNetWorth": 1.0359,
+      "date": "2026-04-20"
+    },
+    {
+      "unitNetWorth": 1.0358,
+      "cumulativeNetWorth": 1.0358,
+      "date": "2026-04-17"
+    },
+    {
+      "unitNetWorth": 1.0357,
+      "cumulativeNetWorth": 1.0357,
+      "date": "2026-04-16"
+    },
+    {
+      "unitNetWorth": 1.0357,
+      "cumulativeNetWorth": 1.0357,
+      "date": "2026-04-15"
+    },
+    {
+      "unitNetWorth": 1.0357,
+      "cumulativeNetWorth": 1.0357,
+      "date": "2026-04-14"
+    },
+    {
+      "unitNetWorth": 1.0356,
+      "cumulativeNetWorth": 1.0356,
+      "date": "2026-04-13"
+    },
+    {
+      "unitNetWorth": 1.0355,
+      "cumulativeNetWorth": 1.0355,
+      "date": "2026-04-10"
+    },
+    {
+      "unitNetWorth": 1.0355,
+      "cumulativeNetWorth": 1.0355,
+      "date": "2026-04-09"
+    },
+    {
+      "unitNetWorth": 1.0354,
+      "cumulativeNetWorth": 1.0354,
+      "date": "2026-04-08"
+    },
+    {
+      "unitNetWorth": 1.0353,
+      "cumulativeNetWorth": 1.0353,
+      "date": "2026-04-07"
+    },
+    {
+      "unitNetWorth": 1.0351,
+      "cumulativeNetWorth": 1.0351,
+      "date": "2026-04-03"
+    },
+    {
+      "unitNetWorth": 1.0351,
+      "cumulativeNetWorth": 1.0351,
+      "date": "2026-04-02"
+    },
+    {
+      "unitNetWorth": 1.035,
+      "cumulativeNetWorth": 1.035,
+      "date": "2026-04-01"
+    },
+    {
+      "unitNetWorth": 1.035,
+      "cumulativeNetWorth": 1.035,
+      "date": "2026-03-31"
+    },
+    {
+      "unitNetWorth": 1.0349,
+      "cumulativeNetWorth": 1.0349,
+      "date": "2026-03-30"
+    },
+    {
+      "unitNetWorth": 1.0348,
+      "cumulativeNetWorth": 1.0348,
+      "date": "2026-03-27"
+    },
+    {
+      "unitNetWorth": 1.0347,
+      "cumulativeNetWorth": 1.0347,
+      "date": "2026-03-26"
+    },
+    {
+      "unitNetWorth": 1.0347,
+      "cumulativeNetWorth": 1.0347,
+      "date": "2026-03-25"
+    },
+    {
+      "unitNetWorth": 1.0346,
+      "cumulativeNetWorth": 1.0346,
+      "date": "2026-03-24"
+    },
+    {
+      "unitNetWorth": 1.0346,
+      "cumulativeNetWorth": 1.0346,
+      "date": "2026-03-23"
+    },
+    {
+      "unitNetWorth": 1.0345,
+      "cumulativeNetWorth": 1.0345,
+      "date": "2026-03-20"
+    },
+    {
+      "unitNetWorth": 1.0345,
+      "cumulativeNetWorth": 1.0345,
+      "date": "2026-03-19"
+    },
+    {
+      "unitNetWorth": 1.0344,
+      "cumulativeNetWorth": 1.0344,
+      "date": "2026-03-18"
+    },
+    {
+      "unitNetWorth": 1.0344,
+      "cumulativeNetWorth": 1.0344,
+      "date": "2026-03-17"
+    },
+    {
+      "unitNetWorth": 1.0343,
+      "cumulativeNetWorth": 1.0343,
+      "date": "2026-03-16"
+    },
+    {
+      "unitNetWorth": 1.0342,
+      "cumulativeNetWorth": 1.0342,
+      "date": "2026-03-13"
+    },
+    {
+      "unitNetWorth": 1.0342,
+      "cumulativeNetWorth": 1.0342,
+      "date": "2026-03-12"
+    },
+    {
+      "unitNetWorth": 1.0341,
+      "cumulativeNetWorth": 1.0341,
+      "date": "2026-03-11"
+    },
+    {
+      "unitNetWorth": 1.0341,
+      "cumulativeNetWorth": 1.0341,
+      "date": "2026-03-10"
+    },
+    {
+      "unitNetWorth": 1.034,
+      "cumulativeNetWorth": 1.034,
+      "date": "2026-03-09"
+    },
+    {
+      "unitNetWorth": 1.0339,
+      "cumulativeNetWorth": 1.0339,
+      "date": "2026-03-06"
+    },
+    {
+      "unitNetWorth": 1.0339,
+      "cumulativeNetWorth": 1.0339,
+      "date": "2026-03-05"
+    },
+    {
+      "unitNetWorth": 1.0338,
+      "cumulativeNetWorth": 1.0338,
+      "date": "2026-03-04"
+    },
+    {
+      "unitNetWorth": 1.0338,
+      "cumulativeNetWorth": 1.0338,
+      "date": "2026-03-03"
+    },
+    {
+      "unitNetWorth": 1.0337,
+      "cumulativeNetWorth": 1.0337,
+      "date": "2026-03-02"
+    },
+    {
+      "unitNetWorth": 1.0335,
+      "cumulativeNetWorth": 1.0335,
+      "date": "2026-02-27"
+    },
+    {
+      "unitNetWorth": 1.0335,
+      "cumulativeNetWorth": 1.0335,
+      "date": "2026-02-26"
+    },
+    {
+      "unitNetWorth": 1.0335,
+      "cumulativeNetWorth": 1.0335,
+      "date": "2026-02-25"
+    },
+    {
+      "unitNetWorth": 1.0334,
+      "cumulativeNetWorth": 1.0334,
+      "date": "2026-02-24"
+    },
+    {
+      "unitNetWorth": 1.033,
+      "cumulativeNetWorth": 1.033,
+      "date": "2026-02-13"
+    },
+    {
+      "unitNetWorth": 1.033,
+      "cumulativeNetWorth": 1.033,
+      "date": "2026-02-12"
+    },
+    {
+      "unitNetWorth": 1.0329,
+      "cumulativeNetWorth": 1.0329,
+      "date": "2026-02-11"
+    },
+    {
+      "unitNetWorth": 1.0329,
+      "cumulativeNetWorth": 1.0329,
+      "date": "2026-02-10"
+    },
+    {
+      "unitNetWorth": 1.0328,
+      "cumulativeNetWorth": 1.0328,
+      "date": "2026-02-09"
+    },
+    {
+      "unitNetWorth": 1.0327,
+      "cumulativeNetWorth": 1.0327,
+      "date": "2026-02-06"
+    },
+    {
+      "unitNetWorth": 1.0327,
+      "cumulativeNetWorth": 1.0327,
+      "date": "2026-02-05"
+    },
+    {
+      "unitNetWorth": 1.0326,
+      "cumulativeNetWorth": 1.0326,
+      "date": "2026-02-04"
+    },
+    {
+      "unitNetWorth": 1.0326,
+      "cumulativeNetWorth": 1.0326,
+      "date": "2026-02-03"
+    },
+    {
+      "unitNetWorth": 1.0326,
+      "cumulativeNetWorth": 1.0326,
+      "date": "2026-02-02"
+    },
+    {
+      "unitNetWorth": 1.0325,
+      "cumulativeNetWorth": 1.0325,
+      "date": "2026-01-30"
+    },
+    {
+      "unitNetWorth": 1.0324,
+      "cumulativeNetWorth": 1.0324,
+      "date": "2026-01-29"
+    },
+    {
+      "unitNetWorth": 1.0324,
+      "cumulativeNetWorth": 1.0324,
+      "date": "2026-01-28"
+    },
+    {
+      "unitNetWorth": 1.0323,
+      "cumulativeNetWorth": 1.0323,
+      "date": "2026-01-27"
+    },
+    {
+      "unitNetWorth": 1.0323,
+      "cumulativeNetWorth": 1.0323,
+      "date": "2026-01-26"
+    },
+    {
+      "unitNetWorth": 1.0322,
+      "cumulativeNetWorth": 1.0322,
+      "date": "2026-01-23"
+    },
+    {
+      "unitNetWorth": 1.0321,
+      "cumulativeNetWorth": 1.0321,
+      "date": "2026-01-22"
+    },
+    {
+      "unitNetWorth": 1.0321,
+      "cumulativeNetWorth": 1.0321,
+      "date": "2026-01-21"
+    },
+    {
+      "unitNetWorth": 1.032,
+      "cumulativeNetWorth": 1.032,
+      "date": "2026-01-20"
+    },
+    {
+      "unitNetWorth": 1.0319,
+      "cumulativeNetWorth": 1.0319,
+      "date": "2026-01-19"
+    },
+    {
+      "unitNetWorth": 1.0318,
+      "cumulativeNetWorth": 1.0318,
+      "date": "2026-01-16"
+    },
+    {
+      "unitNetWorth": 1.0318,
+      "cumulativeNetWorth": 1.0318,
+      "date": "2026-01-15"
+    },
+    {
+      "unitNetWorth": 1.0317,
+      "cumulativeNetWorth": 1.0317,
+      "date": "2026-01-14"
+    },
+    {
+      "unitNetWorth": 1.0317,
+      "cumulativeNetWorth": 1.0317,
+      "date": "2026-01-13"
+    },
+    {
+      "unitNetWorth": 1.0316,
+      "cumulativeNetWorth": 1.0316,
+      "date": "2026-01-12"
+    },
+    {
+      "unitNetWorth": 1.0315,
+      "cumulativeNetWorth": 1.0315,
+      "date": "2026-01-09"
+    },
+    {
+      "unitNetWorth": 1.0314,
+      "cumulativeNetWorth": 1.0314,
+      "date": "2026-01-08"
+    },
+    {
+      "unitNetWorth": 1.0314,
+      "cumulativeNetWorth": 1.0314,
+      "date": "2026-01-07"
+    },
+    {
+      "unitNetWorth": 1.0314,
+      "cumulativeNetWorth": 1.0314,
+      "date": "2026-01-06"
+    },
+    {
+      "unitNetWorth": 1.0313,
+      "cumulativeNetWorth": 1.0313,
+      "date": "2026-01-05"
+    },
+    {
+      "unitNetWorth": 1.0311,
+      "cumulativeNetWorth": 1.0311,
+      "date": "2025-12-31"
+    },
+    {
+      "unitNetWorth": 1.031,
+      "cumulativeNetWorth": 1.031,
+      "date": "2025-12-30"
+    },
+    {
+      "unitNetWorth": 1.031,
+      "cumulativeNetWorth": 1.031,
+      "date": "2025-12-29"
+    },
+    {
+      "unitNetWorth": 1.0309,
+      "cumulativeNetWorth": 1.0309,
+      "date": "2025-12-26"
+    },
+    {
+      "unitNetWorth": 1.0308,
+      "cumulativeNetWorth": 1.0308,
+      "date": "2025-12-25"
+    },
+    {
+      "unitNetWorth": 1.0308,
+      "cumulativeNetWorth": 1.0308,
+      "date": "2025-12-24"
+    },
+    {
+      "unitNetWorth": 1.0308,
+      "cumulativeNetWorth": 1.0308,
+      "date": "2025-12-23"
+    },
+    {
+      "unitNetWorth": 1.0307,
+      "cumulativeNetWorth": 1.0307,
+      "date": "2025-12-22"
+    },
+    {
+      "unitNetWorth": 1.0306,
+      "cumulativeNetWorth": 1.0306,
+      "date": "2025-12-19"
+    },
+    {
+      "unitNetWorth": 1.0305,
+      "cumulativeNetWorth": 1.0305,
+      "date": "2025-12-18"
+    },
+    {
+      "unitNetWorth": 1.0305,
+      "cumulativeNetWorth": 1.0305,
+      "date": "2025-12-17"
+    },
+    {
+      "unitNetWorth": 1.0304,
+      "cumulativeNetWorth": 1.0304,
+      "date": "2025-12-16"
+    },
+    {
+      "unitNetWorth": 1.0304,
+      "cumulativeNetWorth": 1.0304,
+      "date": "2025-12-15"
+    },
+    {
+      "unitNetWorth": 1.0303,
+      "cumulativeNetWorth": 1.0303,
+      "date": "2025-12-12"
+    },
+    {
+      "unitNetWorth": 1.0302,
+      "cumulativeNetWorth": 1.0302,
+      "date": "2025-12-11"
+    },
+    {
+      "unitNetWorth": 1.0302,
+      "cumulativeNetWorth": 1.0302,
+      "date": "2025-12-10"
+    },
+    {
+      "unitNetWorth": 1.0301,
+      "cumulativeNetWorth": 1.0301,
+      "date": "2025-12-09"
+    },
+    {
+      "unitNetWorth": 1.0301,
+      "cumulativeNetWorth": 1.0301,
+      "date": "2025-12-08"
+    },
+    {
+      "unitNetWorth": 1.03,
+      "cumulativeNetWorth": 1.03,
+      "date": "2025-12-05"
+    },
+    {
+      "unitNetWorth": 1.0299,
+      "cumulativeNetWorth": 1.0299,
+      "date": "2025-12-04"
+    },
+    {
+      "unitNetWorth": 1.0299,
+      "cumulativeNetWorth": 1.0299,
+      "date": "2025-12-03"
+    },
+    {
+      "unitNetWorth": 1.0298,
+      "cumulativeNetWorth": 1.0298,
+      "date": "2025-12-02"
+    },
+    {
+      "unitNetWorth": 1.0298,
+      "cumulativeNetWorth": 1.0298,
+      "date": "2025-12-01"
+    },
+    {
+      "unitNetWorth": 1.0297,
+      "cumulativeNetWorth": 1.0297,
+      "date": "2025-11-28"
+    },
+    {
+      "unitNetWorth": 1.0293,
+      "cumulativeNetWorth": 1.0293,
+      "date": "2025-11-27"
+    },
+    {
+      "unitNetWorth": 1.0292,
+      "cumulativeNetWorth": 1.0292,
+      "date": "2025-11-26"
+    },
+    {
+      "unitNetWorth": 1.0292,
+      "cumulativeNetWorth": 1.0292,
+      "date": "2025-11-25"
+    },
+    {
+      "unitNetWorth": 1.0292,
+      "cumulativeNetWorth": 1.0292,
+      "date": "2025-11-24"
+    },
+    {
+      "unitNetWorth": 1.0291,
+      "cumulativeNetWorth": 1.0291,
+      "date": "2025-11-21"
+    },
+    {
+      "unitNetWorth": 1.029,
+      "cumulativeNetWorth": 1.029,
+      "date": "2025-11-20"
+    },
+    {
+      "unitNetWorth": 1.029,
+      "cumulativeNetWorth": 1.029,
+      "date": "2025-11-19"
+    },
+    {
+      "unitNetWorth": 1.0289,
+      "cumulativeNetWorth": 1.0289,
+      "date": "2025-11-18"
+    },
+    {
+      "unitNetWorth": 1.0289,
+      "cumulativeNetWorth": 1.0289,
+      "date": "2025-11-17"
+    },
+    {
+      "unitNetWorth": 1.0288,
+      "cumulativeNetWorth": 1.0288,
+      "date": "2025-11-14"
+    },
+    {
+      "unitNetWorth": 1.0287,
+      "cumulativeNetWorth": 1.0287,
+      "date": "2025-11-13"
+    },
+    {
+      "unitNetWorth": 1.0287,
+      "cumulativeNetWorth": 1.0287,
+      "date": "2025-11-12"
+    },
+    {
+      "unitNetWorth": 1.0286,
+      "cumulativeNetWorth": 1.0286,
+      "date": "2025-11-11"
+    },
+    {
+      "unitNetWorth": 1.0286,
+      "cumulativeNetWorth": 1.0286,
+      "date": "2025-11-10"
+    },
+    {
+      "unitNetWorth": 1.0285,
+      "cumulativeNetWorth": 1.0285,
+      "date": "2025-11-07"
+    },
+    {
+      "unitNetWorth": 1.0284,
+      "cumulativeNetWorth": 1.0284,
+      "date": "2025-11-06"
+    },
+    {
+      "unitNetWorth": 1.0284,
+      "cumulativeNetWorth": 1.0284,
+      "date": "2025-11-05"
+    },
+    {
+      "unitNetWorth": 1.0283,
+      "cumulativeNetWorth": 1.0283,
+      "date": "2025-11-04"
+    },
+    {
+      "unitNetWorth": 1.0283,
+      "cumulativeNetWorth": 1.0283,
+      "date": "2025-11-03"
+    },
+    {
+      "unitNetWorth": 1.0281,
+      "cumulativeNetWorth": 1.0281,
+      "date": "2025-10-31"
+    },
+    {
+      "unitNetWorth": 1.0281,
+      "cumulativeNetWorth": 1.0281,
+      "date": "2025-10-30"
+    },
+    {
+      "unitNetWorth": 1.028,
+      "cumulativeNetWorth": 1.028,
+      "date": "2025-10-29"
+    },
+    {
+      "unitNetWorth": 1.028,
+      "cumulativeNetWorth": 1.028,
+      "date": "2025-10-28"
+    },
+    {
+      "unitNetWorth": 1.027,
+      "cumulativeNetWorth": 1.027,
+      "date": "2025-10-27"
+    },
+    {
+      "unitNetWorth": 1.0269,
+      "cumulativeNetWorth": 1.0269,
+      "date": "2025-10-24"
+    },
+    {
+      "unitNetWorth": 1.0268,
+      "cumulativeNetWorth": 1.0268,
+      "date": "2025-10-23"
+    },
+    {
+      "unitNetWorth": 1.0268,
+      "cumulativeNetWorth": 1.0268,
+      "date": "2025-10-22"
+    },
+    {
+      "unitNetWorth": 1.0268,
+      "cumulativeNetWorth": 1.0268,
+      "date": "2025-10-21"
+    },
+    {
+      "unitNetWorth": 1.0267,
+      "cumulativeNetWorth": 1.0267,
+      "date": "2025-10-20"
+    },
+    {
+      "unitNetWorth": 1.0266,
+      "cumulativeNetWorth": 1.0266,
+      "date": "2025-10-17"
+    },
+    {
+      "unitNetWorth": 1.0265,
+      "cumulativeNetWorth": 1.0265,
+      "date": "2025-10-16"
+    },
+    {
+      "unitNetWorth": 1.0265,
+      "cumulativeNetWorth": 1.0265,
+      "date": "2025-10-15"
+    },
+    {
+      "unitNetWorth": 1.0265,
+      "cumulativeNetWorth": 1.0265,
+      "date": "2025-10-14"
+    },
+    {
+      "unitNetWorth": 1.0264,
+      "cumulativeNetWorth": 1.0264,
+      "date": "2025-10-13"
+    },
+    {
+      "unitNetWorth": 1.0263,
+      "cumulativeNetWorth": 1.0263,
+      "date": "2025-10-10"
+    },
+    {
+      "unitNetWorth": 1.0262,
+      "cumulativeNetWorth": 1.0262,
+      "date": "2025-10-09"
+    },
+    {
+      "unitNetWorth": 1.0258,
+      "cumulativeNetWorth": 1.0258,
+      "date": "2025-09-30"
+    },
+    {
+      "unitNetWorth": 1.0258,
+      "cumulativeNetWorth": 1.0258,
+      "date": "2025-09-29"
+    },
+    {
+      "unitNetWorth": 1.0256,
+      "cumulativeNetWorth": 1.0256,
+      "date": "2025-09-26"
+    },
+    {
+      "unitNetWorth": 1.0256,
+      "cumulativeNetWorth": 1.0256,
+      "date": "2025-09-25"
+    },
+    {
+      "unitNetWorth": 1.0256,
+      "cumulativeNetWorth": 1.0256,
+      "date": "2025-09-24"
+    },
+    {
+      "unitNetWorth": 1.0256,
+      "cumulativeNetWorth": 1.0256,
+      "date": "2025-09-23"
+    },
+    {
+      "unitNetWorth": 1.0256,
+      "cumulativeNetWorth": 1.0256,
+      "date": "2025-09-22"
+    },
+    {
+      "unitNetWorth": 1.0256,
+      "cumulativeNetWorth": 1.0256,
+      "date": "2025-09-19"
+    },
+    {
+      "unitNetWorth": 1.0255,
+      "cumulativeNetWorth": 1.0255,
+      "date": "2025-09-18"
+    },
+    {
+      "unitNetWorth": 1.0254,
+      "cumulativeNetWorth": 1.0254,
+      "date": "2025-09-17"
+    },
+    {
+      "unitNetWorth": 1.0253,
+      "cumulativeNetWorth": 1.0253,
+      "date": "2025-09-16"
+    },
+    {
+      "unitNetWorth": 1.0253,
+      "cumulativeNetWorth": 1.0253,
+      "date": "2025-09-15"
+    },
+    {
+      "unitNetWorth": 1.0252,
+      "cumulativeNetWorth": 1.0252,
+      "date": "2025-09-12"
+    },
+    {
+      "unitNetWorth": 1.0251,
+      "cumulativeNetWorth": 1.0251,
+      "date": "2025-09-11"
+    },
+    {
+      "unitNetWorth": 1.0251,
+      "cumulativeNetWorth": 1.0251,
+      "date": "2025-09-10"
+    },
+    {
+      "unitNetWorth": 1.0251,
+      "cumulativeNetWorth": 1.0251,
+      "date": "2025-09-09"
+    },
+    {
+      "unitNetWorth": 1.0251,
+      "cumulativeNetWorth": 1.0251,
+      "date": "2025-09-08"
+    },
+    {
+      "unitNetWorth": 1.025,
+      "cumulativeNetWorth": 1.025,
+      "date": "2025-09-05"
+    },
+    {
+      "unitNetWorth": 1.0249,
+      "cumulativeNetWorth": 1.0249,
+      "date": "2025-09-04"
+    },
+    {
+      "unitNetWorth": 1.0249,
+      "cumulativeNetWorth": 1.0249,
+      "date": "2025-09-03"
+    },
+    {
+      "unitNetWorth": 1.0248,
+      "cumulativeNetWorth": 1.0248,
+      "date": "2025-09-02"
+    },
+    {
+      "unitNetWorth": 1.0248,
+      "cumulativeNetWorth": 1.0248,
+      "date": "2025-09-01"
+    },
+    {
+      "unitNetWorth": 1.0247,
+      "cumulativeNetWorth": 1.0247,
+      "date": "2025-08-29"
+    },
+    {
+      "unitNetWorth": 1.0247,
+      "cumulativeNetWorth": 1.0247,
+      "date": "2025-08-28"
+    },
+    {
+      "unitNetWorth": 1.0246,
+      "cumulativeNetWorth": 1.0246,
+      "date": "2025-08-27"
+    },
+    {
+      "unitNetWorth": 1.0246,
+      "cumulativeNetWorth": 1.0246,
+      "date": "2025-08-26"
+    },
+    {
+      "unitNetWorth": 1.0245,
+      "cumulativeNetWorth": 1.0245,
+      "date": "2025-08-25"
+    },
+    {
+      "unitNetWorth": 1.0244,
+      "cumulativeNetWorth": 1.0244,
+      "date": "2025-08-22"
+    },
+    {
+      "unitNetWorth": 1.0243,
+      "cumulativeNetWorth": 1.0243,
+      "date": "2025-08-21"
+    },
+    {
+      "unitNetWorth": 1.0243,
+      "cumulativeNetWorth": 1.0243,
+      "date": "2025-08-20"
+    },
+    {
+      "unitNetWorth": 1.0242,
+      "cumulativeNetWorth": 1.0242,
+      "date": "2025-08-19"
+    },
+    {
+      "unitNetWorth": 1.0243,
+      "cumulativeNetWorth": 1.0243,
+      "date": "2025-08-18"
+    },
+    {
+      "unitNetWorth": 1.0242,
+      "cumulativeNetWorth": 1.0242,
+      "date": "2025-08-15"
+    },
+    {
+      "unitNetWorth": 1.0242,
+      "cumulativeNetWorth": 1.0242,
+      "date": "2025-08-14"
+    },
+    {
+      "unitNetWorth": 1.0242,
+      "cumulativeNetWorth": 1.0242,
+      "date": "2025-08-13"
+    },
+    {
+      "unitNetWorth": 1.0241,
+      "cumulativeNetWorth": 1.0241,
+      "date": "2025-08-12"
+    },
+    {
+      "unitNetWorth": 1.0241,
+      "cumulativeNetWorth": 1.0241,
+      "date": "2025-08-11"
+    },
+    {
+      "unitNetWorth": 1.024,
+      "cumulativeNetWorth": 1.024,
+      "date": "2025-08-08"
+    },
+    {
+      "unitNetWorth": 1.024,
+      "cumulativeNetWorth": 1.024,
+      "date": "2025-08-07"
+    },
+    {
+      "unitNetWorth": 1.0239,
+      "cumulativeNetWorth": 1.0239,
+      "date": "2025-08-06"
+    },
+    {
+      "unitNetWorth": 1.0239,
+      "cumulativeNetWorth": 1.0239,
+      "date": "2025-08-05"
+    },
+    {
+      "unitNetWorth": 1.0238,
+      "cumulativeNetWorth": 1.0238,
+      "date": "2025-08-04"
+    },
+    {
+      "unitNetWorth": 1.0236,
+      "cumulativeNetWorth": 1.0236,
+      "date": "2025-08-01"
+    },
+    {
+      "unitNetWorth": 1.0235,
+      "cumulativeNetWorth": 1.0235,
+      "date": "2025-07-31"
+    },
+    {
+      "unitNetWorth": 1.0234,
+      "cumulativeNetWorth": 1.0234,
+      "date": "2025-07-30"
+    },
+    {
+      "unitNetWorth": 1.0234,
+      "cumulativeNetWorth": 1.0234,
+      "date": "2025-07-29"
+    },
+    {
+      "unitNetWorth": 1.0234,
+      "cumulativeNetWorth": 1.0234,
+      "date": "2025-07-28"
+    },
+    {
+      "unitNetWorth": 1.0232,
+      "cumulativeNetWorth": 1.0232,
+      "date": "2025-07-25"
+    },
+    {
+      "unitNetWorth": 1.0233,
+      "cumulativeNetWorth": 1.0233,
+      "date": "2025-07-24"
+    },
+    {
+      "unitNetWorth": 1.0234,
+      "cumulativeNetWorth": 1.0234,
+      "date": "2025-07-23"
+    },
+    {
+      "unitNetWorth": 1.0235,
+      "cumulativeNetWorth": 1.0235,
+      "date": "2025-07-22"
+    },
+    {
+      "unitNetWorth": 1.0235,
+      "cumulativeNetWorth": 1.0235,
+      "date": "2025-07-21"
+    },
+    {
+      "unitNetWorth": 1.0234,
+      "cumulativeNetWorth": 1.0234,
+      "date": "2025-07-18"
+    },
+    {
+      "unitNetWorth": 1.0233,
+      "cumulativeNetWorth": 1.0233,
+      "date": "2025-07-17"
+    },
+    {
+      "unitNetWorth": 1.0232,
+      "cumulativeNetWorth": 1.0232,
+      "date": "2025-07-16"
+    },
+    {
+      "unitNetWorth": 1.0231,
+      "cumulativeNetWorth": 1.0231,
+      "date": "2025-07-15"
+    },
+    {
+      "unitNetWorth": 1.0231,
+      "cumulativeNetWorth": 1.0231,
+      "date": "2025-07-14"
+    },
+    {
+      "unitNetWorth": 1.023,
+      "cumulativeNetWorth": 1.023,
+      "date": "2025-07-11"
+    },
+    {
+      "unitNetWorth": 1.023,
+      "cumulativeNetWorth": 1.023,
+      "date": "2025-07-10"
+    },
+    {
+      "unitNetWorth": 1.023,
+      "cumulativeNetWorth": 1.023,
+      "date": "2025-07-09"
+    },
+    {
+      "unitNetWorth": 1.023,
+      "cumulativeNetWorth": 1.023,
+      "date": "2025-07-08"
+    },
+    {
+      "unitNetWorth": 1.023,
+      "cumulativeNetWorth": 1.023,
+      "date": "2025-07-07"
+    },
+    {
+      "unitNetWorth": 1.0227,
+      "cumulativeNetWorth": 1.0227,
+      "date": "2025-07-04"
+    },
+    {
+      "unitNetWorth": 1.0226,
+      "cumulativeNetWorth": 1.0226,
+      "date": "2025-07-03"
+    },
+    {
+      "unitNetWorth": 1.0224,
+      "cumulativeNetWorth": 1.0224,
+      "date": "2025-07-02"
+    },
+    {
+      "unitNetWorth": 1.0223,
+      "cumulativeNetWorth": 1.0223,
+      "date": "2025-07-01"
+    },
+    {
+      "unitNetWorth": 1.0223,
+      "cumulativeNetWorth": 1.0223,
+      "date": "2025-06-30"
+    },
+    {
+      "unitNetWorth": 1.0221,
+      "cumulativeNetWorth": 1.0221,
+      "date": "2025-06-27"
+    },
+    {
+      "unitNetWorth": 1.0221,
+      "cumulativeNetWorth": 1.0221,
+      "date": "2025-06-26"
+    },
+    {
+      "unitNetWorth": 1.0221,
+      "cumulativeNetWorth": 1.0221,
+      "date": "2025-06-25"
+    },
+    {
+      "unitNetWorth": 1.0221,
+      "cumulativeNetWorth": 1.0221,
+      "date": "2025-06-24"
+    },
+    {
+      "unitNetWorth": 1.022,
+      "cumulativeNetWorth": 1.022,
+      "date": "2025-06-23"
+    },
+    {
+      "unitNetWorth": 1.0219,
+      "cumulativeNetWorth": 1.0219,
+      "date": "2025-06-20"
+    },
+    {
+      "unitNetWorth": 1.0219,
+      "cumulativeNetWorth": 1.0219,
+      "date": "2025-06-19"
+    },
+    {
+      "unitNetWorth": 1.0218,
+      "cumulativeNetWorth": 1.0218,
+      "date": "2025-06-18"
+    },
+    {
+      "unitNetWorth": 1.0218,
+      "cumulativeNetWorth": 1.0218,
+      "date": "2025-06-17"
+    },
+    {
+      "unitNetWorth": 1.0217,
+      "cumulativeNetWorth": 1.0217,
+      "date": "2025-06-16"
+    },
+    {
+      "unitNetWorth": 1.0216,
+      "cumulativeNetWorth": 1.0216,
+      "date": "2025-06-13"
+    },
+    {
+      "unitNetWorth": 1.0216,
+      "cumulativeNetWorth": 1.0216,
+      "date": "2025-06-12"
+    },
+    {
+      "unitNetWorth": 1.0215,
+      "cumulativeNetWorth": 1.0215,
+      "date": "2025-06-11"
+    },
+    {
+      "unitNetWorth": 1.0214,
+      "cumulativeNetWorth": 1.0214,
+      "date": "2025-06-10"
+    },
+    {
+      "unitNetWorth": 1.0214,
+      "cumulativeNetWorth": 1.0214,
+      "date": "2025-06-09"
+    },
+    {
+      "unitNetWorth": 1.0212,
+      "cumulativeNetWorth": 1.0212,
+      "date": "2025-06-06"
+    },
+    {
+      "unitNetWorth": 1.0212,
+      "cumulativeNetWorth": 1.0212,
+      "date": "2025-06-05"
+    },
+    {
+      "unitNetWorth": 1.0211,
+      "cumulativeNetWorth": 1.0211,
+      "date": "2025-06-04"
+    },
+    {
+      "unitNetWorth": 1.021,
+      "cumulativeNetWorth": 1.021,
+      "date": "2025-06-03"
+    },
+    {
+      "unitNetWorth": 1.0208,
+      "cumulativeNetWorth": 1.0208,
+      "date": "2025-05-30"
+    },
+    {
+      "unitNetWorth": 1.0208,
+      "cumulativeNetWorth": 1.0208,
+      "date": "2025-05-29"
+    },
+    {
+      "unitNetWorth": 1.0207,
+      "cumulativeNetWorth": 1.0207,
+      "date": "2025-05-28"
+    },
+    {
+      "unitNetWorth": 1.0207,
+      "cumulativeNetWorth": 1.0207,
+      "date": "2025-05-27"
+    },
+    {
+      "unitNetWorth": 1.0207,
+      "cumulativeNetWorth": 1.0207,
+      "date": "2025-05-26"
+    },
+    {
+      "unitNetWorth": 1.0205,
+      "cumulativeNetWorth": 1.0205,
+      "date": "2025-05-23"
+    },
+    {
+      "unitNetWorth": 1.0204,
+      "cumulativeNetWorth": 1.0204,
+      "date": "2025-05-22"
+    },
+    {
+      "unitNetWorth": 1.02,
+      "cumulativeNetWorth": 1.02,
+      "date": "2025-05-21"
+    },
+    {
+      "unitNetWorth": 1.0199,
+      "cumulativeNetWorth": 1.0199,
+      "date": "2025-05-20"
+    },
+    {
+      "unitNetWorth": 1.0199,
+      "cumulativeNetWorth": 1.0199,
+      "date": "2025-05-19"
+    },
+    {
+      "unitNetWorth": 1.0197,
+      "cumulativeNetWorth": 1.0197,
+      "date": "2025-05-16"
+    },
+    {
+      "unitNetWorth": 1.0197,
+      "cumulativeNetWorth": 1.0197,
+      "date": "2025-05-15"
+    },
+    {
+      "unitNetWorth": 1.0196,
+      "cumulativeNetWorth": 1.0196,
+      "date": "2025-05-14"
+    },
+    {
+      "unitNetWorth": 1.0195,
+      "cumulativeNetWorth": 1.0195,
+      "date": "2025-05-13"
+    },
+    {
+      "unitNetWorth": 1.0194,
+      "cumulativeNetWorth": 1.0194,
+      "date": "2025-05-12"
+    },
+    {
+      "unitNetWorth": 1.0193,
+      "cumulativeNetWorth": 1.0193,
+      "date": "2025-05-09"
+    },
+    {
+      "unitNetWorth": 1.0192,
+      "cumulativeNetWorth": 1.0192,
+      "date": "2025-05-08"
+    },
+    {
+      "unitNetWorth": 1.019,
+      "cumulativeNetWorth": 1.019,
+      "date": "2025-05-07"
+    },
+    {
+      "unitNetWorth": 1.0189,
+      "cumulativeNetWorth": 1.0189,
+      "date": "2025-05-06"
+    },
+    {
+      "unitNetWorth": 1.0187,
+      "cumulativeNetWorth": 1.0187,
+      "date": "2025-04-30"
+    },
+    {
+      "unitNetWorth": 1.0186,
+      "cumulativeNetWorth": 1.0186,
+      "date": "2025-04-29"
+    },
+    {
+      "unitNetWorth": 1.0185,
+      "cumulativeNetWorth": 1.0185,
+      "date": "2025-04-28"
+    },
+    {
+      "unitNetWorth": 1.0183,
+      "cumulativeNetWorth": 1.0183,
+      "date": "2025-04-25"
+    },
+    {
+      "unitNetWorth": 1.0183,
+      "cumulativeNetWorth": 1.0183,
+      "date": "2025-04-24"
+    },
+    {
+      "unitNetWorth": 1.0182,
+      "cumulativeNetWorth": 1.0182,
+      "date": "2025-04-23"
+    },
+    {
+      "unitNetWorth": 1.0182,
+      "cumulativeNetWorth": 1.0182,
+      "date": "2025-04-22"
+    },
+    {
+      "unitNetWorth": 1.0182,
+      "cumulativeNetWorth": 1.0182,
+      "date": "2025-04-21"
+    },
+    {
+      "unitNetWorth": 1.018,
+      "cumulativeNetWorth": 1.018,
+      "date": "2025-04-18"
+    },
+    {
+      "unitNetWorth": 1.018,
+      "cumulativeNetWorth": 1.018,
+      "date": "2025-04-17"
+    },
+    {
+      "unitNetWorth": 1.018,
+      "cumulativeNetWorth": 1.018,
+      "date": "2025-04-16"
+    },
+    {
+      "unitNetWorth": 1.0179,
+      "cumulativeNetWorth": 1.0179,
+      "date": "2025-04-15"
+    },
+    {
+      "unitNetWorth": 1.0179,
+      "cumulativeNetWorth": 1.0179,
+      "date": "2025-04-14"
+    },
+    {
+      "unitNetWorth": 1.0177,
+      "cumulativeNetWorth": 1.0177,
+      "date": "2025-04-11"
+    },
+    {
+      "unitNetWorth": 1.0176,
+      "cumulativeNetWorth": 1.0176,
+      "date": "2025-04-10"
+    },
+    {
+      "unitNetWorth": 1.0176,
+      "cumulativeNetWorth": 1.0176,
+      "date": "2025-04-09"
+    },
+    {
+      "unitNetWorth": 1.0175,
+      "cumulativeNetWorth": 1.0175,
+      "date": "2025-04-08"
+    },
+    {
+      "unitNetWorth": 1.0175,
+      "cumulativeNetWorth": 1.0175,
+      "date": "2025-04-07"
+    },
+    {
+      "unitNetWorth": 1.0171,
+      "cumulativeNetWorth": 1.0171,
+      "date": "2025-04-03"
+    },
+    {
+      "unitNetWorth": 1.0169,
+      "cumulativeNetWorth": 1.0169,
+      "date": "2025-04-02"
+    },
+    {
+      "unitNetWorth": 1.0168,
+      "cumulativeNetWorth": 1.0168,
+      "date": "2025-04-01"
+    },
+    {
+      "unitNetWorth": 1.0168,
+      "cumulativeNetWorth": 1.0168,
+      "date": "2025-03-31"
+    },
+    {
+      "unitNetWorth": 1.0166,
+      "cumulativeNetWorth": 1.0166,
+      "date": "2025-03-28"
+    },
+    {
+      "unitNetWorth": 1.0165,
+      "cumulativeNetWorth": 1.0165,
+      "date": "2025-03-27"
+    },
+    {
+      "unitNetWorth": 1.0165,
+      "cumulativeNetWorth": 1.0165,
+      "date": "2025-03-26"
+    },
+    {
+      "unitNetWorth": 1.0164,
+      "cumulativeNetWorth": 1.0164,
+      "date": "2025-03-25"
+    },
+    {
+      "unitNetWorth": 1.0163,
+      "cumulativeNetWorth": 1.0163,
+      "date": "2025-03-24"
+    },
+    {
+      "unitNetWorth": 1.0162,
+      "cumulativeNetWorth": 1.0162,
+      "date": "2025-03-21"
+    },
+    {
+      "unitNetWorth": 1.016,
+      "cumulativeNetWorth": 1.016,
+      "date": "2025-03-20"
+    },
+    {
+      "unitNetWorth": 1.016,
+      "cumulativeNetWorth": 1.016,
+      "date": "2025-03-19"
+    },
+    {
+      "unitNetWorth": 1.0159,
+      "cumulativeNetWorth": 1.0159,
+      "date": "2025-03-18"
+    },
+    {
+      "unitNetWorth": 1.0158,
+      "cumulativeNetWorth": 1.0158,
+      "date": "2025-03-17"
+    },
+    {
+      "unitNetWorth": 1.0156,
+      "cumulativeNetWorth": 1.0156,
+      "date": "2025-03-14"
+    },
+    {
+      "unitNetWorth": 1.0155,
+      "cumulativeNetWorth": 1.0155,
+      "date": "2025-03-13"
+    },
+    {
+      "unitNetWorth": 1.0154,
+      "cumulativeNetWorth": 1.0154,
+      "date": "2025-03-12"
+    },
+    {
+      "unitNetWorth": 1.0154,
+      "cumulativeNetWorth": 1.0154,
+      "date": "2025-03-11"
+    },
+    {
+      "unitNetWorth": 1.0153,
+      "cumulativeNetWorth": 1.0153,
+      "date": "2025-03-10"
+    },
+    {
+      "unitNetWorth": 1.0151,
+      "cumulativeNetWorth": 1.0151,
+      "date": "2025-03-07"
+    },
+    {
+      "unitNetWorth": 1.0149,
+      "cumulativeNetWorth": 1.0149,
+      "date": "2025-03-06"
+    },
+    {
+      "unitNetWorth": 1.0149,
+      "cumulativeNetWorth": 1.0149,
+      "date": "2025-03-05"
+    },
+    {
+      "unitNetWorth": 1.0148,
+      "cumulativeNetWorth": 1.0148,
+      "date": "2025-03-04"
+    },
+    {
+      "unitNetWorth": 1.0146,
+      "cumulativeNetWorth": 1.0146,
+      "date": "2025-03-03"
+    },
+    {
+      "unitNetWorth": 1.0145,
+      "cumulativeNetWorth": 1.0145,
+      "date": "2025-02-28"
+    },
+    {
+      "unitNetWorth": 1.0144,
+      "cumulativeNetWorth": 1.0144,
+      "date": "2025-02-27"
+    },
+    {
+      "unitNetWorth": 1.0143,
+      "cumulativeNetWorth": 1.0143,
+      "date": "2025-02-26"
+    },
+    {
+      "unitNetWorth": 1.0143,
+      "cumulativeNetWorth": 1.0143,
+      "date": "2025-02-25"
+    },
+    {
+      "unitNetWorth": 1.0142,
+      "cumulativeNetWorth": 1.0142,
+      "date": "2025-02-24"
+    },
+    {
+      "unitNetWorth": 1.0141,
+      "cumulativeNetWorth": 1.0141,
+      "date": "2025-02-21"
+    },
+    {
+      "unitNetWorth": 1.0141,
+      "cumulativeNetWorth": 1.0141,
+      "date": "2025-02-20"
+    },
+    {
+      "unitNetWorth": 1.0141,
+      "cumulativeNetWorth": 1.0141,
+      "date": "2025-02-19"
+    },
+    {
+      "unitNetWorth": 1.0141,
+      "cumulativeNetWorth": 1.0141,
+      "date": "2025-02-18"
+    },
+    {
+      "unitNetWorth": 1.0141,
+      "cumulativeNetWorth": 1.0141,
+      "date": "2025-02-17"
+    },
+    {
+      "unitNetWorth": 1.0139,
+      "cumulativeNetWorth": 1.0139,
+      "date": "2025-02-14"
+    },
+    {
+      "unitNetWorth": 1.014,
+      "cumulativeNetWorth": 1.014,
+      "date": "2025-02-13"
+    },
+    {
+      "unitNetWorth": 1.0139,
+      "cumulativeNetWorth": 1.0139,
+      "date": "2025-02-12"
+    },
+    {
+      "unitNetWorth": 1.0138,
+      "cumulativeNetWorth": 1.0138,
+      "date": "2025-02-11"
+    },
+    {
+      "unitNetWorth": 1.0138,
+      "cumulativeNetWorth": 1.0138,
+      "date": "2025-02-10"
+    },
+    {
+      "unitNetWorth": 1.0135,
+      "cumulativeNetWorth": 1.0135,
+      "date": "2025-02-07"
+    },
+    {
+      "unitNetWorth": 1.0134,
+      "cumulativeNetWorth": 1.0134,
+      "date": "2025-02-06"
+    },
+    {
+      "unitNetWorth": 1.0131,
+      "cumulativeNetWorth": 1.0131,
+      "date": "2025-02-05"
+    },
+    {
+      "unitNetWorth": 1.0125,
+      "cumulativeNetWorth": 1.0125,
+      "date": "2025-01-27"
+    },
+    {
+      "unitNetWorth": 1.0123,
+      "cumulativeNetWorth": 1.0123,
+      "date": "2025-01-24"
+    },
+    {
+      "unitNetWorth": 1.0123,
+      "cumulativeNetWorth": 1.0123,
+      "date": "2025-01-23"
+    },
+    {
+      "unitNetWorth": 1.0122,
+      "cumulativeNetWorth": 1.0122,
+      "date": "2025-01-22"
+    },
+    {
+      "unitNetWorth": 1.0122,
+      "cumulativeNetWorth": 1.0122,
+      "date": "2025-01-21"
+    },
+    {
+      "unitNetWorth": 1.0121,
+      "cumulativeNetWorth": 1.0121,
+      "date": "2025-01-20"
+    },
+    {
+      "unitNetWorth": 1.0119,
+      "cumulativeNetWorth": 1.0119,
+      "date": "2025-01-17"
+    },
+    {
+      "unitNetWorth": 1.0119,
+      "cumulativeNetWorth": 1.0119,
+      "date": "2025-01-16"
+    },
+    {
+      "unitNetWorth": 1.012,
+      "cumulativeNetWorth": 1.012,
+      "date": "2025-01-15"
+    },
+    {
+      "unitNetWorth": 1.0119,
+      "cumulativeNetWorth": 1.0119,
+      "date": "2025-01-14"
+    },
+    {
+      "unitNetWorth": 1.0119,
+      "cumulativeNetWorth": 1.0119,
+      "date": "2025-01-13"
+    },
+    {
+      "unitNetWorth": 1.0118,
+      "cumulativeNetWorth": 1.0118,
+      "date": "2025-01-10"
+    },
+    {
+      "unitNetWorth": 1.0118,
+      "cumulativeNetWorth": 1.0118,
+      "date": "2025-01-09"
+    },
+    {
+      "unitNetWorth": 1.0118,
+      "cumulativeNetWorth": 1.0118,
+      "date": "2025-01-08"
+    },
+    {
+      "unitNetWorth": 1.0117,
+      "cumulativeNetWorth": 1.0117,
+      "date": "2025-01-07"
+    },
+    {
+      "unitNetWorth": 1.0116,
+      "cumulativeNetWorth": 1.0116,
+      "date": "2025-01-06"
+    },
+    {
+      "unitNetWorth": 1.0115,
+      "cumulativeNetWorth": 1.0115,
+      "date": "2025-01-03"
+    },
+    {
+      "unitNetWorth": 1.0113,
+      "cumulativeNetWorth": 1.0113,
+      "date": "2025-01-02"
+    },
+    {
+      "unitNetWorth": 1.0112,
+      "cumulativeNetWorth": 1.0112,
+      "date": "2024-12-31"
+    },
+    {
+      "unitNetWorth": 1.0111,
+      "cumulativeNetWorth": 1.0111,
+      "date": "2024-12-30"
+    },
+    {
+      "unitNetWorth": 1.0108,
+      "cumulativeNetWorth": 1.0108,
+      "date": "2024-12-27"
+    },
+    {
+      "unitNetWorth": 1.0107,
+      "cumulativeNetWorth": 1.0107,
+      "date": "2024-12-26"
+    },
+    {
+      "unitNetWorth": 1.0107,
+      "cumulativeNetWorth": 1.0107,
+      "date": "2024-12-25"
+    },
+    {
+      "unitNetWorth": 1.0103,
+      "cumulativeNetWorth": 1.0103,
+      "date": "2024-12-24"
+    },
+    {
+      "unitNetWorth": 1.0106,
+      "cumulativeNetWorth": 1.0106,
+      "date": "2024-12-23"
+    },
+    {
+      "unitNetWorth": 1.0105,
+      "cumulativeNetWorth": 1.0105,
+      "date": "2024-12-20"
+    },
+    {
+      "unitNetWorth": 1.0103,
+      "cumulativeNetWorth": 1.0103,
+      "date": "2024-12-19"
+    },
+    {
+      "unitNetWorth": 1.0102,
+      "cumulativeNetWorth": 1.0102,
+      "date": "2024-12-18"
+    },
+    {
+      "unitNetWorth": 1.0103,
+      "cumulativeNetWorth": 1.0103,
+      "date": "2024-12-17"
+    },
+    {
+      "unitNetWorth": 1.0102,
+      "cumulativeNetWorth": 1.0102,
+      "date": "2024-12-16"
+    },
+    {
+      "unitNetWorth": 1.0101,
+      "cumulativeNetWorth": 1.0101,
+      "date": "2024-12-13"
+    },
+    {
+      "unitNetWorth": 1.0099,
+      "cumulativeNetWorth": 1.0099,
+      "date": "2024-12-12"
+    },
+    {
+      "unitNetWorth": 1.0099,
+      "cumulativeNetWorth": 1.0099,
+      "date": "2024-12-11"
+    },
+    {
+      "unitNetWorth": 1.0098,
+      "cumulativeNetWorth": 1.0098,
+      "date": "2024-12-10"
+    },
+    {
+      "unitNetWorth": 1.0097,
+      "cumulativeNetWorth": 1.0097,
+      "date": "2024-12-09"
+    },
+    {
+      "unitNetWorth": 1.0095,
+      "cumulativeNetWorth": 1.0095,
+      "date": "2024-12-06"
+    },
+    {
+      "unitNetWorth": 1.0093,
+      "cumulativeNetWorth": 1.0093,
+      "date": "2024-12-05"
+    },
+    {
+      "unitNetWorth": 1.0092,
+      "cumulativeNetWorth": 1.0092,
+      "date": "2024-12-04"
+    },
+    {
+      "unitNetWorth": 1.0091,
+      "cumulativeNetWorth": 1.0091,
+      "date": "2024-12-03"
+    },
+    {
+      "unitNetWorth": 1.009,
+      "cumulativeNetWorth": 1.009,
+      "date": "2024-12-02"
+    },
+    {
+      "unitNetWorth": 1.0085,
+      "cumulativeNetWorth": 1.0085,
+      "date": "2024-11-29"
+    },
+    {
+      "unitNetWorth": 1.0084,
+      "cumulativeNetWorth": 1.0084,
+      "date": "2024-11-28"
+    },
+    {
+      "unitNetWorth": 1.0083,
+      "cumulativeNetWorth": 1.0083,
+      "date": "2024-11-27"
+    },
+    {
+      "unitNetWorth": 1.0083,
+      "cumulativeNetWorth": 1.0083,
+      "date": "2024-11-26"
+    },
+    {
+      "unitNetWorth": 1.0082,
+      "cumulativeNetWorth": 1.0082,
+      "date": "2024-11-25"
+    },
+    {
+      "unitNetWorth": 1.0081,
+      "cumulativeNetWorth": 1.0081,
+      "date": "2024-11-22"
+    },
+    {
+      "unitNetWorth": 1.008,
+      "cumulativeNetWorth": 1.008,
+      "date": "2024-11-21"
+    },
+    {
+      "unitNetWorth": 1.008,
+      "cumulativeNetWorth": 1.008,
+      "date": "2024-11-20"
+    },
+    {
+      "unitNetWorth": 1.0077,
+      "cumulativeNetWorth": 1.0077,
+      "date": "2024-11-19"
+    },
+    {
+      "unitNetWorth": 1.0077,
+      "cumulativeNetWorth": 1.0077,
+      "date": "2024-11-18"
+    },
+    {
+      "unitNetWorth": 1.0075,
+      "cumulativeNetWorth": 1.0075,
+      "date": "2024-11-15"
+    },
+    {
+      "unitNetWorth": 1.0074,
+      "cumulativeNetWorth": 1.0074,
+      "date": "2024-11-14"
+    },
+    {
+      "unitNetWorth": 1.0074,
+      "cumulativeNetWorth": 1.0074,
+      "date": "2024-11-13"
+    },
+    {
+      "unitNetWorth": 1.0073,
+      "cumulativeNetWorth": 1.0073,
+      "date": "2024-11-12"
+    },
+    {
+      "unitNetWorth": 1.0073,
+      "cumulativeNetWorth": 1.0073,
+      "date": "2024-11-11"
+    },
+    {
+      "unitNetWorth": 1.0071,
+      "cumulativeNetWorth": 1.0071,
+      "date": "2024-11-08"
+    },
+    {
+      "unitNetWorth": 1.007,
+      "cumulativeNetWorth": 1.007,
+      "date": "2024-11-07"
+    },
+    {
+      "unitNetWorth": 1.0069,
+      "cumulativeNetWorth": 1.0069,
+      "date": "2024-11-06"
+    },
+    {
+      "unitNetWorth": 1.0069,
+      "cumulativeNetWorth": 1.0069,
+      "date": "2024-11-05"
+    },
+    {
+      "unitNetWorth": 1.0067,
+      "cumulativeNetWorth": 1.0067,
+      "date": "2024-11-04"
+    },
+    {
+      "unitNetWorth": 1.0065,
+      "cumulativeNetWorth": 1.0065,
+      "date": "2024-11-01"
+    },
+    {
+      "unitNetWorth": 1.0064,
+      "cumulativeNetWorth": 1.0064,
+      "date": "2024-10-31"
+    },
+    {
+      "unitNetWorth": 1.0064,
+      "cumulativeNetWorth": 1.0064,
+      "date": "2024-10-30"
+    },
+    {
+      "unitNetWorth": 1.0063,
+      "cumulativeNetWorth": 1.0063,
+      "date": "2024-10-29"
+    },
+    {
+      "unitNetWorth": 1.0058,
+      "cumulativeNetWorth": 1.0058,
+      "date": "2024-10-28"
+    },
+    {
+      "unitNetWorth": 1.0056,
+      "cumulativeNetWorth": 1.0056,
+      "date": "2024-10-25"
+    },
+    {
+      "unitNetWorth": 1.0055,
+      "cumulativeNetWorth": 1.0055,
+      "date": "2024-10-24"
+    },
+    {
+      "unitNetWorth": 1.0054,
+      "cumulativeNetWorth": 1.0054,
+      "date": "2024-10-23"
+    },
+    {
+      "unitNetWorth": 1.0054,
+      "cumulativeNetWorth": 1.0054,
+      "date": "2024-10-22"
+    },
+    {
+      "unitNetWorth": 1.0053,
+      "cumulativeNetWorth": 1.0053,
+      "date": "2024-10-21"
+    },
+    {
+      "unitNetWorth": 1.0051,
+      "cumulativeNetWorth": 1.0051,
+      "date": "2024-10-18"
+    },
+    {
+      "unitNetWorth": 1.0051,
+      "cumulativeNetWorth": 1.0051,
+      "date": "2024-10-17"
+    },
+    {
+      "unitNetWorth": 1.005,
+      "cumulativeNetWorth": 1.005,
+      "date": "2024-10-16"
+    },
+    {
+      "unitNetWorth": 1.0048,
+      "cumulativeNetWorth": 1.0048,
+      "date": "2024-10-15"
+    },
+    {
+      "unitNetWorth": 1.0048,
+      "cumulativeNetWorth": 1.0048,
+      "date": "2024-10-14"
+    },
+    {
+      "unitNetWorth": 1.0047,
+      "cumulativeNetWorth": 1.0047,
+      "date": "2024-10-11"
+    },
+    {
+      "unitNetWorth": 1.0046,
+      "cumulativeNetWorth": 1.0046,
+      "date": "2024-10-10"
+    },
+    {
+      "unitNetWorth": 1.0048,
+      "cumulativeNetWorth": 1.0048,
+      "date": "2024-10-09"
+    },
+    {
+      "unitNetWorth": 1.0041,
+      "cumulativeNetWorth": 1.0041,
+      "date": "2024-10-08"
+    },
+    {
+      "unitNetWorth": 1.0041,
+      "cumulativeNetWorth": 1.0041,
+      "date": "2024-09-30"
+    },
+    {
+      "unitNetWorth": 1.0038,
+      "cumulativeNetWorth": 1.0038,
+      "date": "2024-09-27"
+    },
+    {
+      "unitNetWorth": 1.0038,
+      "cumulativeNetWorth": 1.0038,
+      "date": "2024-09-26"
+    },
+    {
+      "unitNetWorth": 1.0038,
+      "cumulativeNetWorth": 1.0038,
+      "date": "2024-09-25"
+    },
+    {
+      "unitNetWorth": 1.0038,
+      "cumulativeNetWorth": 1.0038,
+      "date": "2024-09-24"
+    },
+    {
+      "unitNetWorth": 1.0037,
+      "cumulativeNetWorth": 1.0037,
+      "date": "2024-09-23"
+    },
+    {
+      "unitNetWorth": 1.0034,
+      "cumulativeNetWorth": 1.0034,
+      "date": "2024-09-20"
+    },
+    {
+      "unitNetWorth": 1.0034,
+      "cumulativeNetWorth": 1.0034,
+      "date": "2024-09-19"
+    },
+    {
+      "unitNetWorth": 1.0034,
+      "cumulativeNetWorth": 1.0034,
+      "date": "2024-09-18"
+    },
+    {
+      "unitNetWorth": 1.0028,
+      "cumulativeNetWorth": 1.0028,
+      "date": "2024-09-17"
+    },
+    {
+      "unitNetWorth": 1.0028,
+      "cumulativeNetWorth": 1.0028,
+      "date": "2024-09-16"
+    },
+    {
+      "unitNetWorth": 1.0028,
+      "cumulativeNetWorth": 1.0028,
+      "date": "2024-09-13"
+    },
+    {
+      "unitNetWorth": 1.0028,
+      "cumulativeNetWorth": 1.0028,
+      "date": "2024-09-12"
+    },
+    {
+      "unitNetWorth": 1.0028,
+      "cumulativeNetWorth": 1.0028,
+      "date": "2024-09-11"
+    },
+    {
+      "unitNetWorth": 1.0023,
+      "cumulativeNetWorth": 1.0023,
+      "date": "2024-09-10"
+    },
+    {
+      "unitNetWorth": 1.0023,
+      "cumulativeNetWorth": 1.0023,
+      "date": "2024-09-09"
+    },
+    {
+      "unitNetWorth": 1.0023,
+      "cumulativeNetWorth": 1.0023,
+      "date": "2024-09-06"
+    },
+    {
+      "unitNetWorth": 1.0023,
+      "cumulativeNetWorth": 1.0023,
+      "date": "2024-09-05"
+    },
+    {
+      "unitNetWorth": 1.0023,
+      "cumulativeNetWorth": 1.0023,
+      "date": "2024-09-04"
+    },
+    {
+      "unitNetWorth": 1.0018,
+      "cumulativeNetWorth": 1.0018,
+      "date": "2024-09-03"
+    },
+    {
+      "unitNetWorth": 1.0018,
+      "cumulativeNetWorth": 1.0018,
+      "date": "2024-09-02"
+    },
+    {
+      "unitNetWorth": 1.0018,
+      "cumulativeNetWorth": 1.0018,
+      "date": "2024-08-30"
+    },
+    {
+      "unitNetWorth": 1.0018,
+      "cumulativeNetWorth": 1.0018,
+      "date": "2024-08-29"
+    },
+    {
+      "unitNetWorth": 1.0018,
+      "cumulativeNetWorth": 1.0018,
+      "date": "2024-08-28"
+    },
+    {
+      "unitNetWorth": 1.0009,
+      "cumulativeNetWorth": 1.0009,
+      "date": "2024-08-27"
+    },
+    {
+      "unitNetWorth": 1.0009,
+      "cumulativeNetWorth": 1.0009,
+      "date": "2024-08-26"
+    },
+    {
+      "unitNetWorth": 1.0009,
+      "cumulativeNetWorth": 1.0009,
+      "date": "2024-08-23"
+    },
+    {
+      "unitNetWorth": 1.0009,
+      "cumulativeNetWorth": 1.0009,
+      "date": "2024-08-22"
+    },
+    {
+      "unitNetWorth": 1.0009,
+      "cumulativeNetWorth": 1.0009,
+      "date": "2024-08-21"
+    },
+    {
+      "unitNetWorth": 1.0,
+      "cumulativeNetWorth": 1.0,
+      "date": "2024-08-20"
+    },
+    {
+      "unitNetWorth": 1.0,
+      "cumulativeNetWorth": 1.0,
+      "date": "2024-08-19"
+    },
+    {
+      "unitNetWorth": 1.0,
+      "cumulativeNetWorth": 1.0,
+      "date": "2024-08-16"
+    },
+    {
+      "unitNetWorth": 1.0,
+      "cumulativeNetWorth": 1.0,
+      "date": "2024-08-15"
+    },
+    {
+      "unitNetWorth": 1.0,
+      "cumulativeNetWorth": 1.0,
+      "date": "2024-08-14"
+    },
+    {
+      "unitNetWorth": 1.0,
+      "cumulativeNetWorth": 1.0,
+      "date": "2024-08-13"
+    },
+    {
+      "unitNetWorth": 1.0,
+      "cumulativeNetWorth": 1.0,
+      "date": "2024-08-12"
+    },
+    {
+      "unitNetWorth": 1.0,
+      "cumulativeNetWorth": 1.0,
+      "date": "2024-08-09"
+    },
+    {
+      "unitNetWorth": 1.0,
+      "cumulativeNetWorth": 1.0,
+      "date": "2024-08-08"
+    },
+    {
+      "unitNetWorth": 1.0,
+      "cumulativeNetWorth": 1.0,
+      "date": "2024-08-07"
+    }
+  ]
+}
