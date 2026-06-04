@@ -40,6 +40,7 @@ This is a `src/` layout Python package (`src/china_wealth/`). The package has tw
 | ------------- | ------------------- | -------------------------------------------------- | ------------------------------------------- |
 | `citic_wm`    | `CiticWmSource`     | CITIC API (wechat.citic-wealth.com)                | 中信理财                                    |
 | `pingan_bank` | `PinganBankSource`  | Ping An Bank API (rmb.pingan.com.cn)               | 平安理财 + others sold by Ping An Bank      |
+| `ccb`         | `CcbSource`         | CCB API (www2.ccb.com)                             | 建信理财 + others sold by CCB               |
 | `ccb_wm`      | `CcbWmSource`       | HTML scraping (wealthccb.com)                      | 建信理财                                    |
 | `cmb_bank`    | `CmbBankSource`     | CMB Bank API (cfweb.paas.cmbchina.com)             | 建信理财 + others sold by CMB Bank          |
 | `chinawealth` | `ChinaWealthSource` | `ChinaWealthClient` (xinxipilu.chinawealth.com.cn) | Any registered issuer (e.g. 交银施罗德理财) |
@@ -81,9 +82,11 @@ drops example API responses in `docs/<source>/`. The expected flow is:
 
 `sources/chinawealth.py` delegates fully to `ChinaWealthClient`. Ticker format is `<register_code>_<sub_share_code>` (e.g. `Z7007024000248_182481005A`). A product may have multiple sub-shares with different NAVs — use `china-wealth lookup <register_code>` to list them. NAV history is fetched via `getNetValueList` (not `getProductDetail`).
 
-### CCB status
+### CCB sources
 
-CCB (`sources/ccb_wm.py`) is implemented via HTML scraping. CCB product pages use a numeric page slug (`9783965`) that differs from the user-facing product ID. Until a lookup API is found, the slug must be passed directly as the ticker. NAV is extracted from `<p class="firtst">` blocks in the server-rendered HTML. The CBIRC register code is NOT exposed on CCB product pages (returns `None`).
+**`ccb`** (`sources/ccb.py`) uses the CCB Bank JSON API (`www2.ccb.com`). Ticker is `IvsmPd_ECD` (e.g. `JXLXZD180D121003A`). NAV history is fetched via a two-step flow: `TXCODE=NLCZST` checks availability, then a static `.txt` file at `/newsinfo/finance/<ticker><Txn_Mkt_ID><FndCo_Agnc_Sale_InsID>4009.txt` is fetched. Register code is not exposed (`None`). Requires legacy TLS (`legacy_tls_session()`).
+
+**`ccb_wm`** (`sources/ccb_wm.py`) is implemented via HTML scraping of wealthccb.com. Product pages use a numeric page slug (`9783965`) that differs from the user-facing product ID. Until a lookup API is found, the slug must be passed directly as the ticker. NAV is extracted from `<p class="firtst">` blocks in the server-rendered HTML. The CBIRC register code is NOT exposed on CCB product pages (returns `None`).
 
 ### 国密 (GuoMi) cryptography
 
@@ -99,9 +102,9 @@ Known usage:
 - **`cmb_bank`** — SM4 ECB for request signing (`gmssl.sm4.CryptSM4`); encrypts `"appId|timespan"` to produce the `signature` header
 - **`cmb_wm`** — SM2 asymmetric encryption (`gmssl.sm2.CryptSM2`)
 
-### CITIC SSL
+### Legacy TLS
 
-CITIC's server requires legacy TLS renegotiation disabled in Python 3.10+. `citic_wm.py` uses a custom `_LegacyTLSAdapter` with `ssl.OP_LEGACY_SERVER_CONNECT` mounted on every session. Other sources use plain `requests.get`.
+Some Chinese bank servers require legacy TLS renegotiation disabled in Python 3.10+. Use `legacy_tls_session()` from `china_wealth.http` — it returns a `requests.Session` with `ssl.OP_LEGACY_SERVER_CONNECT` set. Currently used by `citic_wm.py` and `ccb.py`. Other sources use plain `requests.get`.
 
 ### API response field reference
 
@@ -112,6 +115,8 @@ Key non-obvious field names discovered from real API responses (see `docs/*/READ
 | citic_wm detail   | `registCode`           | `nav`                        | `navDate` (`YYYYMMDD`) |
 | citic_wm nav list | —                      | `data.productNavList[0].nav` | `navDate`              |
 | pingan_bank       | `bankFundRegisterCode` | `netValue` (string)          | `navDate` (`YYYYMMDD`) |
-| ccb_wm            | N/A (not on page)      | `p.firtst` in 最新净值 block | `最新净值(YYYY-MM-DD)` |
-| cmb_bank info     | `regCode`              | `netValue` (often empty)     | —                      |
-| cmb_bank nav list | —                      | `body.data[].znavVal`        | `znavDat` (`YYYYMMDD`) |
+| ccb_wm            | N/A (not on page)      | `p.firtst` in 最新净值 block          | `最新净值(YYYY-MM-DD)`  |
+| ccb list/detail   | N/A                    | `Unit_Ast_NetVal`                     | `NetVal_Dt` (`YYYYMMDD`) |
+| ccb nav history   | —                      | `Index_Group[].Exp_YldRto`            | `Qtn_Dt` (`YYYYMMDD`)  |
+| cmb_bank info     | `regCode`              | `netValue` (often empty)              | —                       |
+| cmb_bank nav list | —                      | `body.data[].znavVal`                 | `znavDat` (`YYYYMMDD`) |

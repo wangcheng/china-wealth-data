@@ -17,6 +17,7 @@
 | `citic_wm`    | 信银理财 API     | 信银理财                                   | `AF233364A`                   | 支持               |
 | `pingan_bank` | 平安银行 API     | 平安银行代销的其他机构产品                 | `LHCZGS2100141A`              | 支持（最近 20 条） |
 | `pingan_wm`   | 平安理财官网 API | 平安理财                                   | `LHCZGS141I`                  | 支持               |
+| `ccb`         | 建设银行 API     | 建设银行代销的其他机构产品                 | `JXLXZD180D121003A`           | 支持               |
 | `ccb_wm`      | 建信理财网页     | 建信理财                                   | 数字页面 slug（如 `9783965`） | 不支持             |
 | `cmb_bank`    | 招商银行 API     | 招商银行代销的其他机构产品                 | `JXPB0201`                    | 支持               |
 | `cmb_wm`      | 招银理财 API     | 招银理财                                   | `17977D`                      | 支持               |
@@ -43,6 +44,8 @@
 - **`pingan_bank`** — 适用于所有在平安银行平台销售的产品。在[平安银行理财产品列表](https://b.pingan.com.cn/aum/m/inventory_search.html?dataType=07&sellingType=FINANCESUB)中找到产品，将 `prdCode` 作为 ticker 使用。
 
 - **`citic_wm`** — 适用于信银理财产品。在[信银理财产品列表](https://www.citic-wealth.com/wechat/product/#/productMarket)中找到产品，将 `fundCode` 作为 ticker 使用。
+
+- **`ccb`** — 适用于所有在建设银行平台销售的产品。在[建设银行理财产品列表](https://www2.ccb.com/chn/finance/products/self/product_list.shtml)中找到产品，将产品代码（`IvsmPd_ECD`，如 `JXLXZD180D121003A`）作为 ticker 使用。
 
 - **`ccb_wm`** — 适用于建信理财产品。在[建信理财产品列表](https://www.wealthccb.com/productList.html)中找到产品详情页，将 URL 中的数字页面 slug 作为 ticker 使用。
 
@@ -108,6 +111,7 @@ uv run china-wealth info <数据源> <ticker>
 uv run china-wealth info citic_wm AF233364A
 uv run china-wealth info pingan_wm LHCZGS141I
 uv run china-wealth info pingan_bank LHCZGS2100141A
+uv run china-wealth info ccb JXLXZD180D121003A
 uv run china-wealth info cmb_bank JXPB0201
 uv run china-wealth info cmb_wm 17977D
 uv run china-wealth info hsbc_bank 182481005A
@@ -122,6 +126,7 @@ uv run china-wealth nav <数据源> <ticker>
 
 ```bash
 uv run china-wealth nav citic_wm AF233364A
+uv run china-wealth nav ccb JXLXZD180D121003A
 uv run china-wealth nav cmb_bank JXPB0201
 uv run china-wealth nav cmb_wm 17977D
 uv run china-wealth nav hsbc_bank 182481005A
@@ -157,6 +162,7 @@ uv sync
 ```bash
 uv run bean-price -e "CNY:china_wealth.sources.citic_wm/AF233364A"
 uv run bean-price -e "CNY:china_wealth.sources.pingan_bank/LHCZGS2100141A"
+uv run bean-price -e "CNY:china_wealth.sources.ccb/JXLXZD180D121003A"
 uv run bean-price -e "CNY:china_wealth.sources.cmb_wm/17977D"
 uv run bean-price -e "CNY:china_wealth.sources.chinawealth/Z7007024000248_182481005A"
 ```
@@ -225,6 +231,7 @@ src/china_wealth/
     ├── citic_wm.py        # 信银理财
     ├── pingan_bank.py     # 平安银行（平安理财及代销产品）
     ├── pingan_wm.py       # 平安理财官网（SM4 加密 API）
+    ├── ccb.py             # 建设银行（JSON API）
     ├── ccb_wm.py          # 建信理财（HTML 抓取）
     ├── cmb_bank.py        # 招商银行（SM4 签名 API）
     ├── cmb_wm.py          # 招银理财（SM2 加密 API）

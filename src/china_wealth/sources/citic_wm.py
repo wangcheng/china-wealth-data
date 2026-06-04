@@ -6,14 +6,13 @@ API endpoints (no auth required):
 """
 
 import datetime
-import ssl
 from decimal import Decimal
 from typing import List, Optional
 from zoneinfo import ZoneInfo
 
 import requests
-from requests.adapters import HTTPAdapter
 
+from china_wealth.http import legacy_tls_session
 from china_wealth.source import BaseSource, SourcePrice
 from china_wealth.types import NavEntry, ProductShareInfo
 
@@ -25,21 +24,6 @@ _HEADERS = {
     "Referer": "https://wechat.citic-wealth.com/",
 }
 
-
-class _LegacyTLSAdapter(HTTPAdapter):
-    """Allow legacy SSL renegotiation required by some Chinese bank servers."""
-
-    def init_poolmanager(self, *args, **kwargs):
-        ctx = ssl.create_default_context()
-        ctx.options |= ssl.OP_LEGACY_SERVER_CONNECT
-        kwargs["ssl_context"] = ctx
-        super().init_poolmanager(*args, **kwargs)
-
-
-def _session() -> requests.Session:
-    s = requests.Session()
-    s.mount("https://", _LegacyTLSAdapter())
-    return s
 
 
 class CiticWmSource(BaseSource):
@@ -129,7 +113,7 @@ class CiticWmSource(BaseSource):
 
     def _fetch_nav_list(self, ticker: str) -> Optional[list]:
         url = f"{_BASE}/getTAProductNav"
-        resp = _session().get(
+        resp = legacy_tls_session().get(
             url,
             params={"prodCode": ticker, "queryUnit": "1"},
             headers=_HEADERS,
@@ -142,7 +126,7 @@ class CiticWmSource(BaseSource):
 
     def _fetch_detail(self, ticker: str) -> dict:
         url = f"{_BASE}/getTAProductDetail"
-        resp = _session().get(
+        resp = legacy_tls_session().get(
             url,
             params={"prodCode": ticker, "prodType": "2"},
             headers=_HEADERS,
