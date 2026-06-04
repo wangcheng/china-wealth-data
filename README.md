@@ -11,13 +11,15 @@
 
 ## 支持的数据源
 
-| 数据源 key    | 数据后端       | 覆盖机构示例                               | Ticker 格式                   | 历史净值           |
-| ------------- | -------------- | ------------------------------------------ | ----------------------------- | ------------------ |
-| `chinawealth` | 中国理财网 API | 理论上所有产品，但不是所有产品都有净值数据 | `<登记编码>_<份额代码>`       | 支持（最近 10 条） |
-| `citic_wm`    | 信银理财 API   | 信银理财                                   | `AF233364A`                   | 支持               |
-| `pingan_bank` | 平安银行 API   | 平安理财及平安银行代销的其他机构产品       | `LHCZGS2100141A`              | 支持（最近 20 条） |
-| `ccb_wm`      | 建信理财网页   | 建信理财                                   | 数字页面 slug（如 `9783965`） | 不支持             |
-| `cmb_wm`      | 招银理财 API   | 招银理财                                   | `17977D`                      | 支持               |
+| 数据源 key    | 数据后端         | 覆盖机构示例                               | Ticker 格式                   | 历史净值           |
+| ------------- | ---------------- | ------------------------------------------ | ----------------------------- | ------------------ |
+| `chinawealth` | 中国理财网 API   | 理论上所有产品，但不是所有产品都有净值数据 | `<登记编码>_<份额代码>`       | 支持（最近 10 条） |
+| `citic_wm`    | 信银理财 API     | 信银理财                                   | `AF233364A`                   | 支持               |
+| `pingan_bank` | 平安银行 API     | 平安银行代销的其他机构产品                 | `LHCZGS2100141A`              | 支持（最近 20 条） |
+| `pingan_wm`   | 平安理财官网 API | 平安理财                                   | `LHCZGS141I`                  | 支持               |
+| `ccb_wm`      | 建信理财网页     | 建信理财                                   | 数字页面 slug（如 `9783965`） | 不支持             |
+| `cmb_wm`      | 招银理财 API     | 招银理财                                   | `17977D`                      | 支持               |
+| `hsbc_bank`   | 汇丰银行 API     | 汇丰银行代销的其他机构产品                 | `182481005A`                  | 支持（最近 3 年）  |
 
 ### 基本概念
 
@@ -35,13 +37,17 @@
 
 - **`chinawealth`** — 中国理财网（xinxipilu.chinawealth.com.cn）是银保监会官方登记平台，理论上覆盖全国所有理财产品。但**并非所有机构都在此公布净值数据**，许多机构仅有基本产品信息而无价格。已知施罗德交银理财会在此更新净值。使用前建议先执行 `china-wealth lookup <登记编码>` 确认该产品是否有净值数据。如果有，使用 `<登记编码>_<份额代码>` 作为 ticker。
 
-- **`pingan_bank`** — 适用于所有在平安银行平台销售的产品，不限于平安理财自有产品。在[平安银行理财产品列表](https://b.pingan.com.cn/aum/m/inventory_search.html?dataType=07&sellingType=FINANCESUB)中找到产品，将 `prdCode` 作为 ticker 使用。
+- **`pingan_wm`** — 适用于平安理财自有产品，直接使用平安理财官网数据。在[平安理财产品列表](https://wm.pingan.com/#/product)中找到产品，详情页 URL 中的 `productCode` 参数即为 ticker（如 `LHCZGS141I`）。
+
+- **`pingan_bank`** — 适用于所有在平安银行平台销售的产品。在[平安银行理财产品列表](https://b.pingan.com.cn/aum/m/inventory_search.html?dataType=07&sellingType=FINANCESUB)中找到产品，将 `prdCode` 作为 ticker 使用。
 
 - **`citic_wm`** — 适用于信银理财产品。在[信银理财产品列表](https://www.citic-wealth.com/wechat/product/#/productMarket)中找到产品，将 `fundCode` 作为 ticker 使用。
 
 - **`ccb_wm`** — 适用于建信理财产品。在[建信理财产品列表](https://www.wealthccb.com/productList.html)中找到产品详情页，将 URL 中的数字页面 slug 作为 ticker 使用。
 
 - **`cmb_wm`** — 适用于招银理财产品。在[招银理财产品列表](https://www.cmbchinawm.com/publicOffering)中找到产品，将 `prodTradeCode`（如 `17977D`）作为 ticker 使用。
+
+- **`hsbc_bank`** — 适用于汇丰银行代销的理财产品。在[汇丰银行理财产品列表](https://www.hsbc.com.cn/investment-platform/pws/wmp/#/)中找到产品代码（如 `182481005A`）即为 ticker。
 
 我们会持续新增各机构专属数据源。当专属数据源存在时，优先使用专属源而非 `chinawealth`，数据更稳定可靠。
 
@@ -97,8 +103,10 @@ uv run china-wealth info <数据源> <ticker>
 
 ```bash
 uv run china-wealth info citic_wm AF233364A
+uv run china-wealth info pingan_wm LHCZGS141I
 uv run china-wealth info pingan_bank LHCZGS2100141A
 uv run china-wealth info cmb_wm 17977D
+uv run china-wealth info hsbc_bank 182481005A
 uv run china-wealth info chinawealth Z7007024000248_182481005A
 ```
 
@@ -111,6 +119,7 @@ uv run china-wealth nav <数据源> <ticker>
 ```bash
 uv run china-wealth nav citic_wm AF233364A
 uv run china-wealth nav cmb_wm 17977D
+uv run china-wealth nav hsbc_bank 182481005A
 uv run china-wealth nav chinawealth Z7007024000248_182481005A
 ```
 
@@ -163,8 +172,10 @@ src/china_wealth/
     ├── __init__.py        # 注册表：get_source(source)
     ├── citic_wm.py        # 信银理财
     ├── pingan_bank.py     # 平安银行（平安理财及代销产品）
+    ├── pingan_wm.py       # 平安理财官网（SM4 加密 API）
     ├── ccb_wm.py          # 建信理财（HTML 抓取）
     ├── cmb_wm.py          # 招银理财（SM2 加密 API）
+    ├── hsbc_bank.py       # 汇丰银行（汇丰中国 API）
     └── chinawealth.py     # 中国理财网（委托 ChinaWealthClient）
 ```
 

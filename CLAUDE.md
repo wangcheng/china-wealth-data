@@ -84,6 +84,18 @@ drops example API responses in `docs/<source>/`. The expected flow is:
 
 CCB (`sources/ccb_wm.py`) is implemented via HTML scraping. CCB product pages use a numeric page slug (`9783965`) that differs from the user-facing product ID. Until a lookup API is found, the slug must be passed directly as the ticker. NAV is extracted from `<p class="firtst">` blocks in the server-rendered HTML. The CBIRC register code is NOT exposed on CCB product pages (returns `None`).
 
+### 国密 (GuoMi) cryptography
+
+Some sources encrypt their API request bodies using Chinese national cryptographic standards (国密). Use the **`gmssl`** package (already a project dependency) for all GuoMi algorithms — do not reach for `pycryptodome` or implement them by hand.
+
+```python
+from gmssl import sm2, sm3, sm4
+```
+
+Known usage:
+- **`pingan_wm`** — SM4 ECB + PKCS#7 (`gmssl.sm4.CryptSM4`)
+- **`cmb_wm`** — SM2 asymmetric encryption (`gmssl.sm2.CryptSM2`)
+
 ### CITIC SSL
 
 CITIC's server requires legacy TLS renegotiation disabled in Python 3.10+. `citic_wm.py` uses a custom `_LegacyTLSAdapter` with `ssl.OP_LEGACY_SERVER_CONNECT` mounted on every session. Other sources use plain `requests.get`.
