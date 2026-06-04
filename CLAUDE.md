@@ -41,6 +41,7 @@ This is a `src/` layout Python package (`src/china_wealth/`). The package has tw
 | `citic_wm`    | `CiticWmSource`     | CITIC API (wechat.citic-wealth.com)                | 中信理财                                    |
 | `pingan_bank` | `PinganBankSource`  | Ping An Bank API (rmb.pingan.com.cn)               | 平安理财 + others sold by Ping An Bank      |
 | `ccb_wm`      | `CcbWmSource`       | HTML scraping (wealthccb.com)                      | 建信理财                                    |
+| `cmb_bank`    | `CmbBankSource`     | CMB Bank API (cfweb.paas.cmbchina.com)             | 建信理财 + others sold by CMB Bank          |
 | `chinawealth` | `ChinaWealthSource` | `ChinaWealthClient` (xinxipilu.chinawealth.com.cn) | Any registered issuer (e.g. 交银施罗德理财) |
 
 ## Development workflow
@@ -95,6 +96,7 @@ from gmssl import sm2, sm3, sm4
 Known usage:
 
 - **`pingan_wm`** — SM4 ECB + PKCS#7 (`gmssl.sm4.CryptSM4`)
+- **`cmb_bank`** — SM4 ECB for request signing (`gmssl.sm4.CryptSM4`); encrypts `"appId|timespan"` to produce the `signature` header
 - **`cmb_wm`** — SM2 asymmetric encryption (`gmssl.sm2.CryptSM2`)
 
 ### CITIC SSL
@@ -111,3 +113,5 @@ Key non-obvious field names discovered from real API responses (see `docs/*/READ
 | citic_wm nav list | —                      | `data.productNavList[0].nav` | `navDate`              |
 | pingan_bank       | `bankFundRegisterCode` | `netValue` (string)          | `navDate` (`YYYYMMDD`) |
 | ccb_wm            | N/A (not on page)      | `p.firtst` in 最新净值 block | `最新净值(YYYY-MM-DD)` |
+| cmb_bank info     | `regCode`              | `netValue` (often empty)     | —                      |
+| cmb_bank nav list | —                      | `body.data[].znavVal`        | `znavDat` (`YYYYMMDD`) |
