@@ -7,7 +7,7 @@
 - 通过数据源 + ticker 获取最新净值及产品元数据（名称、登记编码）
 - 支持历史净值查询（部分数据源）
 - 通过银保监会登记编码查询任意产品信息（via 中国理财网）
-- 兼容 [bean-price](https://github.com/beancount/beanprice)，可用于 Beancount 记账工作流（WIP）
+- 兼容 [bean-price](https://github.com/beancount/beanprice)，可用于 Beancount 记账工作流
 
 ## 支持的数据源
 
@@ -137,6 +137,53 @@ Date          Unit NAV    Accum. NAV  Currency
 2026-05-21      1.0374      1.0451      CNY
 ...
 ```
+
+## Bean-price 集成
+
+本库中的每个数据源模块均可作为 [bean-price](https://github.com/beancount/beanprice) 价格源，直接用于 Beancount 记账工作流。
+
+### 安装 beanprice（开发 / 本地使用）
+
+beanprice 已包含在 dev 依赖中，`uv sync` 后即可使用：
+
+```bash
+uv sync
+```
+
+### 在命令行中抓取单个价格
+
+使用 `-e` 参数，格式为 `<货币>:<模块>/<ticker>`：
+
+```bash
+uv run bean-price -e "CNY:china_wealth.sources.citic_wm/AF233364A"
+uv run bean-price -e "CNY:china_wealth.sources.pingan_bank/LHCZGS2100141A"
+uv run bean-price -e "CNY:china_wealth.sources.cmb_wm/17977D"
+uv run bean-price -e "CNY:china_wealth.sources.chinawealth/Z7007024000248_182481005A"
+```
+
+### 在 .beancount 文件中声明商品
+
+在商品声明中用 `price:` 元数据指定数据源：
+
+```beancount
+2020-01-01 commodity CITIC_AF233364A
+  price: "CNY:china_wealth.sources.citic_wm/AF233364A"
+
+2020-01-01 commodity CMB_17977D
+  price: "CNY:china_wealth.sources.cmb_wm/17977D"
+
+; chinawealth 的 ticker 格式为 <登记编码>_<份额代码>
+2020-01-01 commodity JTYH_Z7007024000248_182481005A
+  price: "CNY:china_wealth.sources.chinawealth/Z7007024000248_182481005A"
+```
+
+然后对整个账本抓取价格：
+
+```bash
+uv run bean-price your_ledger.beancount
+```
+
+完整示例见仓库根目录的 [example.beancount](example.beancount)。
 
 ## Python 库使用
 

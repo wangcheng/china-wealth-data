@@ -29,4 +29,5 @@ dev = [
     "cryptography>=47.0.0",
     "pytest",
     "pytest-cov",
+    "beanprice",
 ]

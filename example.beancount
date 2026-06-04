@@ -1,0 +1,37 @@
+; Example Beancount file demonstrating china-wealth-data as a bean-price source.
+; Run: uv run bean-price example.beancount
+
+option "operating_currency" "CNY"
+
+; --- Commodity declarations ---
+; Each commodity needs a price: metadata pointing to its source module and ticker.
+
+; 信银理财 (via citic_wm)
+2026-01-01 commodity CITIC_AF233364A
+  price: "CNY:china_wealth.sources.citic_wm/AF233364A"
+
+; 平安理财 (via pingan_bank)
+2026-01-01 commodity PINGAN_LHCZGS2100141A
+  price: "CNY:china_wealth.sources.pingan_bank/LHCZGS2100141A"
+
+; 招银理财 (via cmb_wm)
+2026-01-01 commodity CMB_17977D
+  price: "CNY:china_wealth.sources.cmb_wm/17977D"
+
+; 施罗德交银理财 (via chinawealth — ticker is <register_code>_<sub_share_code>)
+2026-01-01 commodity JTYH_182481005A
+  price: "CNY:china_wealth.sources.chinawealth/Z7007024000248_182481005A"
+
+; --- Accounts ---
+2026-01-01 open Assets:Investments
+2026-01-01 open Assets:Bank:Checking
+
+; --- Transactions ---
+; Buy 信银理财
+2026-01-10 * "信银理财" "Purchase CITIC AF233364A"
+  Assets:Investments                                     48,309 CITIC_AF233364A  {1.00 CNY}
+  Assets:Investments                                     28,939 PINGAN_LHCZGS2100141A  {1.00 CNY}
+  Assets:Investments                                     19,493 CMB_17977D  {1.00 CNY}
+  Assets:Investments                                      9,637 JTYH_182481005A  {1.00 CNY}
+  Assets:Investments                                    -10,000 CITIC_AF233364A  {1.00 CNY}
+  Assets:Bank:Checking
