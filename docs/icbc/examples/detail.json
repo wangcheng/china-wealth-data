@@ -1,0 +1,38 @@
+{
+  "code": 0,
+  "message": "成功",
+  "data": {
+    "productId": "24G2074A",
+    "productName": "工银理财·添利宝现金管理类开放净值型理财产品14号(24G2074A)",
+    "productTerm": "无固定期限",
+    "offerPeriod": "20240510-20240514",
+    "isOfferPeriod": false,
+    "yieldType": "七日年化收益",
+    "yieldValue": "1.8442%",
+    "performanceCycle": "2026.05.28-2026.06.03",
+    "issuMin": "1人民币起购",
+    "lowestBuyLevel": "",
+    "currName": "人民币",
+    "buyInjectInfo": "/touchinject/redirect?InjectType=TouchFinancing&Injectvalue=MDA0MCMkMjRHMjA3NEEjJDgwMjAwMTU0NTA1IyS5pNL4wO2yxqGkzO3A+7Gmz9a98LncwO3A4L+qt8W+u9a10M3A7bLGsvrGtzE0usUoMjRHMjA3NEEp&flagEbank=true&flagWap=true&method=2&check=DC40A870EA129A975AA78BAD2603C86C",
+    "sellInjectInfo": "/touchinject/redirect?InjectType=TouchFinancing&Injectvalue=MDA0MSMkMjRHMjA3NEEjJDgwMjAwMTU0NTA1IyS5pNL4wO2yxqGkzO3A+7Gmz9a98LncwO3A4L+qt8W+u9a10M3A7bLGsvrGtzE0usUoMjRHMjA3NEEp&flagEbank=true&flagWap=true&method=2&check=A30978175D2C6A665572BCF1A97899CC",
+    "isSubsidiaryFinance": true,
+    "agrTxt": null,
+    "instructionUrl": "//media.icbc.com.cn/instructions/24G2074AK000220250603112545347.html",
+    "prodUrl": "//media.icbc.com.cn/instructions/24G2074AK0005202509.html",
+    "riskUrl": "//media.icbc.com.cn/instructions/24G2074AK0008202509.html",
+    "inveUrl": "//media.icbc.com.cn/instructions/24G2074AK0011202509.html",
+    "issuMode": true,
+    "clickTip": "",
+    "disclaimer": "本产品由工银理财有限责任公司发行与管理，中国工商银行作为代销机构不承担产品的投资和兑付责任。",
+    "constantTip": "理财产品过往业绩不代表其未来表现，不等于理财产品实际收益，投资须谨慎。",
+    "changeTip": "本理财产品过往业绩由产品管理人工银理财有限责任公司基于理财产品净值计算。本理财产品净值计算使用的估值方法遵循《企业会计准则》，相关净值数据已经理财产品托管人复核。产品业绩计算时本着真实、准确、全面的原则使用统计数据和资料，并按照相关监管规定和行业准则的有关要求执行。理财产品过往业绩不代表其未来表现，不等于理财产品实际收益，投资须谨慎。",
+    "historicalYieldList": [
+      {
+        "timeInterval": "2025年",
+        "performanceCycle": "2025.01.01-2025.12.31",
+        "yeildValue": "1.3184%"
+      }
+    ],
+    "historicalValueList": null
+  }
+}

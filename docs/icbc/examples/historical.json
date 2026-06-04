@@ -1,0 +1,154 @@
+{
+  "code": 0,
+  "message": "成功",
+  "data": {
+    "productId": "24G2074A",
+    "historicalYieldList": [
+      {
+        "date": "2026.06.03",
+        "value": "0.2689",
+        "sevenDayYeildValue": "1.8442%"
+      },
+      {
+        "date": "2026.06.02",
+        "value": "0.4980",
+        "sevenDayYeildValue": "1.8414%"
+      },
+      {
+        "date": "2026.06.01",
+        "value": "0.4263",
+        "sevenDayYeildValue": "1.8818%"
+      },
+      {
+        "date": "2026.05.31",
+        "value": "0.2695",
+        "sevenDayYeildValue": "1.7945%"
+      },
+      {
+        "date": "2026.05.30",
+        "value": "0.2695",
+        "sevenDayYeildValue": "1.7895%"
+      },
+      {
+        "date": "2026.05.29",
+        "value": "1.5093",
+        "sevenDayYeildValue": "1.7857%"
+      },
+      {
+        "date": "2026.05.28",
+        "value": "0.2632",
+        "sevenDayYeildValue": "1.1260%"
+      },
+      {
+        "date": "2026.05.27",
+        "value": "0.2637",
+        "sevenDayYeildValue": "1.1255%"
+      },
+      {
+        "date": "2026.05.26",
+        "value": "0.5741",
+        "sevenDayYeildValue": "1.1252%"
+      },
+      {
+        "date": "2026.05.25",
+        "value": "0.2619",
+        "sevenDayYeildValue": "0.9612%"
+      },
+      {
+        "date": "2026.05.24",
+        "value": "0.2600",
+        "sevenDayYeildValue": "0.9618%"
+      },
+      {
+        "date": "2026.05.23",
+        "value": "0.2623",
+        "sevenDayYeildValue": "0.9636%"
+      },
+      {
+        "date": "2026.05.22",
+        "value": "0.2623",
+        "sevenDayYeildValue": "0.9642%"
+      },
+      {
+        "date": "2026.05.21",
+        "value": "0.2621",
+        "sevenDayYeildValue": "0.9649%"
+      },
+      {
+        "date": "2026.05.20",
+        "value": "0.2632",
+        "sevenDayYeildValue": "0.9656%"
+      },
+      {
+        "date": "2026.05.19",
+        "value": "0.2629",
+        "sevenDayYeildValue": "0.9675%"
+      },
+      {
+        "date": "2026.05.18",
+        "value": "0.2630",
+        "sevenDayYeildValue": "0.9697%"
+      },
+      {
+        "date": "2026.05.17",
+        "value": "0.2634",
+        "sevenDayYeildValue": "0.9722%"
+      },
+      {
+        "date": "2026.05.16",
+        "value": "0.2635",
+        "sevenDayYeildValue": "0.9744%"
+      },
+      {
+        "date": "2026.05.15",
+        "value": "0.2635",
+        "sevenDayYeildValue": "0.9766%"
+      },
+      {
+        "date": "2026.05.14",
+        "value": "0.2634",
+        "sevenDayYeildValue": "0.9789%"
+      },
+      {
+        "date": "2026.05.13",
+        "value": "0.2668",
+        "sevenDayYeildValue": "0.9814%"
+      },
+      {
+        "date": "2026.05.12",
+        "value": "0.2672",
+        "sevenDayYeildValue": "0.9828%"
+      },
+      {
+        "date": "2026.05.11",
+        "value": "0.2677",
+        "sevenDayYeildValue": "0.9830%"
+      },
+      {
+        "date": "2026.05.10",
+        "value": "0.2676",
+        "sevenDayYeildValue": "0.9829%"
+      },
+      {
+        "date": "2026.05.09",
+        "value": "0.2676",
+        "sevenDayYeildValue": "0.9829%"
+      },
+      {
+        "date": "2026.05.08",
+        "value": "0.2680",
+        "sevenDayYeildValue": "0.9829%"
+      },
+      {
+        "date": "2026.05.07",
+        "value": "0.2681",
+        "sevenDayYeildValue": "0.9827%"
+      },
+      {
+        "date": "2026.05.06",
+        "value": "0.2694",
+        "sevenDayYeildValue": "0.9825%"
+      }
+    ]
+  }
+}

@@ -44,6 +44,7 @@ This is a `src/` layout Python package (`src/china_wealth/`). The package has tw
 | `ccb_wm`      | `CcbWmSource`       | HTML scraping (wealthccb.com)                      | 建信理财                                    |
 | `cmb_bank`    | `CmbBankSource`     | CMB Bank API (cfweb.paas.cmbchina.com)             | 建信理财 + others sold by CMB Bank          |
 | `chinawealth` | `ChinaWealthSource` | `ChinaWealthClient` (xinxipilu.chinawealth.com.cn) | Any registered issuer (e.g. 交银施罗德理财) |
+| `icbc`        | `IcbcSource`        | ICBC API (papi.icbc.com.cn)                        | 工银理财 + others sold by ICBC              |
 
 ## Development workflow
 
@@ -67,12 +68,20 @@ drops example API responses in `docs/<source>/`. The expected flow is:
    URLs, request parameters, response field reference table, pagination notes,
    and any quirks discovered during implementation.
 
+5. **AI updates the project README** — add the new source to the sources table
+   in `README.md` and update any other sections that list available sources.
+
+6. **AI updates `CLAUDE.md`** — add the source to the sources table, the Legacy
+   TLS note (if applicable), and the API response field reference table.
+
 ### Adding a new source
 
 1. Create `src/china_wealth/sources/<source>.py` subclassing `BaseSource`.
 2. Implement `source` property, `get_latest_price`, and `get_product_info`. Historical methods are optional.
 3. Add `Source = <ClassName>` at the bottom (required for bean-price).
 4. Register in `sources/__init__.py`.
+5. Update `README.md` sources table.
+6. Update `CLAUDE.md` sources table, Legacy TLS note (if applicable), and API response field reference table.
 
 ### get_product_info vs get_latest_price
 
@@ -104,7 +113,7 @@ Known usage:
 
 ### Legacy TLS
 
-Some Chinese bank servers require legacy TLS renegotiation disabled in Python 3.10+. Use `legacy_tls_session()` from `china_wealth.http` — it returns a `requests.Session` with `ssl.OP_LEGACY_SERVER_CONNECT` set. Currently used by `citic_wm.py` and `ccb.py`. Other sources use plain `requests.get`.
+Some Chinese bank servers require legacy TLS renegotiation disabled in Python 3.10+. Use `legacy_tls_session()` from `china_wealth.http` — it returns a `requests.Session` with `ssl.OP_LEGACY_SERVER_CONNECT` set. Currently used by `citic_wm.py`, `ccb.py`, and `icbc.py`. Other sources use plain `requests.get`.
 
 ### API response field reference
 
@@ -120,3 +129,4 @@ Key non-obvious field names discovered from real API responses (see `docs/*/READ
 | ccb nav history   | —                      | `Index_Group[].Exp_YldRto`            | `Qtn_Dt` (`YYYYMMDD`)  |
 | cmb_bank info     | `regCode`              | `netValue` (often empty)              | —                       |
 | cmb_bank nav list | —                      | `body.data[].znavVal`                 | `znavDat` (`YYYYMMDD`) |
+| icbc nav list     | N/A                    | `data.list[].value`                   | `workDate` (`YYYY-MM-DD`) |

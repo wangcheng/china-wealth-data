@@ -9,6 +9,7 @@ from china_wealth.sources.pingan_bank import PinganBankSource
 from china_wealth.sources.pingan_wm import PinganWmSource
 from china_wealth.sources.chinawealth import ChinaWealthSource
 from china_wealth.sources.hsbc_bank import HsbcBankSource
+from china_wealth.sources.icbc import IcbcSource
 
 _SOURCES = {
     "citic_wm": CiticWmSource,
@@ -20,6 +21,7 @@ _SOURCES = {
     "cmb_wm": CmbWmSource,
     "chinawealth": ChinaWealthSource,
     "hsbc_bank": HsbcBankSource,
+    "icbc": IcbcSource,
 }
 
 
