@@ -36,12 +36,12 @@ This is a `src/` layout Python package (`src/china_wealth/`). The package has tw
 
 ## Sources and issuers
 
-| Source key     | Source class       | Data backend              | Issuers served                    |
-| -------------- | ------------------ | ------------------------- | --------------------------------- |
-| `citic_wm`     | `CiticWmSource`    | CITIC API (wechat.citic-wealth.com) | 中信理财                   |
-| `pingan_bank`  | `PinganBankSource` | Ping An Bank API (rmb.pingan.com.cn) | 平安理财 + others sold by Ping An Bank |
-| `ccb_wm`       | `CcbWmSource`      | HTML scraping (wealthccb.com) | 建信理财                      |
-| `chinawealth`  | `ChinaWealthSource`| `ChinaWealthClient` (xinxipilu.chinawealth.com.cn) | Any registered issuer (e.g. 交银施罗德理财) |
+| Source key    | Source class        | Data backend                                       | Issuers served                              |
+| ------------- | ------------------- | -------------------------------------------------- | ------------------------------------------- |
+| `citic_wm`    | `CiticWmSource`     | CITIC API (wechat.citic-wealth.com)                | 中信理财                                    |
+| `pingan_bank` | `PinganBankSource`  | Ping An Bank API (rmb.pingan.com.cn)               | 平安理财 + others sold by Ping An Bank      |
+| `ccb_wm`      | `CcbWmSource`       | HTML scraping (wealthccb.com)                      | 建信理财                                    |
+| `chinawealth` | `ChinaWealthSource` | `ChinaWealthClient` (xinxipilu.chinawealth.com.cn) | Any registered issuer (e.g. 交银施罗德理财) |
 
 ## Development workflow
 
@@ -93,6 +93,7 @@ from gmssl import sm2, sm3, sm4
 ```
 
 Known usage:
+
 - **`pingan_wm`** — SM4 ECB + PKCS#7 (`gmssl.sm4.CryptSM4`)
 - **`cmb_wm`** — SM2 asymmetric encryption (`gmssl.sm2.CryptSM2`)
 
@@ -104,9 +105,9 @@ CITIC's server requires legacy TLS renegotiation disabled in Python 3.10+. `citi
 
 Key non-obvious field names discovered from real API responses (see `docs/*/README.md`):
 
-| Source          | Register code field    | NAV field                    | NAV date field         |
-| --------------- | ---------------------- | ---------------------------- | ---------------------- |
-| citic_wm detail | `registCode`           | `nav`                        | `navDate` (`YYYYMMDD`) |
-| citic_wm nav list | —                    | `data.productNavList[0].nav` | `navDate`              |
-| pingan_bank     | `bankFundRegisterCode` | `netValue` (string)          | `navDate` (`YYYYMMDD`) |
-| ccb_wm          | N/A (not on page)      | `p.firtst` in 最新净值 block | `最新净值(YYYY-MM-DD)` |
+| Source            | Register code field    | NAV field                    | NAV date field         |
+| ----------------- | ---------------------- | ---------------------------- | ---------------------- |
+| citic_wm detail   | `registCode`           | `nav`                        | `navDate` (`YYYYMMDD`) |
+| citic_wm nav list | —                      | `data.productNavList[0].nav` | `navDate`              |
+| pingan_bank       | `bankFundRegisterCode` | `netValue` (string)          | `navDate` (`YYYYMMDD`) |
+| ccb_wm            | N/A (not on page)      | `p.firtst` in 最新净值 block | `最新净值(YYYY-MM-DD)` |
