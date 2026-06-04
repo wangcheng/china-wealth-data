@@ -1,0 +1,104 @@
+{
+  "productId": [
+    {
+      "countryProductTradableCode": "CN",
+      "productAlternativeClassificationCode": "W",
+      "productAlternativeNumber": "63275981",
+      "productTypeCode": "WMP"
+    },
+    {
+      "countryProductTradableCode": "CN",
+      "productAlternativeClassificationCode": "F",
+      "productAlternativeNumber": "182481005A",
+      "productTypeCode": "WMP"
+    },
+    {
+      "countryProductTradableCode": "CN",
+      "productAlternativeClassificationCode": "M",
+      "productAlternativeNumber": "182481005A",
+      "productTypeCode": "WMP"
+    },
+    {
+      "countryProductTradableCode": "CN",
+      "productAlternativeClassificationCode": "P",
+      "productAlternativeNumber": "182481005A",
+      "productTypeCode": "WMP"
+    }
+  ],
+  "prodPllName": "施罗德交银得润固收添益日日开2号A",
+  "riskLvlCde": "2",
+  "fundHouseCde": "Schroderbwm",
+  "fundCompany": "施罗德交银理财有限公司",
+  "prodStatCde": "A",
+  "finDocUrlWmpAccDoc1": "https://www.hsbc.com.cn/investment-platform/internet/aoc-pdf/investments/SRBP/wmp/WMP_MASTER.pdf",
+  "finDocUrlWmpAccDoc6": "https://www.hsbc.com.cn/investment-platform/internet/aoc-pdf/investments/SRBP/wmp/notification-prior-to-subscription-distribution.pdf",
+  "finDocUrlPiplDoc1": "https://www.hsbc.com.cn/investment-platform/internet/aoc-pdf/investments/SRBP/wmp/WMP_PIPL.pdf",
+  "finDocUrlWmpDoc1": "https://www.hsbc.com.cn/investment-platform/internet/aoc-pdf/investments/SRBP/wmp/WMP_TERMSHEET_182481005A.pdf",
+  "finDocUrlWmpDoc2": "https://www.hsbc.com.cn/investment-platform/internet/aoc-pdf/investments/SRBP/wmp/WMP_RISK_DISCLOSURE_182481005A.pdf",
+  "finDocUrlWmpDoc3": "https://www.hsbc.com.cn/investment-platform/internet/aoc-pdf/investments/SRBP/wmp/WMP_CUST_182481005A.pdf",
+  "finDocUrlWmpDoc4": "https://www.hsbc.com.cn/investment-platform/internet/aoc-pdf/investments/SRBP/wmp/WMP_CONTRACT_182481005A.pdf",
+  "incptDate": "2024-08-15 08:00:00",
+  "prodLnchDt": "2025-11-12",
+  "invstInitMinAmt": "10000",
+  "invstInitMaxAmt": "150000000",
+  "invstIncrmMinAmt": "1",
+  "dcmlPlaceTradeUnitNum": "2",
+  "utRdmMinNum": "0",
+  "utRtainMinNum": "0",
+  "ctryProdTrade1Cde": "CN",
+  "ccyInvstCde": "CNY",
+  "prdOpMeth": "4",
+  "prdOpMethDescription": "每日开放型",
+  "minHodPdLdt": "RDD",
+  "minHodPdLdtDescription": "每天可赎",
+  "minHoldPrd": "1",
+  "minHoldPrdCde": "D",
+  "minHoldPrdName": "天",
+  "fundCatCde": "WMPCAT-FI",
+  "fundCatCdeDescription": "固定收益类",
+  "investPeriodDesc": "每日可赎",
+  "performancePercent": 2.12,
+  "nav": 1.0381,
+  "tolNav": 1.0381,
+  "prodCcy": "CNY",
+  "issDate": "2026-06-03",
+  "subCfmDay": "1",
+  "subOpFeq": "ED",
+  "subOpFeqDescription": "每个交易日",
+  "ipoSubscriptionFee": 0.0,
+  "subscriptionFee": 0.0,
+  "redemptionFee": 0.0,
+  "managementFee": 0.2,
+  "custodyFee": 0.02,
+  "salesServiceFee": 0.25,
+  "ipoPerdInd": "N",
+  "allowBuy": true,
+  "cdcCde": "Z7007024000248",
+  "wmpFaqLink": "https://www.hsbc.com.cn/misc/wealth/wmp/faqs-daily-liquid/",
+  "shareLink": "https://www.static.mobile-banking.hsbc.com.cn/xchina/common/html/download/openApp.html",
+  "allowSellProdInd": "Y",
+  "rdmRule": "本产品赎回开放日为每个交易日，即每个交易日可赎回，若遇非交易日则顺延。赎回开放日T日北京时间下午3点前提交的赎回申请，T日下午3点前可撤销，赎回申请以T日净值确认；下午3点后提交的赎回申请视为在下一个开放日提交。赎回资金将最晚于赎回份额确认后的2个交易日内到账。具体产品净值和份额最终以管理人确认为准，具体申赎规则详见《产品说明书》。",
+  "rdmptCfmDay": "1",
+  "rdmptStlDay": "0",
+  "ipoSubscriptionFees": [
+    {
+      "lowBreakpoint": 0.0,
+      "highBreakpoint": 9999999999.0,
+      "value": 0.0
+    }
+  ],
+  "subscriptionFees": [
+    {
+      "lowBreakpoint": 0.0,
+      "highBreakpoint": 9999999999.0,
+      "value": 0.0
+    }
+  ],
+  "redemptionFees": [
+    {
+      "lowBreakpoint": 0,
+      "highBreakpoint": 33333333,
+      "value": 0.0
+    }
+  ]
+}
