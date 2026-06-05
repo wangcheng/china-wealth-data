@@ -13,13 +13,14 @@
 
 **银行渠道** — 通过银行平台获取净值，可覆盖该行代销的多家机构产品：
 
-| 数据源 key    | 数据后端     | Ticker 格式         | 搜索 | 详情 | 历史净值           |
-| ------------- | ------------ | ------------------- | ---- | ---- | ------------------ |
-| `pingan_bank` | 平安银行 API | `LHCZGS2100141A`    | —    | 支持 | 支持（最近 20 条） |
-| `ccb`         | 建设银行 API | `JXLXZD180D121003A` | —    | 支持 | 支持               |
-| `cmb`         | 招商银行 API | `JXPB0201`          | —    | 支持 | 支持               |
-| `icbc`        | 工商银行 API | `26G5619A`          | —    | 支持 | 支持               |
-| `hsbc`        | 汇丰银行 API | `182481005A`        | —    | 支持 | 支持（最近 3 年）  |
+| 数据源 key    | 数据后端             | Ticker 格式         | 搜索 | 详情 | 历史净值           |
+| ------------- | -------------------- | ------------------- | ---- | ---- | ------------------ |
+| `abc`         | 农业银行 eWealth API | `NYJQLDGSZQ60`      | 支持 | 支持 | 支持               |
+| `pingan_bank` | 平安银行 API         | `LHCZGS2100141A`    | —    | 支持 | 支持（最近 20 条） |
+| `ccb`         | 建设银行 API         | `JXLXZD180D121003A` | —    | 支持 | 支持               |
+| `cmb`         | 招商银行 API         | `JXPB0201`          | —    | 支持 | 支持               |
+| `icbc`        | 工商银行 API         | `26G5619A`          | —    | 支持 | 支持               |
+| `hsbc`        | 汇丰银行 API         | `182481005A`        | —    | 支持 | 支持（最近 3 年）  |
 
 **理财子公司** — 直连理财公司官方 API，只覆盖该公司自有产品，但数据更稳定：
 
@@ -51,6 +52,8 @@
 ### 如何选择数据源和 ticker
 
 - **`chinawealth`** — 中国理财网（xinxipilu.chinawealth.com.cn）是银保监会官方登记平台，理论上覆盖全国所有理财产品。但**并非所有机构都在此公布净值数据**，许多机构仅有基本产品信息而无价格。已知施罗德交银理财会在此更新净值。使用前建议先执行 `china-wealth lookup <登记编码>` 确认该产品是否有净值数据。如果有，使用 `<登记编码>_<份额代码>` 作为 ticker。
+
+- **`abc`** — 适用于所有在农业银行平台销售的产品。在[农银理财产品列表](https://ewealth.abchina.com.cn/fs/filter/default.htm)中找到产品，详情页 URL 中的 `id` 参数（如 `NYJQLDGSZQ60`）即为 ticker。
 
 - **`pingan_wm`** — 适用于平安理财自有产品，直接使用平安理财官网数据。在[平安理财产品列表](https://wm.pingan.com/#/product)中找到产品，详情页 URL 中的 `productCode` 参数即为 ticker（如 `LHCZGS141I`）。
 
@@ -241,9 +244,10 @@ src/china_wealth/
 ├── cli.py             # 命令行入口
 └── sources/
     ├── __init__.py        # 注册表：get_source(source)
+    ├── abc.py             # 农业银行
     ├── citic_wm.py        # 信银理财
-    ├── pingan_bank.py     # 平安银行（平安理财及代销产品）
-    ├── pingan_wm.py       # 平安理财官网（SM4 加密 API）
+    ├── pingan_bank.py     # 平安银行
+    ├── pingan_wm.py       # 平安理财（SM4 加密 API）
     ├── ccb.py             # 建设银行（JSON API）
     ├── ccb_wm.py          # 建信理财（HTML 抓取）
     ├── cmb.py        # 招商银行（SM4 签名 API）

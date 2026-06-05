@@ -1,5 +1,6 @@
 """Registry of price sources."""
 
+from china_wealth.sources.abc import AbcSource
 from china_wealth.sources.ccb import CcbSource
 from china_wealth.sources.ccb_wm import CcbWmSource
 from china_wealth.sources.citic_wm import CiticWmSource
@@ -12,6 +13,7 @@ from china_wealth.sources.hsbc import HsbcBankSource
 from china_wealth.sources.icbc import IcbcSource
 
 _SOURCES = {
+    "abc": AbcSource,
     "citic_wm": CiticWmSource,
     "pingan_bank": PinganBankSource,
     "pingan_wm": PinganWmSource,

@@ -1,0 +1,41 @@
+{
+  "result": {
+    "ErrorCode": "0",
+    "Table": {
+      "respCode": "0000",
+      "respMessage": "交易成功",
+      "respSeqNo": null,
+      "responseBody": null,
+      "reqSerNum": null,
+      "productExtId": "NYJQLDGSZQ60",
+      "productName": "农银理财“农银进取·灵动”60天固收增强人民币理财产品",
+      "productSource": "农银理财有限责任公司",
+      "prodOpenClose": "开放式",
+      "investTerm": "最低持有60天",
+      "mkrdBaseType": "业绩基准",
+      "mkrdBaseDscr": "2.35%-3.00%",
+      "mkrdBaseIntro": "主要投资货币市场工具、债券等，适度配置权益、衍生资产等。以投资现金等高流动性资产5-10%，债券等固定收益类资产70%-90%，股票5%-20%，杠杆110%情景为例，业绩基准参考市场指数及投资策略等确定，不代表产品的未来表现和实际收益。（示例仅供参考）",
+      "productIncomeTy": "非保本浮动收益",
+      "purStarAmo": "1.00000000",
+      "investMoneyTy": "人民币",
+      "saleArea": "全国发行",
+      "saleState": "今日在售",
+      "risk": "中低风险",
+      "startSscrDate": "20211016",
+      "endSscrDate": "20211020",
+      "startPurcDate": "20211021",
+      "endPurcDate": "20310820",
+      "estblDate": "20211021",
+      "matuDate": "20311021",
+      "isCanBuy": "1",
+      "custTyp": "O",
+      "isCashMng": null,
+      "isPensFncg": "0"
+    },
+    "Table1": null,
+    "Table2": null,
+    "Table3": null
+  },
+  "status": "200",
+  "returnMsg": "请求成功"
+}

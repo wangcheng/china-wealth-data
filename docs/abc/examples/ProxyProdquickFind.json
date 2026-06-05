@@ -1,0 +1,18 @@
+{
+  "result": {
+    "ErrorCode": "0",
+    "Table": [
+      {
+        "productExtId": "NYJQLDFOF720S",
+        "productName": "农银理财“农银进取·灵动”720天FOF策略人民币理财产品（私行客户）"
+      }
+    ],
+    "Table1": {
+      "totalRecs": "1"
+    },
+    "Table2": null,
+    "Table3": null
+  },
+  "status": "200",
+  "returnMsg": "请求成功"
+}
