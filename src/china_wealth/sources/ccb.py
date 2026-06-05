@@ -19,7 +19,7 @@ NAV fields in response (`PROD_INFO_GRP[0]`):
 NAV history (TXCODE=NLCZST + static .txt file):
   Step 1: GET NLCZST with IvsmPd_ECD, Txn_Mkt_ID, FndCo_Agnc_Sale_InsID,
           PD_Grp_ECD=40, Ctrl_Ind_Cgy=09 → {"result":"y"} if available
-  Step 2: GET /newsinfo/finance/<IvsmPd_ECD><Txn_Mkt_ID><FndCo_Agnc_Sale_InsID>4009.txt
+  Step 2: GET /newsinfo/finance/<IvsmPd_ECD><Txn_Mkt_ID><FndCo_Agnc_Sale_InsID><PD_Grp_ECD=40><Ctrl_Ind_Cgy=09>.txt
           → {"Index_Group": [{"Qtn_Dt": "YYYYMMDD", "Exp_YldRto": "1.01234"}, ...]}
 
 Register code is not exposed by this API; `register_code` is always None.
@@ -62,6 +62,14 @@ _BASE_PARAMS = {
     "PD_Sl_Obj_Cd": "01",
     "Bkstg_PD_Tp_ECD": "01",
 }
+_NLCZST_PARAMS = {
+    "CCB_IBSVersion": "V5",
+    "SERVLET_NAME": "WCCMainPlatV5",
+    "TXCODE": "NLCZST",
+    "FndCo_Agnc_Sale_InsID": "005",
+    "PD_Grp_ECD": "40",
+    "Ctrl_Ind_Cgy": "09",  # 单位净值; other values: 07=年化收益率, 01=七日年化
+}
 
 
 def _fetch_product(ticker: str) -> dict:
@@ -86,19 +94,16 @@ def _fetch_nav_history(ticker: str, txn_mkt_id: str, fnd_co: str) -> List[dict]:
     """Check availability then fetch the static NAV history .txt file."""
     s = legacy_tls_session()
     check = s.get(_BASE, params={
-        "CCB_IBSVersion": "V5",
-        "SERVLET_NAME": "WCCMainPlatV5",
-        "TXCODE": "NLCZST",
+        **_NLCZST_PARAMS,
         "IvsmPd_ECD": ticker,
         "Txn_Mkt_ID": txn_mkt_id,
         "FndCo_Agnc_Sale_InsID": fnd_co,
-        "PD_Grp_ECD": "40",
-        "Ctrl_Ind_Cgy": "09",
     }, headers=_HEADERS, timeout=15)
     check.raise_for_status()
     if check.json().get("result") != "y":
         return []
-    filename = f"{ticker}{txn_mkt_id}{fnd_co}4009"
+    # filename = ticker + Txn_Mkt_ID + FndCo_Agnc_Sale_InsID + PD_Grp_ECD + Ctrl_Ind_Cgy
+    filename = f"{ticker}{txn_mkt_id}{fnd_co}{_NLCZST_PARAMS['PD_Grp_ECD']}{_NLCZST_PARAMS['Ctrl_Ind_Cgy']}"
     url = f"https://www2.ccb.com/newsinfo/finance/{filename}.txt"
     resp = s.get(url, headers=_HEADERS, timeout=15)
     resp.raise_for_status()
