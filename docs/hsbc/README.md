@@ -26,6 +26,45 @@ Base URL: `https://www.hsbc.com.cn/api/wealth-cn-srbp-shp-api-cn-anonymous-prod-
 
 All requests require the header `x-hsbc-chnl-countrycode: CN`.
 
+### Product list — `GET /v2/productList/WMP`
+
+```
+GET /v2/productList/WMP?flowIndicator=PWS
+x-hsbc-chnl-countrycode: CN
+```
+
+Returns all products currently sold through HSBC China in a single response (13 products observed, no pagination).
+
+| Property        | Value          |
+| --------------- | -------------- |
+| Login required  | No             |
+| Encryption      | No             |
+| Signing         | No             |
+| Legacy TLS      | No             |
+| Pagination      | No — all products returned in one response (`pagination.totalNumberOfRecords` observed as 13) |
+| Search by code  | No — returns full list only |
+| Required headers | `x-hsbc-chnl-countrycode: CN`, `x-hsbc-channel-for-hundsun: PIB`, `x-hsbc-channel-id: OHI`, `x-hsbc-chnl-group-member: HSBC` |
+
+**Response structure:**
+
+- `productList[]` — active products with full metadata and latest NAV
+- `fullList[]` — all products (including inactive) with name and ID only
+- `pagination` — `pageNum`, `pageSize`, `totalNumberOfRecords`
+
+**Key fields per `productList[]` entry:**
+
+| Field         | Description                                                        |
+| ------------- | ------------------------------------------------------------------ |
+| `productId[]` | Array of ID objects; ticker = `productAlternativeNumber` where `productAlternativeClassificationCode == "M"` |
+| `prodPllName` | Product name                                                       |
+| `nav`         | Unit NAV                                                           |
+| `tolNav`      | Accumulated NAV                                                    |
+| `issDate`     | NAV date (`YYYY-MM-DD`)                                            |
+| `fundCompany` | Issuer name                                                        |
+| `riskLvlCde`  | Risk level code                                                    |
+
+See [examples/productList.json](examples/productList.json).
+
 ### Product detail — `GET /v2/productDetail/WMP/CN/<ticker>`
 
 ```
@@ -89,4 +128,5 @@ See [examples/performanceHist.json](examples/performanceHist.json).
 ## Notes
 
 - The ticker is the sub-share code (份额代码), not the product register code. One product may have multiple sub-shares.
-- No list/search API has been found; product discovery must happen via the web UI or the product detail endpoint with a known ticker.
+- The ticker is `productAlternativeNumber` where `productAlternativeClassificationCode == "M"` in the list API response.
+- The list API also returns a `W`-coded alternative number (a numeric internal ID); this is not the ticker.

@@ -45,26 +45,34 @@ Source key | Issuers | Ticker format
   Non-obvious quirks, known limitations, TODOs
 ```
 
-## Pagination capability summary
+## API capability summary
 
-| Source | List/Search pagination | NAV history pagination |
-| ------ | ---------------------- | ---------------------- |
-| citic_wm | No list API | No — full history in one response |
-| pingan_bank | N/A | Yes — `pageNum`/`pageSize`, backwards via `endDate` |
-| pingan_wm | No list API | Yes — `pageNum`/`pageSize`, or `pageNum=0` for all |
-| ccb | Yes — `REC_IN_PAGE`/`PAGE_JUMP` | No — static file, full history |
-| ccb_wm | No (HTML only) | No (embedded JS, latest only) |
-| cmb | Yes — `pageNO`/`pageSize`, keyword search | Yes — `pageIndex`/`pageSize`, date range |
-| cmb_wm | No list API | Partial — `monthNum` window (1/3/6/12 months), no page pagination |
-| chinawealth | N/A | Yes — `pageNum`/`pageSize` |
-| icbc | No list API | Yes — `pageIndex`/`pageSize` |
-| hsbc | No list API | Partial — `date` window (1M/3M/6M/1Y/3Y), no page pagination |
+### Product search / list pagination
 
-## Search capability summary
+| Source      | Pagination                                   | Search by keyword          | Search by code                            |
+| ----------- | -------------------------------------------- | -------------------------- | ----------------------------------------- |
+| citic_wm    | No list API                                  | —                          | —                                         |
+| pingan_bank | No list API                                  | —                          | —                                         |
+| pingan_wm   | No list API                                  | —                          | —                                         |
+| ccb         | Yes — `REC_IN_PAGE` / `PAGE_JUMP`            | —                          | Yes — `IvsmPd_ECD` param                  |
+| ccb_wm      | No (HTML only)                               | —                          | —                                         |
+| cmb         | Yes — `pageNO` / `pageSize`                  | Yes — `keyWords` param     | Yes — `keyWords` param                    |
+| cmb_wm      | No list API                                  | —                          | —                                         |
+| chinawealth | N/A (lookup by register code only)           | —                          | Yes — `prodRegCode` param                 |
+| icbc        | No list API                                  | —                          | —                                         |
+| hsbc        | No — all products in one response (13 observed) | —                       | —                                         |
 
-| Source | Can search products by keyword/code? | API |
-| ------ | ------------------------------------ | --- |
-| ccb | Yes | `TXCODE=NLCQ11` + `IvsmPd_ECD` param |
-| cmb | Yes | `queryProdList` with `keyWords` |
-| chinawealth | Yes | `getProductDetail` with `prodRegCode` |
-| others | No API found | Manual discovery via web UI only |
+### NAV history
+
+| Source      | Pagination                              | Arbitrary time range                           |
+| ----------- | --------------------------------------- | ---------------------------------------------- |
+| citic_wm    | No — `total: 21` observed, no pagination params (cap unverified) | — |
+| pingan_bank | Yes — `pageNum` / `pageSize` (max 20)   | Partial — paginate back via `endDate`           |
+| pingan_wm   | Yes — `pageNum` / `pageSize`            | Yes — `startDate` / `endDate`                   |
+| ccb         | No — static `.txt` file, ~118 entries observed (cap unverified) | — |
+| ccb_wm      | No — latest value only                  | —                                               |
+| cmb         | Yes — `pageIndex` / `pageSize`          | Yes — `startDate` / `endDate`                   |
+| cmb_wm      | No                                      | Partial — fixed windows: 1 / 3 / 6 / 12 months  |
+| chinawealth | Yes — `pageNum` / `pageSize`            | —                                               |
+| icbc        | Yes — `pageIndex` / `pageSize`          | —                                               |
+| hsbc        | No                                      | Partial — fixed windows: 1M / 3M / 6M / 1Y / 3Y |

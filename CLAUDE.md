@@ -72,7 +72,11 @@ drops example API responses in `docs/<source>/`. The expected flow is:
 
 1. **Developer provides a draft** — `docs/<source>/README.md` with initial notes
    on the API (endpoint, auth, known fields) and one or more example response
-   files in `docs/<source>/examples/`.
+   files in `docs/<source>/examples/`. The developer may also paste raw `curl`
+   commands into the README to capture the exact request shape. **AI must
+   preserve these curl examples verbatim** — do not remove, shorten, or
+   reformat them. They are the ground truth for headers, cookies, and request
+   bodies that cannot be reconstructed from the response alone.
 
 2. **AI reads the examples carefully** — inspect every field in the response,
    identify the correct fields for NAV, accumulated NAV, date, register code,

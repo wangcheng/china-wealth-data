@@ -1,0 +1,674 @@
+{
+    "productList": [
+        {
+            "productId": [
+                {
+                    "countryProductTradableCode": "CN",
+                    "productAlternativeClassificationCode": "M",
+                    "productAlternativeNumber": "182481005A",
+                    "productTypeCode": "WMP"
+                },
+                {
+                    "countryProductTradableCode": "CN",
+                    "productAlternativeClassificationCode": "W",
+                    "productAlternativeNumber": "63275981",
+                    "productTypeCode": "WMP"
+                }
+            ],
+            "prodPllName": "\u65bd\u7f57\u5fb7\u4ea4\u94f6\u5f97\u6da6\u56fa\u6536\u6dfb\u76ca\u65e5\u65e5\u5f002\u53f7A",
+            "riskLvlCde": "2",
+            "fundHouseCde": "Schroderbwm",
+            "fundCompany": "\u65bd\u7f57\u5fb7\u4ea4\u94f6\u7406\u8d22\u6709\u9650\u516c\u53f8",
+            "prodStatCde": "A",
+            "incptDate": "2024-08-15 08:00:00",
+            "prodLnchDt": "2025-11-12",
+            "invstInitMinAmt": "10000",
+            "ccyInvstCde": "CNY",
+            "prdOpMeth": "4",
+            "minHodPdLdt": "RDD",
+            "minHodPdLdtDescription": "\u6bcf\u5929\u53ef\u8d4e",
+            "minHoldPrd": "1",
+            "minHoldPrdCde": "D",
+            "minHoldPrdName": "\u5929",
+            "fundCatCde": "WMPCAT-FI",
+            "fundCatCdeDescription": "\u56fa\u5b9a\u6536\u76ca\u7c7b",
+            "investPeriodDesc": "\u6bcf\u65e5\u53ef\u8d4e",
+            "performancePercent": 2.11,
+            "nav": 1.0381,
+            "tolNav": 1.0381,
+            "prodCcy": "CNY",
+            "issDate": "2026-06-04",
+            "allowBuy": true
+        },
+        {
+            "productId": [
+                {
+                    "countryProductTradableCode": "CN",
+                    "productAlternativeClassificationCode": "M",
+                    "productAlternativeNumber": "QTCZGS211K",
+                    "productTypeCode": "WMP"
+                },
+                {
+                    "countryProductTradableCode": "CN",
+                    "productAlternativeClassificationCode": "W",
+                    "productAlternativeNumber": "62048970",
+                    "productTypeCode": "WMP"
+                }
+            ],
+            "prodPllName": "\u5e73\u5b89\u7406\u8d227\u5929\u6210\u957fK",
+            "riskLvlCde": "2",
+            "fundHouseCde": "PAWM",
+            "fundCompany": "\u5e73\u5b89\u7406\u8d22\u6709\u9650\u8d23\u4efb\u516c\u53f8",
+            "prodStatCde": "A",
+            "incptDate": "2023-07-21 08:00:00",
+            "prodLnchDt": "2023-07-21",
+            "invstInitMinAmt": "10000",
+            "ccyInvstCde": "CNY",
+            "prdOpMeth": "1",
+            "minHodPdLdt": "RDD",
+            "minHodPdLdtDescription": "\u6bcf\u5929\u53ef\u8d4e",
+            "minHoldPrd": "7",
+            "minHoldPrdCde": "D",
+            "minHoldPrdName": "\u5929",
+            "fundCatCde": "WMPCAT-FI",
+            "fundCatCdeDescription": "\u56fa\u5b9a\u6536\u76ca\u7c7b",
+            "investPeriodDesc": "\u6301\u67097\u5929\u540e\u6bcf\u5929\u53ef\u8d4e",
+            "performancePercent": 2.14,
+            "nav": 1.1182,
+            "tolNav": 1.1182,
+            "prodCcy": "CNY",
+            "issDate": "2026-06-04",
+            "allowBuy": true
+        },
+        {
+            "productId": [
+                {
+                    "countryProductTradableCode": "CN",
+                    "productAlternativeClassificationCode": "M",
+                    "productAlternativeNumber": "LWCG00702A",
+                    "productTypeCode": "WMP"
+                },
+                {
+                    "countryProductTradableCode": "CN",
+                    "productAlternativeClassificationCode": "W",
+                    "productAlternativeNumber": "62992508",
+                    "productTypeCode": "WMP"
+                }
+            ],
+            "prodPllName": "\u5e73\u5b89\u7406\u8d22\u7075\u6d3b\u6210\u957f\u6c47\u7a33\u65e5\u5f007\u5929\u6301\u67092\u53f7A",
+            "riskLvlCde": "2",
+            "fundHouseCde": "PAWM",
+            "fundCompany": "\u5e73\u5b89\u7406\u8d22\u6709\u9650\u8d23\u4efb\u516c\u53f8",
+            "prodStatCde": "A",
+            "incptDate": "2024-10-15 08:00:00",
+            "prodLnchDt": "2025-06-05",
+            "invstInitMinAmt": "10000",
+            "ccyInvstCde": "CNY",
+            "prdOpMeth": "1",
+            "minHodPdLdt": "RDD",
+            "minHodPdLdtDescription": "\u6bcf\u5929\u53ef\u8d4e",
+            "minHoldPrd": "7",
+            "minHoldPrdCde": "D",
+            "minHoldPrdName": "\u5929",
+            "fundCatCde": "WMPCAT-FI",
+            "fundCatCdeDescription": "\u56fa\u5b9a\u6536\u76ca\u7c7b",
+            "investPeriodDesc": "\u6301\u67097\u5929\u540e\u6bcf\u5929\u53ef\u8d4e",
+            "performancePercent": 2.18,
+            "nav": 1.0358,
+            "tolNav": 1.0358,
+            "prodCcy": "CNY",
+            "issDate": "2026-06-04",
+            "allowBuy": true
+        },
+        {
+            "productId": [
+                {
+                    "countryProductTradableCode": "CN",
+                    "productAlternativeClassificationCode": "M",
+                    "productAlternativeNumber": "LWCG01401A",
+                    "productTypeCode": "WMP"
+                },
+                {
+                    "countryProductTradableCode": "CN",
+                    "productAlternativeClassificationCode": "W",
+                    "productAlternativeNumber": "62877508",
+                    "productTypeCode": "WMP"
+                }
+            ],
+            "prodPllName": "\u5e73\u5b89\u7406\u8d22\u7075\u6d3b\u6210\u957f\u6c47\u7a33\u65e5\u5f0014\u5929\u6301\u67091\u53f7A",
+            "riskLvlCde": "2",
+            "fundHouseCde": "PAWM",
+            "fundCompany": "\u5e73\u5b89\u7406\u8d22\u6709\u9650\u8d23\u4efb\u516c\u53f8",
+            "prodStatCde": "A",
+            "incptDate": "2024-05-28 08:00:00",
+            "prodLnchDt": "2025-04-03",
+            "invstInitMinAmt": "10000",
+            "ccyInvstCde": "CNY",
+            "prdOpMeth": "1",
+            "minHodPdLdt": "RDD",
+            "minHodPdLdtDescription": "\u6bcf\u5929\u53ef\u8d4e",
+            "minHoldPrd": "14",
+            "minHoldPrdCde": "D",
+            "minHoldPrdName": "\u5929",
+            "fundCatCde": "WMPCAT-FI",
+            "fundCatCdeDescription": "\u56fa\u5b9a\u6536\u76ca\u7c7b",
+            "investPeriodDesc": "\u6301\u670914\u5929\u540e\u6bcf\u5929\u53ef\u8d4e",
+            "performancePercent": 2.29,
+            "nav": 1.0464,
+            "tolNav": 1.0464,
+            "prodCcy": "CNY",
+            "issDate": "2026-06-03",
+            "allowBuy": true
+        },
+        {
+            "productId": [
+                {
+                    "countryProductTradableCode": "CN",
+                    "productAlternativeClassificationCode": "M",
+                    "productAlternativeNumber": "LHCZGS141I",
+                    "productTypeCode": "WMP"
+                },
+                {
+                    "countryProductTradableCode": "CN",
+                    "productAlternativeClassificationCode": "W",
+                    "productAlternativeNumber": "61949504",
+                    "productTypeCode": "WMP"
+                }
+            ],
+            "prodPllName": "\u5e73\u5b89\u7406\u8d22\u7075\u6d3b\u6210\u957f14\u5929\u6301\u6709I",
+            "riskLvlCde": "2",
+            "fundHouseCde": "PAWM",
+            "fundCompany": "\u5e73\u5b89\u7406\u8d22\u6709\u9650\u8d23\u4efb\u516c\u53f8",
+            "prodStatCde": "A",
+            "incptDate": "2023-04-27 08:00:00",
+            "prodLnchDt": "2023-04-26",
+            "invstInitMinAmt": "10000",
+            "ccyInvstCde": "CNY",
+            "prdOpMeth": "1",
+            "minHodPdLdt": "RDD",
+            "minHodPdLdtDescription": "\u6bcf\u5929\u53ef\u8d4e",
+            "minHoldPrd": "14",
+            "minHoldPrdCde": "D",
+            "minHoldPrdName": "\u5929",
+            "fundCatCde": "WMPCAT-FI",
+            "fundCatCdeDescription": "\u56fa\u5b9a\u6536\u76ca\u7c7b",
+            "investPeriodDesc": "\u6301\u670914\u5929\u540e\u6bcf\u5929\u53ef\u8d4e",
+            "performancePercent": 2.34,
+            "nav": 1.0909,
+            "tolNav": 1.0909,
+            "prodCcy": "CNY",
+            "issDate": "2026-06-04",
+            "allowBuy": true
+        },
+        {
+            "productId": [
+                {
+                    "countryProductTradableCode": "CN",
+                    "productAlternativeClassificationCode": "M",
+                    "productAlternativeNumber": "182381002A",
+                    "productTypeCode": "WMP"
+                },
+                {
+                    "countryProductTradableCode": "CN",
+                    "productAlternativeClassificationCode": "W",
+                    "productAlternativeNumber": "62709965",
+                    "productTypeCode": "WMP"
+                }
+            ],
+            "prodPllName": "\u65bd\u7f57\u5fb7\u4ea4\u94f6\u5f97\u6da6\u56fa\u6536\u91d1\u900921\u5929\u6301\u6709A",
+            "riskLvlCde": "2",
+            "fundHouseCde": "Schroderbwm",
+            "fundCompany": "\u65bd\u7f57\u5fb7\u4ea4\u94f6\u7406\u8d22\u6709\u9650\u516c\u53f8",
+            "prodStatCde": "A",
+            "incptDate": "2023-06-21 08:00:00",
+            "prodLnchDt": "2024-12-20",
+            "invstInitMinAmt": "10000",
+            "ccyInvstCde": "CNY",
+            "prdOpMeth": "1",
+            "minHodPdLdt": "RDD",
+            "minHodPdLdtDescription": "\u6bcf\u5929\u53ef\u8d4e",
+            "minHoldPrd": "21",
+            "minHoldPrdCde": "D",
+            "minHoldPrdName": "\u5929",
+            "fundCatCde": "WMPCAT-FI",
+            "fundCatCdeDescription": "\u56fa\u5b9a\u6536\u76ca\u7c7b",
+            "investPeriodDesc": "\u6301\u670921\u5929\u540e\u6bcf\u5929\u53ef\u8d4e",
+            "performancePercent": 2.27,
+            "nav": 1.067,
+            "tolNav": 1.067,
+            "prodCcy": "CNY",
+            "issDate": "2026-06-04",
+            "allowBuy": true
+        },
+        {
+            "productId": [
+                {
+                    "countryProductTradableCode": "CN",
+                    "productAlternativeClassificationCode": "M",
+                    "productAlternativeNumber": "LWCG02801A",
+                    "productTypeCode": "WMP"
+                },
+                {
+                    "countryProductTradableCode": "CN",
+                    "productAlternativeClassificationCode": "W",
+                    "productAlternativeNumber": "62819472",
+                    "productTypeCode": "WMP"
+                }
+            ],
+            "prodPllName": "\u5e73\u5b89\u7406\u8d22\u7075\u6d3b\u6210\u957f\u6c47\u7a3328\u5929\u6301\u6709A",
+            "riskLvlCde": "2",
+            "fundHouseCde": "PAWM",
+            "fundCompany": "\u5e73\u5b89\u7406\u8d22\u6709\u9650\u8d23\u4efb\u516c\u53f8",
+            "prodStatCde": "A",
+            "incptDate": "2023-12-19 08:00:00",
+            "prodLnchDt": "2025-02-28",
+            "invstInitMinAmt": "10000",
+            "ccyInvstCde": "CNY",
+            "prdOpMeth": "1",
+            "minHodPdLdt": "RDD",
+            "minHodPdLdtDescription": "\u6bcf\u5929\u53ef\u8d4e",
+            "minHoldPrd": "28",
+            "minHoldPrdCde": "D",
+            "minHoldPrdName": "\u5929",
+            "fundCatCde": "WMPCAT-FI",
+            "fundCatCdeDescription": "\u56fa\u5b9a\u6536\u76ca\u7c7b",
+            "investPeriodDesc": "\u6301\u670928\u5929\u540e\u6bcf\u5929\u53ef\u8d4e",
+            "performancePercent": 2.4,
+            "nav": 1.0591,
+            "tolNav": 1.0591,
+            "prodCcy": "CNY",
+            "issDate": "2026-06-03",
+            "allowBuy": true
+        },
+        {
+            "productId": [
+                {
+                    "countryProductTradableCode": "CN",
+                    "productAlternativeClassificationCode": "M",
+                    "productAlternativeNumber": "QTCG03001E",
+                    "productTypeCode": "WMP"
+                },
+                {
+                    "countryProductTradableCode": "CN",
+                    "productAlternativeClassificationCode": "W",
+                    "productAlternativeNumber": "62335406",
+                    "productTypeCode": "WMP"
+                }
+            ],
+            "prodPllName": "\u5e73\u5b89\u7406\u8d22\u542f\u5143\u6dfb\u522930\u5929\u6301\u67091\u53f7E",
+            "riskLvlCde": "2",
+            "fundHouseCde": "PAWM",
+            "fundCompany": "\u5e73\u5b89\u7406\u8d22\u6709\u9650\u8d23\u4efb\u516c\u53f8",
+            "prodStatCde": "A",
+            "incptDate": "2024-04-01 08:00:00",
+            "prodLnchDt": "2024-03-29",
+            "invstInitMinAmt": "10000",
+            "ccyInvstCde": "CNY",
+            "prdOpMeth": "1",
+            "minHodPdLdt": "RDD",
+            "minHodPdLdtDescription": "\u6bcf\u5929\u53ef\u8d4e",
+            "minHoldPrd": "30",
+            "minHoldPrdCde": "D",
+            "minHoldPrdName": "\u5929",
+            "fundCatCde": "WMPCAT-FI",
+            "fundCatCdeDescription": "\u56fa\u5b9a\u6536\u76ca\u7c7b",
+            "investPeriodDesc": "\u6301\u670930\u5929\u540e\u6bcf\u5929\u53ef\u8d4e",
+            "performancePercent": 2.05,
+            "nav": 1.0902,
+            "tolNav": 1.0902,
+            "prodCcy": "CNY",
+            "issDate": "2026-06-04",
+            "allowBuy": true
+        },
+        {
+            "productId": [
+                {
+                    "countryProductTradableCode": "CN",
+                    "productAlternativeClassificationCode": "M",
+                    "productAlternativeNumber": "LHCLGS22090B",
+                    "productTypeCode": "WMP"
+                },
+                {
+                    "countryProductTradableCode": "CN",
+                    "productAlternativeClassificationCode": "W",
+                    "productAlternativeNumber": "62408889",
+                    "productTypeCode": "WMP"
+                }
+            ],
+            "prodPllName": "\u5e73\u5b89\u7406\u8d22\u7075\u6d3b\u7b56\u756590\u5929\u6301\u6709B",
+            "riskLvlCde": "2",
+            "fundHouseCde": "PAWM",
+            "fundCompany": "\u5e73\u5b89\u7406\u8d22\u6709\u9650\u8d23\u4efb\u516c\u53f8",
+            "prodStatCde": "A",
+            "incptDate": "2022-12-08 08:00:00",
+            "prodLnchDt": "2024-05-30",
+            "invstInitMinAmt": "10000",
+            "ccyInvstCde": "CNY",
+            "prdOpMeth": "1",
+            "minHodPdLdt": "RDD",
+            "minHodPdLdtDescription": "\u6bcf\u5929\u53ef\u8d4e",
+            "minHoldPrd": "90",
+            "minHoldPrdCde": "D",
+            "minHoldPrdName": "\u5929",
+            "fundCatCde": "WMPCAT-FI",
+            "fundCatCdeDescription": "\u56fa\u5b9a\u6536\u76ca\u7c7b",
+            "investPeriodDesc": "\u6301\u670990\u5929\u540e\u6bcf\u5929\u53ef\u8d4e",
+            "performancePercent": 2.75,
+            "nav": 1.1026,
+            "tolNav": 1.1026,
+            "prodCcy": "CNY",
+            "issDate": "2026-06-03",
+            "allowBuy": true
+        },
+        {
+            "productId": [
+                {
+                    "countryProductTradableCode": "CN",
+                    "productAlternativeClassificationCode": "M",
+                    "productAlternativeNumber": "182281003",
+                    "productTypeCode": "WMP"
+                },
+                {
+                    "countryProductTradableCode": "CN",
+                    "productAlternativeClassificationCode": "W",
+                    "productAlternativeNumber": "62619511",
+                    "productTypeCode": "WMP"
+                }
+            ],
+            "prodPllName": "\u65bd\u7f57\u5fb7\u4ea4\u94f6\u5f97\u6da6\u56fa\u6536\u6dfb\u76ca90\u5929\u6301\u6709A",
+            "riskLvlCde": "2",
+            "fundHouseCde": "Schroderbwm",
+            "fundCompany": "\u65bd\u7f57\u5fb7\u4ea4\u94f6\u7406\u8d22\u6709\u9650\u516c\u53f8",
+            "prodStatCde": "A",
+            "incptDate": "2022-06-01 08:00:00",
+            "prodLnchDt": "2024-10-31",
+            "invstInitMinAmt": "10000",
+            "ccyInvstCde": "CNY",
+            "prdOpMeth": "1",
+            "minHodPdLdt": "RDD",
+            "minHodPdLdtDescription": "\u6bcf\u5929\u53ef\u8d4e",
+            "minHoldPrd": "90",
+            "minHoldPrdCde": "D",
+            "minHoldPrdName": "\u5929",
+            "fundCatCde": "WMPCAT-FI",
+            "fundCatCdeDescription": "\u56fa\u5b9a\u6536\u76ca\u7c7b",
+            "investPeriodDesc": "\u6301\u670990\u5929\u540e\u6bcf\u5929\u53ef\u8d4e",
+            "performancePercent": 2.37,
+            "nav": 1.0948,
+            "tolNav": 1.0948,
+            "prodCcy": "CNY",
+            "issDate": "2026-06-03",
+            "allowBuy": true
+        },
+        {
+            "productId": [
+                {
+                    "countryProductTradableCode": "CN",
+                    "productAlternativeClassificationCode": "M",
+                    "productAlternativeNumber": "182281006B",
+                    "productTypeCode": "WMP"
+                },
+                {
+                    "countryProductTradableCode": "CN",
+                    "productAlternativeClassificationCode": "W",
+                    "productAlternativeNumber": "62517091",
+                    "productTypeCode": "WMP"
+                }
+            ],
+            "prodPllName": "\u65bd\u7f57\u5fb7\u4ea4\u94f6\u5f97\u6da6\u56fa\u6536\u6dfb\u76ca120\u5929\u6301\u6709B",
+            "riskLvlCde": "2",
+            "fundHouseCde": "Schroderbwm",
+            "fundCompany": "\u65bd\u7f57\u5fb7\u4ea4\u94f6\u7406\u8d22\u6709\u9650\u516c\u53f8",
+            "prodStatCde": "A",
+            "incptDate": "2024-07-02 08:00:00",
+            "prodLnchDt": "2024-08-19",
+            "invstInitMinAmt": "10000",
+            "ccyInvstCde": "CNY",
+            "prdOpMeth": "1",
+            "minHodPdLdt": "RDD",
+            "minHodPdLdtDescription": "\u6bcf\u5929\u53ef\u8d4e",
+            "minHoldPrd": "120",
+            "minHoldPrdCde": "D",
+            "minHoldPrdName": "\u5929",
+            "fundCatCde": "WMPCAT-FI",
+            "fundCatCdeDescription": "\u56fa\u5b9a\u6536\u76ca\u7c7b",
+            "investPeriodDesc": "\u6301\u6709120\u5929\u540e\u6bcf\u5929\u53ef\u8d4e",
+            "performancePercent": 2.2,
+            "nav": 1.0421,
+            "tolNav": 1.0421,
+            "prodCcy": "CNY",
+            "issDate": "2026-06-03",
+            "allowBuy": true
+        },
+        {
+            "productId": [
+                {
+                    "countryProductTradableCode": "CN",
+                    "productAlternativeClassificationCode": "M",
+                    "productAlternativeNumber": "LZTG18001F",
+                    "productTypeCode": "WMP"
+                },
+                {
+                    "countryProductTradableCode": "CN",
+                    "productAlternativeClassificationCode": "W",
+                    "productAlternativeNumber": "62335405",
+                    "productTypeCode": "WMP"
+                }
+            ],
+            "prodPllName": "\u5e73\u5b89\u7406\u8d22\u7075\u6d3b\u6210\u957f\u6dfb\u5229180\u5929\u6301\u6709F",
+            "riskLvlCde": "2",
+            "fundHouseCde": "PAWM",
+            "fundCompany": "\u5e73\u5b89\u7406\u8d22\u6709\u9650\u8d23\u4efb\u516c\u53f8",
+            "prodStatCde": "A",
+            "incptDate": "2024-04-02 08:00:00",
+            "prodLnchDt": "2024-03-29",
+            "invstInitMinAmt": "10000",
+            "ccyInvstCde": "CNY",
+            "prdOpMeth": "1",
+            "minHodPdLdt": "RDD",
+            "minHodPdLdtDescription": "\u6bcf\u5929\u53ef\u8d4e",
+            "minHoldPrd": "180",
+            "minHoldPrdCde": "D",
+            "minHoldPrdName": "\u5929",
+            "fundCatCde": "WMPCAT-FI",
+            "fundCatCdeDescription": "\u56fa\u5b9a\u6536\u76ca\u7c7b",
+            "investPeriodDesc": "\u6301\u6709180\u5929\u540e\u6bcf\u5929\u53ef\u8d4e",
+            "performancePercent": 2.24,
+            "nav": 1.1024,
+            "tolNav": 1.1024,
+            "prodCcy": "CNY",
+            "issDate": "2026-06-03",
+            "allowBuy": true
+        },
+        {
+            "productId": [
+                {
+                    "countryProductTradableCode": "CN",
+                    "productAlternativeClassificationCode": "M",
+                    "productAlternativeNumber": "QLCG36604A",
+                    "productTypeCode": "WMP"
+                },
+                {
+                    "countryProductTradableCode": "CN",
+                    "productAlternativeClassificationCode": "W",
+                    "productAlternativeNumber": "63378719",
+                    "productTypeCode": "WMP"
+                }
+            ],
+            "prodPllName": "\u5e73\u5b89\u7406\u8d22\u542f\u5143\u7b56\u7565\u65e5\u5f00366\u5929\u6301\u67094\u53f7A",
+            "riskLvlCde": "2",
+            "fundHouseCde": "PAWM",
+            "fundCompany": "\u5e73\u5b89\u7406\u8d22\u6709\u9650\u8d23\u4efb\u516c\u53f8",
+            "prodStatCde": "A",
+            "incptDate": "2024-09-27 08:00:00",
+            "prodLnchDt": "2026-01-06",
+            "invstInitMinAmt": "10000",
+            "ccyInvstCde": "CNY",
+            "prdOpMeth": "1",
+            "minHodPdLdt": "RDD",
+            "minHodPdLdtDescription": "\u6bcf\u5929\u53ef\u8d4e",
+            "minHoldPrd": "366",
+            "minHoldPrdCde": "D",
+            "minHoldPrdName": "\u5929",
+            "fundCatCde": "WMPCAT-FI",
+            "fundCatCdeDescription": "\u56fa\u5b9a\u6536\u76ca\u7c7b",
+            "investPeriodDesc": "\u6301\u6709366\u5929\u540e\u6bcf\u5929\u53ef\u8d4e",
+            "performancePercent": 3.03,
+            "nav": 1.0511,
+            "tolNav": 1.0511,
+            "prodCcy": "CNY",
+            "issDate": "2026-06-03",
+            "allowBuy": true
+        }
+    ],
+    "fullList": [
+        {
+            "productId": [
+                {
+                    "countryProductTradableCode": "CN",
+                    "productAlternativeClassificationCode": "M",
+                    "productAlternativeNumber": "QTCZGS211K",
+                    "productTypeCode": "WMP"
+                }
+            ],
+            "prodPllName": "\u5e73\u5b89\u7406\u8d227\u5929\u6210\u957fK"
+        },
+        {
+            "productId": [
+                {
+                    "countryProductTradableCode": "CN",
+                    "productAlternativeClassificationCode": "M",
+                    "productAlternativeNumber": "LHCZGS141I",
+                    "productTypeCode": "WMP"
+                }
+            ],
+            "prodPllName": "\u5e73\u5b89\u7406\u8d22\u7075\u6d3b\u6210\u957f14\u5929\u6301\u6709I"
+        },
+        {
+            "productId": [
+                {
+                    "countryProductTradableCode": "CN",
+                    "productAlternativeClassificationCode": "M",
+                    "productAlternativeNumber": "LWCG01401A",
+                    "productTypeCode": "WMP"
+                }
+            ],
+            "prodPllName": "\u5e73\u5b89\u7406\u8d22\u7075\u6d3b\u6210\u957f\u6c47\u7a33\u65e5\u5f0014\u5929\u6301\u67091\u53f7A"
+        },
+        {
+            "productId": [
+                {
+                    "countryProductTradableCode": "CN",
+                    "productAlternativeClassificationCode": "M",
+                    "productAlternativeNumber": "LWCG02801A",
+                    "productTypeCode": "WMP"
+                }
+            ],
+            "prodPllName": "\u5e73\u5b89\u7406\u8d22\u7075\u6d3b\u6210\u957f\u6c47\u7a3328\u5929\u6301\u6709A"
+        },
+        {
+            "productId": [
+                {
+                    "countryProductTradableCode": "CN",
+                    "productAlternativeClassificationCode": "M",
+                    "productAlternativeNumber": "LWCG00702A",
+                    "productTypeCode": "WMP"
+                }
+            ],
+            "prodPllName": "\u5e73\u5b89\u7406\u8d22\u7075\u6d3b\u6210\u957f\u6c47\u7a33\u65e5\u5f007\u5929\u6301\u67092\u53f7A"
+        },
+        {
+            "productId": [
+                {
+                    "countryProductTradableCode": "CN",
+                    "productAlternativeClassificationCode": "M",
+                    "productAlternativeNumber": "LZTG18001F",
+                    "productTypeCode": "WMP"
+                }
+            ],
+            "prodPllName": "\u5e73\u5b89\u7406\u8d22\u7075\u6d3b\u6210\u957f\u6dfb\u5229180\u5929\u6301\u6709F"
+        },
+        {
+            "productId": [
+                {
+                    "countryProductTradableCode": "CN",
+                    "productAlternativeClassificationCode": "M",
+                    "productAlternativeNumber": "LHCLGS22090B",
+                    "productTypeCode": "WMP"
+                }
+            ],
+            "prodPllName": "\u5e73\u5b89\u7406\u8d22\u7075\u6d3b\u7b56\u756590\u5929\u6301\u6709B"
+        },
+        {
+            "productId": [
+                {
+                    "countryProductTradableCode": "CN",
+                    "productAlternativeClassificationCode": "M",
+                    "productAlternativeNumber": "QTCG03001E",
+                    "productTypeCode": "WMP"
+                }
+            ],
+            "prodPllName": "\u5e73\u5b89\u7406\u8d22\u542f\u5143\u6dfb\u522930\u5929\u6301\u67091\u53f7E"
+        },
+        {
+            "productId": [
+                {
+                    "countryProductTradableCode": "CN",
+                    "productAlternativeClassificationCode": "M",
+                    "productAlternativeNumber": "QLCG36604A",
+                    "productTypeCode": "WMP"
+                }
+            ],
+            "prodPllName": "\u5e73\u5b89\u7406\u8d22\u542f\u5143\u7b56\u7565\u65e5\u5f00366\u5929\u6301\u67094\u53f7A"
+        },
+        {
+            "productId": [
+                {
+                    "countryProductTradableCode": "CN",
+                    "productAlternativeClassificationCode": "M",
+                    "productAlternativeNumber": "182281006B",
+                    "productTypeCode": "WMP"
+                }
+            ],
+            "prodPllName": "\u65bd\u7f57\u5fb7\u4ea4\u94f6\u5f97\u6da6\u56fa\u6536\u6dfb\u76ca120\u5929\u6301\u6709B"
+        },
+        {
+            "productId": [
+                {
+                    "countryProductTradableCode": "CN",
+                    "productAlternativeClassificationCode": "M",
+                    "productAlternativeNumber": "182381002A",
+                    "productTypeCode": "WMP"
+                }
+            ],
+            "prodPllName": "\u65bd\u7f57\u5fb7\u4ea4\u94f6\u5f97\u6da6\u56fa\u6536\u91d1\u900921\u5929\u6301\u6709A"
+        },
+        {
+            "productId": [
+                {
+                    "countryProductTradableCode": "CN",
+                    "productAlternativeClassificationCode": "M",
+                    "productAlternativeNumber": "182281003",
+                    "productTypeCode": "WMP"
+                }
+            ],
+            "prodPllName": "\u65bd\u7f57\u5fb7\u4ea4\u94f6\u5f97\u6da6\u56fa\u6536\u6dfb\u76ca90\u5929\u6301\u6709A"
+        },
+        {
+            "productId": [
+                {
+                    "countryProductTradableCode": "CN",
+                    "productAlternativeClassificationCode": "M",
+                    "productAlternativeNumber": "182481005A",
+                    "productTypeCode": "WMP"
+                }
+            ],
+            "prodPllName": "\u65bd\u7f57\u5fb7\u4ea4\u94f6\u5f97\u6da6\u56fa\u6536\u6dfb\u76ca\u65e5\u65e5\u5f002\u53f7A"
+        }
+    ],
+    "pagination": {
+        "pageNum": 1,
+        "pageSize": 13,
+        "totalNumberOfRecords": 13
+    }
+}
