@@ -69,7 +69,7 @@ class CmbBankSource(BaseSource):
 
     @property
     def source(self) -> str:
-        return "cmb_bank"
+        return "cmb"
 
     def get_latest_price(self, ticker: str) -> Optional[SourcePrice]:
         saacod = self._get_saacod(ticker)
@@ -231,4 +231,4 @@ def _parse_date(s: str) -> Optional[datetime.date]:
     return None
 
 
-Source = CmbBankSource  # beanprice expects module.Source()
+Source = CmbBankSource  # beanprice: module.Source(); use china_wealth.sources.cmb/<ticker>

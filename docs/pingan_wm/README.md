@@ -1,60 +1,85 @@
-# pingan_wm — 平安理财
+# pingan_wm — 平安理财 (Ping An Wealth Management)
 
-Data source for products sold on **wm.pingan.com** (平安理财有限责任公司).
+Source key: `pingan_wm` | Issuers: 平安理财 | Ticker: `productCode` (share code), e.g. `LHCZGS141I`
 
-Products are identified by **productCode** (份额代码), e.g. `LHCZGS141I`.
+---
 
-- Browse products: https://wm.pingan.com/#/product
-- Product detail: https://wm.pingan.com/#/product/productDetail?productCode=LHCZGS141I&raiseType=0
+## Pages
 
-The `productCode` appears in the detail page URL.
+### List page
 
-> **Note:** This source is different from `pingan_bank` which uses the older
-> Ping An Bank API (`rmb.pingan.com.cn`).
+URL: `https://wm.pingan.com/#/product`
 
-## Endpoints
+Lists all products on 平安理财's own platform. Click through to find the `productCode`.
+
+### Detail page
+
+URL: `https://wm.pingan.com/#/product/productDetail?productCode=<productCode>&raiseType=0`
+
+The `productCode` in the URL is the ticker. The CBIRC register code (登记编码) is returned by the info API as `registerCode`.
+
+---
+
+## APIs
 
 Base URL: `https://wmm.pingan.com.cn/app`
 
-### GET `/product/getProductInfo`
-
-Returns product metadata. No NAV is included.
-
-**Request:**
+### Product info — `GET /product/getProductInfo`
 
 ```
-GET /product/getProductInfo?productCode=LHCZGS141I
+GET /product/getProductInfo?productCode=<productCode>
 Origin: https://wm.pingan.com
 Referer: https://wm.pingan.com/
 ```
+
+Returns product metadata. Does **not** include NAV.
+
+| Property        | Value          |
+| --------------- | -------------- |
+| Login required  | No             |
+| Encryption      | No             |
+| Signing         | No             |
+| Legacy TLS      | No             |
+| Pagination      | N/A (single product) |
 
 **Response fields:**
 
 | Field                | Description                                       |
 | -------------------- | ------------------------------------------------- |
 | `productName`        | Full product name                                 |
-| `productSname`       | Short name (used as `name`)                       |
+| `productSname`       | Short name                                        |
 | `productCode`        | Share code (ticker)                               |
-| `parentProductCode`  | Parent product code                               |
 | `registerCode`       | CBIRC register code                               |
 | `institutionCodeTxt` | Issuer name (e.g. 平安理财有限责任公司)           |
-| `productStatusTxt`   | Status (e.g. 存续中)                              |
-| `multiShareProduct`  | `"1"` if this is a share of a multi-share product |
 
-### POST `/nvl/getNvlView`
+See [examples/getProductInfo.json](examples/getProductInfo.json).
 
-Returns full NAV history for a product share.
+### NAV history — `POST /nvl/getNvlView`
 
-**Encryption:** The request body is SM4 (国密SM4) ECB mode, PKCS#7 padding,
-with a static key `B34440569682494CCADDAA9D603961D2`, hex-encoded as the body.
+```
+POST /nvl/getNvlView
+Content-Type: application/json
+Body: <SM4-ECB encrypted hex string>
+```
 
-**Content-Type:** `application/json` (despite the body being a hex string)
+Returns the full historical NAV series for a product share.
 
-**Plaintext payload:**
+| Property        | Value          |
+| --------------- | -------------- |
+| Login required  | No             |
+| Encryption      | **Yes** — SM4 ECB, PKCS#7 padding; static key `B34440569682494CCADDAA9D603961D2`; output as lowercase hex |
+| Signing         | No             |
+| Legacy TLS      | No             |
+| Pagination      | Supported via `pageNum`/`pageSize` in the plaintext body; set both to `0` to return all records |
+| Search by code  | N/A (takes a single `productId`) |
+
+**Encryption key source:** extracted from web bundle module 221 (`_.c` / `t.c`). Algorithm: SM4 (GB/T 32907-2016), ECB mode, PKCS#7 padding.
+
+**Plaintext request body:**
 
 ```json
 {
-  "productId": "LHCZGS141I",
+  "productId": "<productCode>",
   "currentTimeMillis": "<unix millis as string>",
   "pageNum": 0,
   "pageSize": 0,
@@ -64,34 +89,24 @@ with a static key `B34440569682494CCADDAA9D603961D2`, hex-encoded as the body.
 }
 ```
 
-- `pageNum=0, pageSize=0` returns all records in the date range (no pagination).
-- `startDate`/`endDate` are `null` to get all history.
-- `currentTimeMillis` must be present and current (server validates it).
+- `pageNum=0, pageSize=0` returns all records in the date range.
+- `startDate`/`endDate` can be `null` to get all history.
+- `currentTimeMillis` must be current (server validates it).
 - `uuid` must be present (server rejects requests without it).
 
-**Response:** `data` is an array of NAV entries:
+**Response fields (`data[]`):**
 
 | Field             | Description                               |
 | ----------------- | ----------------------------------------- |
 | `dataDate`        | Date (`YYYY-MM-DD`)                       |
 | `unitValue`       | Unit NAV (单位净值)                       |
 | `cumulativeValue` | Accumulated NAV (累计净值)                |
-| `assetsValue`     | Assets value (usually `null`)             |
-| `profit`          | Daily profit (`0.0000` for most products) |
-| `yield`           | Daily yield (`0.0000` for most products)  |
 
-## Encryption details
+See [examples/getNvlView.json](examples/getNvlView.json).
 
-The SM4 algorithm is a Chinese national standard block cipher (GB/T 32907-2016),
-equivalent in structure to AES but with different S-box and key schedule constants.
-The key was extracted from the web bundle's module 221 (`_.c`).
+---
 
-The JS encryption call (module 400, function `L`):
+## Notes
 
-```js
-function L(E) {
-  return J.encrypt(E, t.c);
-} // t.c = "B34440569682494CCADDAA9D603961D2"
-```
-
-Mode: ECB (no IV). Padding: PKCS#7. Output: lowercase hex string.
+- Different from `pingan_bank` which uses the older Ping An Bank API (`rmb.pingan.com.cn`) and covers third-party products sold through the bank channel.
+- No list/search API has been confirmed for `getProductInfo`; product discovery must happen via the web UI.

@@ -1,91 +1,115 @@
-# China Wealth Register (中国理财网)
+# chinawealth — 中国理财网 (China Wealth Register)
 
-## Overview
+Source key: `chinawealth` | Issuers: Any CBIRC-registered issuer | Ticker: `<register_code>_<sub_share_code>`, e.g. `Z7007024000248_182481005A`
 
-China Wealth Register (xinxipilu.chinawealth.com.cn) is the official disclosure platform for
-bank wealth management products regulated by CBIRC. Products are identified by their CBIRC
-register code (登记编码) such as `Z7007024000248`.
+---
 
-## Authentication
+## Pages
 
-All POST requests must be signed. The signing flow is:
+### List / search page
 
-1. Call `getInitData` with an empty body to obtain a session-specific RSA-2048 private key (PKCS#8 PEM).
-2. For every subsequent POST, compute:
-   ```
-   signature = base64(SHA256withRSA / PKCS1v15 ( JSON.stringify(body) ))
-   ```
-   and send it as the `signature` request header.
+URL: `https://xinxipilu.chinawealth.com.cn`
 
-The server issues a fresh key per session. The key is delivered as a single-line PEM string
-(spaces instead of newlines in the base64 body).
+The main portal for CBIRC-registered wealth products. Search by product name, register code, or issuer.
 
-## API Endpoints
+### Detail page
+
+URL: `https://xinxipilu.chinawealth.com.cn` (navigate from search results)
+
+Displays product metadata, sub-share codes, and NAV history if the issuer publishes data here. Use `china-wealth lookup <register_code>` to find sub-share codes and confirm NAV availability before using this source.
+
+---
+
+## APIs
 
 Base URL: `https://xinxipilu.chinawealth.com.cn/lcxp-platService`
 
-### Get Session Key
+All `POST` requests (except `getInitData`) must include a `signature` header computed from a per-session RSA private key.
+
+### Session key — `POST /product/getInitData`
 
 ```
 POST /product/getInitData
 Body: {}
 ```
 
-Returns the RSA private key PEM string in `data`. No `signature` header needed for this call.
+Must be called first to obtain a per-session RSA private key for signing subsequent requests.
 
-See [examples/getInitData.json](examples/getInitData.json) for a full response sample.
+| Property        | Value          |
+| --------------- | -------------- |
+| Login required  | No             |
+| Encryption      | No             |
+| Signing         | No (this call establishes signing) |
+| Legacy TLS      | No             |
 
-### Product Detail + NAV History
+Returns the RSA-2048 private key (PKCS#8 PEM, with spaces instead of newlines in the base64 body) in `data`. Reuse this key for all subsequent calls in the same session.
+
+### Product detail + NAV history — `POST /product/getProductDetail`
 
 ```
 POST /product/getProductDetail
 Body: {"prodRegCode": "<register_code>", "pageNum": 1, "pageSize": <n>}
+signature: <base64(SHA256withRSA(JSON.stringify(body)))>
 ```
 
-Returns product metadata and paginated NAV history. Use `pageSize: 1` for the latest NAV only.
+Returns product metadata and paginated NAV history.
 
-Key response fields under `data`:
+| Property        | Value          |
+| --------------- | -------------- |
+| Login required  | No             |
+| Encryption      | No             |
+| Signing         | **Yes** — RSA-2048 SHA256withRSA/PKCS1v15 over compact JSON body; send as `signature` header |
+| Legacy TLS      | No             |
+| Pagination      | **Yes** — `pageNum` / `pageSize`. Use `pageSize: 1` for latest NAV only. |
+| Search by code  | **Yes** — pass register code (`prodRegCode`) directly |
 
-| Path                                        | Description                                                   |
-| ------------------------------------------- | ------------------------------------------------------------- |
-| `prodBasicInfoVo.prodName`                  | Full product name                                             |
-| `prodBasicInfoVo.prodRegCode`               | CBIRC register code                                           |
-| `prodBasicInfoVo.subShareCodeStr`           | Comma-separated sub-share codes (some products have multiple) |
-| `productTypeNetValueVo.defaultSubShareCode` | Sub-share code to use for NAV                                 |
-| `productTypeNetValueVo.netValueVoList.list` | NAV entries, newest-first                                     |
-| `netValueVoList.list[].subShareCode`        | Sub-share this entry belongs to                               |
-| `netValueVoList.list[].netValueDate`        | NAV date, format `YYYY-MM-DD`                                 |
-| `netValueVoList.list[].shareNetVal`         | Unit NAV (份额净值)                                           |
-| `netValueVoList.list[].acumltNetVal`        | Cumulative NAV (份额累计净值)                                 |
+**Signing steps:**
+1. Serialize body as compact JSON: `json.dumps(body, separators=(',', ':'))`.
+2. Sign with SHA256withRSA (PKCS1v15) using the session private key from `getInitData`.
+3. Base64-encode the signature and send as `signature` header.
 
-The latest NAV is `shareNetVal` from the first entry in `netValueVoList.list` whose
-`subShareCode` matches `defaultSubShareCode`.
+**Response fields under `data`:**
 
-See [examples/getProductDetail.json](examples/getProductDetail.json) for a full response sample.
+| Path                                            | Description                                |
+| ----------------------------------------------- | ------------------------------------------ |
+| `prodBasicInfoVo.prodName`                      | Full product name                          |
+| `prodBasicInfoVo.prodRegCode`                   | CBIRC register code                        |
+| `prodBasicInfoVo.subShareCodeStr`               | Comma-separated sub-share codes            |
+| `productTypeNetValueVo.defaultSubShareCode`     | Default sub-share code for NAV             |
+| `productTypeNetValueVo.netValueVoList.list[]`   | NAV entries, newest-first                  |
+| `netValueVoList.list[].subShareCode`            | Sub-share this entry belongs to            |
+| `netValueVoList.list[].netValueDate`            | NAV date, format `YYYY-MM-DD`              |
+| `netValueVoList.list[].shareNetVal`             | Unit NAV (份额净值)                        |
+| `netValueVoList.list[].acumltNetVal`            | Cumulative NAV (份额累计净值)              |
+
+See [examples/getProductDetail.json](examples/getProductDetail.json).
+
+### NAV list — `POST /product/getNetValueList`
+
+```
+POST /product/getNetValueList
+Body: {"subShareCode":"<code>","timeType":"1","prodRegCode":"<register_code>","pageNum":1,"pageSize":10}
+signature: <...>
+```
+
+Returns paginated NAV history for a specific sub-share.
+
+| Property        | Value          |
+| --------------- | -------------- |
+| Login required  | No             |
+| Encryption      | No             |
+| Signing         | **Yes** — same RSA scheme as above |
+| Legacy TLS      | No             |
+| Pagination      | **Yes** — `pageNum` / `pageSize` |
+| Search by code  | **Yes** — `subShareCode` + `prodRegCode` |
+
+See [examples/getNetValueList.json](examples/getNetValueList.json).
+
+---
 
 ## Notes
 
-- The session key is per-session and should be reused across requests in the same session.
-- `JSON.stringify` produces compact JSON (no spaces); Python equivalent is `json.dumps(body, separators=(',', ':'))`.
-- NAV dates are `YYYY-MM-DD` (ISO format), unlike some other issuers that use `YYYYMMDD`.
-
-```
-curl 'https://xinxipilu.chinawealth.com.cn/lcxp-platService/product/getNetValueList' \
-  -H 'Accept: application/json, text/plain, */*' \
-  -H 'Accept-Language: en-GB,en-US;q=0.9,en;q=0.8,zh-CN;q=0.7,zh-HK;q=0.6,zh-TW;q=0.5,zh;q=0.4' \
-  -H 'Cache-Control: no-cache' \
-  -H 'Connection: keep-alive' \
-  -H 'Content-Type: application/json;charset=UTF-8' \
-  -b 'JSESSIONID=0295307A2FB64CFF3F71A5CE543EE54E; size=small' \
-  -H 'Origin: https://xinxipilu.chinawealth.com.cn' \
-  -H 'Pragma: no-cache' \
-  -H 'Sec-Fetch-Dest: empty' \
-  -H 'Sec-Fetch-Mode: cors' \
-  -H 'Sec-Fetch-Site: same-origin' \
-  -H 'User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36' \
-  -H 'sec-ch-ua: "Google Chrome";v="149", "Chromium";v="149", "Not)A;Brand";v="24"' \
-  -H 'sec-ch-ua-mobile: ?0' \
-  -H 'sec-ch-ua-platform: "macOS"' \
-  -H 'signature: UldiS7IoXBObdt7SWItO0opOFiHicdBFqigHqXS1TDiEMbmtcR3WO9OliR7+FtcBy0HVjSmLwsucPbPJEuCptNkNWS+8D+d7oYcyzqKOUpsp+ELfrc86dr1394VlIAx7hqDsjQQVxiMe4F4Y6xxD50/K8mC/UktzvvMJQKT/Lvmvm5bOqnrq1MS8iHhU1l6gt0BI8NtZWt/EbzgueYLQ7wGPcof2zTwbIdWK+T0xz/NwuPsb25BMEbYOt3NMCwjoYkU61WAvD9dDR/AKDeq2Q99MXPkwGcIFrSj0FJ5BwbExOBI4Zjm/v+MreVsuaKMV3ZWv8Dy04tMsFROTUS3BnQ==' \
-  --data-raw '{"subShareCode":"182481005A","timeType":"1","prodRegCode":"Z7007024000248","pageNum":1,"pageSize":10}'
-```
+- Not all issuers publish NAV data on 中国理财网. Use `china-wealth lookup <register_code>` to check before using this source.
+- A product may have multiple sub-shares with different NAVs. Use `lookup` to list them.
+- `JSON.stringify` produces compact JSON (no spaces) — use `json.dumps(body, separators=(',', ':'))` in Python.
+- NAV dates use ISO format `YYYY-MM-DD`, unlike most other sources that use `YYYYMMDD`.

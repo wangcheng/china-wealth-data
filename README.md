@@ -11,17 +11,30 @@
 
 ## 支持的数据源
 
-| 数据源 key    | 数据后端         | 覆盖机构示例                               | Ticker 格式                   | 历史净值           |
-| ------------- | ---------------- | ------------------------------------------ | ----------------------------- | ------------------ |
-| `chinawealth` | 中国理财网 API   | 理论上所有产品，但不是所有产品都有净值数据 | `<登记编码>_<份额代码>`       | 支持（最近 10 条） |
-| `citic_wm`    | 信银理财 API     | 信银理财                                   | `AF233364A`                   | 支持               |
-| `pingan_bank` | 平安银行 API     | 平安银行代销的其他机构产品                 | `LHCZGS2100141A`              | 支持（最近 20 条） |
-| `pingan_wm`   | 平安理财官网 API | 平安理财                                   | `LHCZGS141I`                  | 支持               |
-| `ccb`         | 建设银行 API     | 建设银行代销的其他机构产品                 | `JXLXZD180D121003A`           | 支持               |
-| `ccb_wm`      | 建信理财网页     | 建信理财                                   | 数字页面 slug（如 `9783965`） | 不支持             |
-| `cmb_bank`    | 招商银行 API     | 招商银行代销的其他机构产品                 | `JXPB0201`                    | 支持               |
-| `cmb_wm`      | 招银理财 API     | 招银理财                                   | `17977D`                      | 支持               |
-| `hsbc_bank`   | 汇丰银行 API     | 汇丰银行代销的其他机构产品                 | `182481005A`                  | 支持（最近 3 年）  |
+**银行渠道** — 通过银行平台获取净值，可覆盖该行代销的多家机构产品：
+
+| 数据源 key    | 数据后端     | Ticker 格式         | 搜索 | 详情 | 历史净值           |
+| ------------- | ------------ | ------------------- | ---- | ---- | ------------------ |
+| `pingan_bank` | 平安银行 API | `LHCZGS2100141A`    | —    | 支持 | 支持（最近 20 条） |
+| `ccb`         | 建设银行 API | `JXLXZD180D121003A` | —    | 支持 | 支持               |
+| `cmb`         | 招商银行 API | `JXPB0201`          | —    | 支持 | 支持               |
+| `icbc`        | 工商银行 API | `26G5619A`          | —    | 支持 | 支持               |
+| `hsbc`        | 汇丰银行 API | `182481005A`        | —    | 支持 | 支持（最近 3 年）  |
+
+**理财子公司** — 直连理财公司官方 API，只覆盖该公司自有产品，但数据更稳定：
+
+| 数据源 key  | 数据后端     | Ticker 格式                   | 搜索 | 详情 | 历史净值 |
+| ----------- | ------------ | ----------------------------- | ---- | ---- | -------- |
+| `citic_wm`  | 信银理财 API | `AF233364A`                   | —    | 支持 | 支持     |
+| `pingan_wm` | 平安理财 API | `LHCZGS141I`                  | —    | 支持 | 支持     |
+| `ccb_wm`    | 建信理财网页 | 数字页面 slug（如 `9783965`） | —    | 支持 | —        |
+| `cmb_wm`    | 招银理财 API | `17977D`                      | —    | 支持 | 支持     |
+
+**监管登记平台** — 覆盖所有机构，但并非所有产品都有净值数据：
+
+| 数据源 key    | 数据后端       | Ticker 格式             | 搜索 | 详情 | 历史净值           |
+| ------------- | -------------- | ----------------------- | ---- | ---- | ------------------ |
+| `chinawealth` | 中国理财网 API | `<登记编码>_<份额代码>` | —    | 支持 | 支持（最近 10 条） |
 
 ### 基本概念
 
@@ -49,11 +62,11 @@
 
 - **`ccb_wm`** — 适用于建信理财产品。在[建信理财产品列表](https://www.wealthccb.com/productList.html)中找到产品详情页，将 URL 中的数字页面 slug 作为 ticker 使用。
 
-- **`cmb_bank`** — 适用于所有在招商银行平台销售的产品。在[招商银行理财产品净值页面](https://cfweb.paas.cmbchina.com/personal/prodvalue.aspx)中找到产品，将 `prdCode`（如 `JXPB0201`）作为 ticker 使用。
+- **`cmb`** — 适用于所有在招商银行平台销售的产品。在[招商银行理财产品净值页面](https://cfweb.paas.cmbchina.com/personal/prodvalue.aspx)中找到产品，将 `prdCode`（如 `JXPB0201`）作为 ticker 使用。
 
 - **`cmb_wm`** — 适用于招银理财产品。在[招银理财产品列表](https://www.cmbchinawm.com/publicOffering)中找到产品，将 `prodTradeCode`（如 `17977D`）作为 ticker 使用。
 
-- **`hsbc_bank`** — 适用于汇丰银行代销的理财产品。在[汇丰银行理财产品列表](https://www.hsbc.com.cn/investment-platform/pws/wmp/#/)中找到产品代码（如 `182481005A`）即为 ticker。
+- **`hsbc`** — 适用于汇丰银行代销的理财产品。在[汇丰银行理财产品列表](https://www.hsbc.com.cn/investment-platform/pws/wmp/#/)中找到产品代码（如 `182481005A`）即为 ticker。
 
 我们会持续新增各机构专属数据源。当专属数据源存在时，优先使用专属源而非 `chinawealth`，数据更稳定可靠。
 
@@ -112,9 +125,9 @@ uv run china-wealth info citic_wm AF233364A
 uv run china-wealth info pingan_wm LHCZGS141I
 uv run china-wealth info pingan_bank LHCZGS2100141A
 uv run china-wealth info ccb JXLXZD180D121003A
-uv run china-wealth info cmb_bank JXPB0201
+uv run china-wealth info cmb JXPB0201
 uv run china-wealth info cmb_wm 17977D
-uv run china-wealth info hsbc_bank 182481005A
+uv run china-wealth info hsbc 182481005A
 uv run china-wealth info chinawealth Z7007024000248_182481005A
 ```
 
@@ -127,9 +140,9 @@ uv run china-wealth nav <数据源> <ticker>
 ```bash
 uv run china-wealth nav citic_wm AF233364A
 uv run china-wealth nav ccb JXLXZD180D121003A
-uv run china-wealth nav cmb_bank JXPB0201
+uv run china-wealth nav cmb JXPB0201
 uv run china-wealth nav cmb_wm 17977D
-uv run china-wealth nav hsbc_bank 182481005A
+uv run china-wealth nav hsbc 182481005A
 uv run china-wealth nav chinawealth Z7007024000248_182481005A
 ```
 
@@ -233,9 +246,9 @@ src/china_wealth/
     ├── pingan_wm.py       # 平安理财官网（SM4 加密 API）
     ├── ccb.py             # 建设银行（JSON API）
     ├── ccb_wm.py          # 建信理财（HTML 抓取）
-    ├── cmb_bank.py        # 招商银行（SM4 签名 API）
+    ├── cmb.py        # 招商银行（SM4 签名 API）
     ├── cmb_wm.py          # 招银理财（SM2 加密 API）
-    ├── hsbc_bank.py       # 汇丰银行（汇丰中国 API）
+    ├── hsbc.py       # 汇丰银行（汇丰中国 API）
     └── chinawealth.py     # 中国理财网（委托 ChinaWealthClient）
 ```
 

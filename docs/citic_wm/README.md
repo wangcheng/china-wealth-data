@@ -1,65 +1,84 @@
-# CITIC Wealth (中信理财)
+# citic_wm — 信银理财 (CITIC Wealth Management)
 
-## Overview
+Source key: `citic_wm` | Issuers: 信银理财 (CITIC Wealth) | Ticker: `prodCode`, e.g. `AF233364A`
 
-CITIC Wealth (信银理财) is the wealth management subsidiary of China CITIC Bank (中信银行).
-Products are identified by a `prodCode` such as `AF233364A`.
+---
 
-## Finding a Product
+## Pages
 
-The product list page is at:
+### List page
 
-```
-https://www.citic-wealth.com/wechat/product/#/productMarket
-```
+URL: `https://www.citic-wealth.com/wechat/product/#/productMarket`
 
-The product detail page URL contains the `fundCode` query parameter:
+Browse and search all CITIC Wealth products. Product codes appear in the detail page URL after clicking through.
 
-```
-https://www.citic-wealth.com/wechat/product/#/productMarketDetailWeb?fundCode=<prodCode>&productType=1&navDecimalPlaces=
-```
+### Detail page
 
-The `fundCode` value (e.g. `AF265283K`) is the same `prodCode` used by all API calls below.
+URL: `https://www.citic-wealth.com/wechat/product/#/productMarketDetailWeb?fundCode=<prodCode>&productType=1&navDecimalPlaces=`
 
-The CBIRC register code (登记编码) is returned by the detail API as `registCode`. It also appears in the product's 产品基本信息 section and 产品说明书 PDF.
+The `fundCode` query parameter is the `prodCode` ticker (e.g. `AF265283K`). The CBIRC register code (登记编码) appears in the 产品基本信息 section and in the 产品说明书 PDF.
 
-## API Endpoints
+---
+
+## APIs
 
 Base URL: `https://wechat.citic-wealth.com/cms.product/api/custom/productInfo`
 
-### Product Detail
+### Product detail — `GET /getTAProductDetail`
 
 ```
-GET /getTAProductDetail?prodCode=<id>&prodType=2
+GET /getTAProductDetail?prodCode=<prodCode>&prodType=2
 ```
 
-Returns product metadata including name, register code, and latest NAV.
+Returns product metadata including name, register code, and latest NAV. This is the primary info + NAV-in-one call.
 
-| Field | Description |
-|-------|-------------|
-| `prodName` | Full product name |
-| `prodNameShort` | Short display name |
-| `registCode` | CBIRC register code (登记编码) |
-| `nav` | Latest unit NAV |
-| `navDate` | NAV date, format `YYYYMMDD` |
+| Property        | Value          |
+| --------------- | -------------- |
+| Login required  | No             |
+| Encryption      | No             |
+| Signing         | No             |
+| Legacy TLS      | **Yes** — `ssl.OP_LEGACY_SERVER_CONNECT` required on Python 3.10+ |
+| Pagination      | N/A (single product) |
 
-See [examples/getTAProductDetail.json](examples/getTAProductDetail.json) for a full response sample.
+**Response fields:**
 
-### NAV History
+| Field           | Description                     |
+| --------------- | ------------------------------- |
+| `prodName`      | Full product name               |
+| `prodNameShort` | Short display name              |
+| `registCode`    | CBIRC register code (登记编码)  |
+| `nav`           | Latest unit NAV                 |
+| `navDate`       | NAV date, format `YYYYMMDD`     |
+
+See [examples/getTAProductDetail.json](examples/getTAProductDetail.json).
+
+### NAV history — `GET /getTAProductNav`
 
 ```
-GET /getTAProductNav?prodCode=<id>&queryUnit=1
+GET /getTAProductNav?prodCode=<prodCode>&queryUnit=1
 ```
 
-Returns historical NAV series.
+Returns the full historical NAV series for a product.
 
-Response structure:
-- `data.productNavList` — list sorted newest-first, each entry has `nav`, `navDate`
-- `data.productNavPic` — same data sorted oldest-first (used for chart rendering)
+| Property        | Value          |
+| --------------- | -------------- |
+| Login required  | No             |
+| Encryption      | No             |
+| Signing         | No             |
+| Legacy TLS      | **Yes**        |
+| Pagination      | No — full history returned in a single response |
+| Search by code  | N/A (takes a single `prodCode`) |
 
-See [examples/getTAProductNav.json](examples/getTAProductNav.json) for a full response sample.
+**Response structure:**
+
+- `data.productNavList` — list sorted newest-first; each entry: `nav`, `navDate` (`YYYYMMDD`)
+- `data.productNavPic` — same data sorted oldest-first (for chart rendering)
+
+See [examples/getTAProductNav.json](examples/getTAProductNav.json).
+
+---
 
 ## Notes
 
-- The server uses legacy TLS renegotiation (`OP_LEGACY_SERVER_CONNECT` required on Python 3.10+).
-- NAV dates are date-only (`YYYYMMDD`); no intraday time is provided by the API.
+- NAV dates are date-only (`YYYYMMDD`); no intraday time is provided.
+- No list/search API has been found; product discovery must happen via the web UI.

@@ -1,109 +1,131 @@
-# CCB (建设银行) source
+# ccb — 建设银行 (China Construction Bank)
 
-Source key: `ccb`  
-Class: `CcbSource` (`sources/ccb.py`)
+Source key: `ccb` | Issuers: 建信理财 + others sold by CCB | Ticker: `IvsmPd_ECD`, e.g. `JXLXZD180D121003A`
 
-Products sold through CCB Bank's online channel (`www2.ccb.com`). Ticker is the product code `IvsmPd_ECD`, e.g. `JXLXZD180D121003A`.
+---
 
-Requires legacy TLS (`legacy_tls_session()` from `china_wealth.http`).
+## Pages
 
-## Endpoints
+### List page
 
-All requests go to:
+URL: `https://www2.ccb.com/chn/finance/products/self/product_list.shtml`
+
+Lists wealth products sold through CCB Bank. The product code (`IvsmPd_ECD`) is shown on the list and detail pages.
+
+### Detail page
+
+URL: Navigated from the list page by clicking a product.
+
+The CBIRC register code is **not exposed** on any CCB page or API response.
+
+---
+
+## APIs
+
+All requests use:
 
 ```
 GET https://www2.ccb.com/tran/WCCMainPlatV5
 ```
 
-Static NAV history files are served from:
+Static NAV history files:
 
 ```
 GET https://www2.ccb.com/newsinfo/finance/<filename>.txt
 ```
 
-## Product list / single product — TXCODE=NLCQ11
-
-### Request parameters
-
-| Parameter               | Value         | Notes                             |
-| ----------------------- | ------------- | --------------------------------- |
-| `CCB_IBSVersion`        | `V5`          |                                   |
-| `SERVLET_NAME`          | `WCCMainPlatV5` |                                 |
-| `TXCODE`                | `NLCQ11`      | list and single-product lookup    |
-| `Fcn_Cd`                | `0`           |                                   |
-| `REC_IN_PAGE`           | `1`           | 1 for single product lookup       |
-| `PAGE_JUMP`             | `1`           |                                   |
-| `Sel_StCd`              | `9`           | all statuses                      |
-| `Txn_BO_ID`             | `110000000`   | Beijing branch                    |
-| `Chnl_ID`               | `10060009`    |                                   |
-| `FndCo_Agnc_Sale_InsID` | `005`         | CCB channel constant              |
-| `Crt_Chnl_ID`           | `9999999999`  |                                   |
-| `PD_Sl_Obj_Cd`          | `01`          | retail                            |
-| `Bkstg_PD_Tp_ECD`       | `01`          |                                   |
-| `IvsmPd_ECD`            | `<ticker>`    | add to filter to a single product |
-
-### Response fields (`PROD_INFO_GRP[0]`)
-
-| Field              | Description                                       |
-| ------------------ | ------------------------------------------------- |
-| `IvsmPd_ECD`       | Product code (= ticker)                           |
-| `Fnd_Nm`           | Product name                                      |
-| `Co_Nm`            | Issuer name (e.g. 建信理财有限责任公司)             |
-| `Unit_Ast_NetVal`  | Unit NAV (string, e.g. `"1.014119"`)              |
-| `NetVal_Dt`        | NAV date (`YYYYMMDD`)                             |
-| `Txn_Mkt_ID`       | Market ID (e.g. `"0JH"`) — needed for NAV history |
-| `CcyCd`            | Currency code (`156`=CNY, `840`=USD)              |
-| `Rsk_Grd_Cd`       | Risk grade (`01`–`05`)                            |
-| `PfCmpBss`         | Performance benchmark                             |
-
-See [`examples/getProducts.json`](examples/getProducts.json) for a full example.
-
-## NAV history — TXCODE=NLCZST + static file
-
-NAV history is served as a pre-generated static `.txt` file. Fetching it is a two-step process.
-
-### Step 1: availability check
+### Product list / single product — `TXCODE=NLCQ11`
 
 ```
-GET https://www2.ccb.com/tran/WCCMainPlatV5
-  TXCODE=NLCZST
-  IvsmPd_ECD=<ticker>
-  Txn_Mkt_ID=<Txn_Mkt_ID from product>
-  FndCo_Agnc_Sale_InsID=005
-  PD_Grp_ECD=40
-  Ctrl_Ind_Cgy=09
+GET https://www2.ccb.com/tran/WCCMainPlatV5?CCB_IBSVersion=V5&SERVLET_NAME=WCCMainPlatV5&TXCODE=NLCQ11&...
 ```
 
-Response: `{"result":"y"}` if available, otherwise `{"result":"n"}` or empty.
+Used both for listing products and for fetching a single product by `IvsmPd_ECD`.
 
-`Ctrl_Ind_Cgy=09` selects chart type `单位净值` (unit NAV). Other values are yield/return-rate charts and are not used.
+| Property       | Value                                                                                                                 |
+| -------------- | --------------------------------------------------------------------------------------------------------------------- |
+| Login required | No                                                                                                                    |
+| Encryption     | No                                                                                                                    |
+| Signing        | No                                                                                                                    |
+| Legacy TLS     | **Yes** — `ssl.OP_LEGACY_SERVER_CONNECT` required                                                                     |
+| Pagination     | **Yes** — `REC_IN_PAGE` (records per page), `PAGE_JUMP` (page number). Set `REC_IN_PAGE=1` for single-product lookup. |
+| Search by code | **Yes** — add `IvsmPd_ECD=<ticker>` parameter to filter to a single product                                           |
 
-### Step 2: fetch the file
+**Key request parameters:**
+
+| Parameter               | Value      | Notes                             |
+| ----------------------- | ---------- | --------------------------------- |
+| `TXCODE`                | `NLCQ11`   | list and single-product lookup    |
+| `REC_IN_PAGE`           | `1`        | 1 for single product lookup       |
+| `PAGE_JUMP`             | `1`        | page number                       |
+| `Sel_StCd`              | `9`        | all statuses                      |
+| `FndCo_Agnc_Sale_InsID` | `005`      | CCB channel constant              |
+| `IvsmPd_ECD`            | `<ticker>` | add to filter to a single product |
+
+**Response fields (`PROD_INFO_GRP[0]`):**
+
+| Field             | Description                               |
+| ----------------- | ----------------------------------------- |
+| `IvsmPd_ECD`      | Product code (= ticker)                   |
+| `Fnd_Nm`          | Product name                              |
+| `Unit_Ast_NetVal` | Unit NAV (string)                         |
+| `NetVal_Dt`       | NAV date (`YYYYMMDD`)                     |
+| `Txn_Mkt_ID`      | Market ID — needed for NAV history lookup |
+
+See [examples/getProducts.json](examples/getProducts.json).
+
+### NAV availability check — `TXCODE=NLCZST`
+
+Step 1 of the NAV history flow. Checks whether a pre-generated NAV history file exists for this product.
+
+```
+GET https://www2.ccb.com/tran/WCCMainPlatV5?TXCODE=NLCZST&IvsmPd_ECD=<ticker>&Txn_Mkt_ID=<id>&FndCo_Agnc_Sale_InsID=005&PD_Grp_ECD=40&Ctrl_Ind_Cgy=09
+```
+
+| Property       | Value   |
+| -------------- | ------- |
+| Login required | No      |
+| Encryption     | No      |
+| Signing        | No      |
+| Legacy TLS     | **Yes** |
+| Pagination     | N/A     |
+
+Response: `{"result":"y"}` if available, `{"result":"n"}` or empty otherwise.
+
+`Ctrl_Ind_Cgy=09` selects 单位净值 (unit NAV). Other values are yield/return-rate charts.
+
+### NAV history static file
+
+Step 2 of the NAV history flow. Fetches a pre-generated `.txt` file.
 
 ```
 GET https://www2.ccb.com/newsinfo/finance/<IvsmPd_ECD><Txn_Mkt_ID><FndCo_Agnc_Sale_InsID>4009.txt
 ```
 
-Example for `JXLXZD180D121003A` with `Txn_Mkt_ID=0JH`:
+Example: `https://www2.ccb.com/newsinfo/finance/JXLXZD180D121003A0JH0054009.txt`
 
-```
-https://www2.ccb.com/newsinfo/finance/JXLXZD180D121003A0JH0054009.txt
-```
+| Property       | Value                         |
+| -------------- | ----------------------------- |
+| Login required | No                            |
+| Encryption     | No                            |
+| Signing        | No                            |
+| Legacy TLS     | **Yes**                       |
+| Pagination     | No — full history in one file |
 
-### Response fields (`Index_Group[]`)
+**Response fields (`Index_Group[]`):**
 
-| Field        | Description                    |
-| ------------ | ------------------------------ |
-| `Qtn_Dt`     | Date (`YYYYMMDD`)              |
-| `Exp_YldRto` | Unit NAV (raw string, no transformation needed) |
+| Field        | Description                              |
+| ------------ | ---------------------------------------- |
+| `Qtn_Dt`     | Date (`YYYYMMDD`)                        |
+| `Exp_YldRto` | Unit NAV (raw string, no transformation) |
 
-See [`examples/nav_history.json`](examples/nav_history.json) for a full example (118 entries).
+See [examples/nav_history.json](examples/nav_history.json).
 
-## Quirks
+---
 
-- **No register code**: CBIRC register code is not included in the API response. `register_code` is always `None`.
-- **No auth required**: works without cookies or session tokens.
-- **Accumulated NAV**: not provided by any endpoint; `accumulated_nav` is always `None`.
-- **`FndCo_Agnc_Sale_InsID`** is a fixed CCB channel constant (`005`) — it is a request parameter only, not returned in product data.
-- **Legacy TLS**: `www2.ccb.com` requires `ssl.OP_LEGACY_SERVER_CONNECT` (Python 3.10+).
-- **`Ctrl_Ind_Cgy` values**: `09`=单位净值 (unit NAV, raw value), `07`=成立以来年化收益率 (annualized return %, ×100), `01`=七日年化. Only `09` gives actual NAV.
+## Notes
+
+- CBIRC register code is **never** available from any CCB API — `register_code` is always `None`.
+- Accumulated NAV is not provided; `accumulated_nav` is always `None`.
+- `FndCo_Agnc_Sale_InsID=005` is a fixed CCB channel constant — request parameter only, not returned in data.
+- `Ctrl_Ind_Cgy` values: `09`=单位净值, `07`=成立以来年化收益率, `01`=七日年化. Only `09` gives actual NAV.

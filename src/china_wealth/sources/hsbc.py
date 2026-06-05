@@ -55,7 +55,7 @@ class HsbcBankSource(BaseSource):
 
     @property
     def source(self) -> str:
-        return "hsbc_bank"
+        return "hsbc"
 
     def get_latest_price(self, ticker: str) -> Optional[SourcePrice]:
         info = self.get_product_info(ticker)

@@ -5,7 +5,7 @@ from china_wealth.sources import get_source
 from china_wealth.source import BaseSource
 
 
-@pytest.mark.parametrize("source", ["citic_wm", "pingan_bank", "ccb_wm", "chinawealth"])
+@pytest.mark.parametrize("source", ["citic_wm", "pingan_bank", "ccb_wm", "cmb", "chinawealth"])
 def test_get_source_returns_base_source(source):
     src = get_source(source)
     assert isinstance(src, BaseSource)

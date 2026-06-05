@@ -36,15 +36,34 @@ This is a `src/` layout Python package (`src/china_wealth/`). The package has tw
 
 ## Sources and issuers
 
+### Bank distribution channels
+
+Sources backed by a retail bank's channel — cover products from multiple issuers sold through that bank.
+
+| Source key    | Source class        | Data backend                                       | Issuers served                              |
+| ------------- | ------------------- | -------------------------------------------------- | ------------------------------------------- |
+| `pingan_bank` | `PinganBankSource`  | Ping An Bank API (rmb.pingan.com.cn)               | 平安理财 + others sold by Ping An Bank      |
+| `ccb`         | `CcbSource`         | CCB API (www2.ccb.com)                             | 建信理财 + others sold by CCB               |
+| `cmb`         | `CmbBankSource`     | CMB Bank API (cfweb.paas.cmbchina.com)             | 建信理财 + others sold by CMB Bank          |
+| `icbc`        | `IcbcSource`        | ICBC API (papi.icbc.com.cn)                        | 工银理财 + others sold by ICBC              |
+| `hsbc`   | `HsbcBankSource`    | HSBC China API (www.hsbc.com.cn)                   | 施罗德交银理财 + others sold by HSBC        |
+
+### Wealth management subsidiaries
+
+Sources backed by a wealth management company's own platform — cover only that company's products.
+
 | Source key    | Source class        | Data backend                                       | Issuers served                              |
 | ------------- | ------------------- | -------------------------------------------------- | ------------------------------------------- |
 | `citic_wm`    | `CiticWmSource`     | CITIC API (wechat.citic-wealth.com)                | 中信理财                                    |
-| `pingan_bank` | `PinganBankSource`  | Ping An Bank API (rmb.pingan.com.cn)               | 平安理财 + others sold by Ping An Bank      |
-| `ccb`         | `CcbSource`         | CCB API (www2.ccb.com)                             | 建信理财 + others sold by CCB               |
+| `pingan_wm`   | `PinganWmSource`    | Ping An Wealth API (wmm.pingan.com.cn)             | 平安理财                                    |
 | `ccb_wm`      | `CcbWmSource`       | HTML scraping (wealthccb.com)                      | 建信理财                                    |
-| `cmb_bank`    | `CmbBankSource`     | CMB Bank API (cfweb.paas.cmbchina.com)             | 建信理财 + others sold by CMB Bank          |
+| `cmb_wm`      | `CmbWmSource`       | CMB Wealth API (cmbchinawm.com)                    | 招银理财                                    |
+
+### Regulatory registry
+
+| Source key    | Source class        | Data backend                                       | Issuers served                              |
+| ------------- | ------------------- | -------------------------------------------------- | ------------------------------------------- |
 | `chinawealth` | `ChinaWealthSource` | `ChinaWealthClient` (xinxipilu.chinawealth.com.cn) | Any registered issuer (e.g. 交银施罗德理财) |
-| `icbc`        | `IcbcSource`        | ICBC API (papi.icbc.com.cn)                        | 工银理财 + others sold by ICBC              |
 
 ## Development workflow
 
@@ -108,25 +127,40 @@ from gmssl import sm2, sm3, sm4
 Known usage:
 
 - **`pingan_wm`** — SM4 ECB + PKCS#7 (`gmssl.sm4.CryptSM4`)
-- **`cmb_bank`** — SM4 ECB for request signing (`gmssl.sm4.CryptSM4`); encrypts `"appId|timespan"` to produce the `signature` header
+- **`cmb`** — SM4 ECB for request signing (`gmssl.sm4.CryptSM4`); encrypts `"appId|timespan"` to produce the `signature` header
 - **`cmb_wm`** — SM2 asymmetric encryption (`gmssl.sm2.CryptSM2`)
 
 ### Legacy TLS
 
 Some Chinese bank servers require legacy TLS renegotiation disabled in Python 3.10+. Use `legacy_tls_session()` from `china_wealth.http` — it returns a `requests.Session` with `ssl.OP_LEGACY_SERVER_CONNECT` set. Currently used by `citic_wm.py`, `ccb.py`, and `icbc.py`. Other sources use plain `requests.get`.
 
+### docs/ structure
+
+Each source has a directory `docs/<source>/` with:
+
+- `README.md` — unified reference: pages, APIs, auth/encryption/signing/pagination details, response field tables
+- `examples/` — real API response samples
+
+The top-level `docs/README.md` is a TOC with a quick-reference table of all sources, their auth methods, and pagination capabilities.
+
 ### API response field reference
 
 Key non-obvious field names discovered from real API responses (see `docs/*/README.md`):
 
-| Source            | Register code field    | NAV field                    | NAV date field         |
-| ----------------- | ---------------------- | ---------------------------- | ---------------------- |
-| citic_wm detail   | `registCode`           | `nav`                        | `navDate` (`YYYYMMDD`) |
-| citic_wm nav list | —                      | `data.productNavList[0].nav` | `navDate`              |
-| pingan_bank       | `bankFundRegisterCode` | `netValue` (string)          | `navDate` (`YYYYMMDD`) |
-| ccb_wm            | N/A (not on page)      | `p.firtst` in 最新净值 block          | `最新净值(YYYY-MM-DD)`  |
-| ccb list/detail   | N/A                    | `Unit_Ast_NetVal`                     | `NetVal_Dt` (`YYYYMMDD`) |
-| ccb nav history   | —                      | `Index_Group[].Exp_YldRto`            | `Qtn_Dt` (`YYYYMMDD`)  |
-| cmb_bank info     | `regCode`              | `netValue` (often empty)              | —                       |
-| cmb_bank nav list | —                      | `body.data[].znavVal`                 | `znavDat` (`YYYYMMDD`) |
+| Source            | Register code field    | NAV field                             | NAV date field            |
+| ----------------- | ---------------------- | ------------------------------------- | ------------------------- |
+| citic_wm detail   | `registCode`           | `nav`                                 | `navDate` (`YYYYMMDD`)    |
+| citic_wm nav list | —                      | `data.productNavList[0].nav`          | `navDate`                 |
+| pingan_bank       | `bankFundRegisterCode` | `latestRate.nav` (float)              | `navDate` (`YYYYMMDD`)    |
+| pingan_wm nav     | —                      | `data[].unitValue`                    | `dataDate` (`YYYY-MM-DD`) |
+| ccb_wm            | N/A (not on page)      | `<p class="firtst">` in 最新净值 block | `最新净值(YYYY-MM-DD)`    |
+| ccb list/detail   | N/A                    | `Unit_Ast_NetVal`                     | `NetVal_Dt` (`YYYYMMDD`)  |
+| ccb nav history   | —                      | `Index_Group[].Exp_YldRto`            | `Qtn_Dt` (`YYYYMMDD`)     |
+| cmb info          | `regCode`              | `netValue` (often empty)              | —                         |
+| cmb nav list      | —                      | `body.data[].znavVal`                 | `znavDat` (`YYYYMMDD`)    |
+| cmb_wm detail     | `prodRegId`            | —                                     | —                         |
+| cmb_wm nav list   | —                      | `nav`                                 | `navDate` (Unix ms)       |
+| chinawealth       | `prodBasicInfoVo.prodRegCode` | `netValueVoList.list[].shareNetVal` | `netValueDate` (`YYYY-MM-DD`) |
 | icbc nav list     | N/A                    | `data.list[].value`                   | `workDate` (`YYYY-MM-DD`) |
+| hsbc detail  | `cdcCde`               | `nav`                                 | `issDate` (`YYYY-MM-DD HH:MM:SS`) |
+| hsbc history | —                      | `performanceList[].unitNetWorth`      | `date` (`YYYY-MM-DD`)     |
