@@ -34,91 +34,116 @@ This is a `src/` layout Python package (`src/china_wealth/`). The package has tw
 
 **Issuer** = the financial institution that issued the product (e.g. 平安理财, 信银理财). A single source may sell products from multiple issuers (e.g. `pingan_bank` sells products from 平安理财 and others).
 
-## Sources and issuers
-
-### Bank distribution channels
-
-Sources backed by a retail bank's channel — cover products from multiple issuers sold through that bank.
-
-| Source key    | Source class        | Data backend                                       | Issuers served                              |
-| ------------- | ------------------- | -------------------------------------------------- | ------------------------------------------- |
-| `pingan_bank` | `PinganBankSource`  | Ping An Bank API (rmb.pingan.com.cn)               | 平安理财 + others sold by Ping An Bank      |
-| `ccb`         | `CcbSource`         | CCB API (www2.ccb.com)                             | 建信理财 + others sold by CCB               |
-| `cmb`         | `CmbBankSource`     | CMB Bank API (cfweb.paas.cmbchina.com)             | 建信理财 + others sold by CMB Bank          |
-| `icbc`        | `IcbcSource`        | ICBC API (papi.icbc.com.cn)                        | 工银理财 + others sold by ICBC              |
-| `hsbc`   | `HsbcBankSource`    | HSBC China API (www.hsbc.com.cn)                   | 施罗德交银理财 + others sold by HSBC        |
-
-### Wealth management subsidiaries
-
-Sources backed by a wealth management company's own platform — cover only that company's products.
-
-| Source key    | Source class        | Data backend                                       | Issuers served                              |
-| ------------- | ------------------- | -------------------------------------------------- | ------------------------------------------- |
-| `citic_wm`    | `CiticWmSource`     | CITIC API (wechat.citic-wealth.com)                | 中信理财                                    |
-| `pingan_wm`   | `PinganWmSource`    | Ping An Wealth API (wmm.pingan.com.cn)             | 平安理财                                    |
-| `ccb_wm`      | `CcbWmSource`       | HTML scraping (wealthccb.com)                      | 建信理财                                    |
-| `cmb_wm`      | `CmbWmSource`       | CMB Wealth API (cmbchinawm.com)                    | 招银理财                                    |
-
-### Regulatory registry
-
-| Source key    | Source class        | Data backend                                       | Issuers served                              |
-| ------------- | ------------------- | -------------------------------------------------- | ------------------------------------------- |
-| `chinawealth` | `ChinaWealthSource` | `ChinaWealthClient` (xinxipilu.chinawealth.com.cn) | Any registered issuer (e.g. 交银施罗德理财) |
-
 ## Development workflow
 
-When adding or improving a source, the developer writes initial thoughts and
-drops example API responses in `docs/<source>/`. The expected flow is:
+This project involves reverse engineering Chinese bank APIs. The developer explores
+pages in the browser with DevTools open, captures curl commands and JS snippets, and
+the AI helps analyse, probe, and implement.
 
-1. **Developer provides a draft** — `docs/<source>/README.md` with initial notes
-   on the API (endpoint, auth, known fields) and one or more example response
-   files in `docs/<source>/examples/`. The developer may also paste raw `curl`
-   commands into the README to capture the exact request shape. **AI must
-   preserve these curl examples verbatim** — do not remove, shorten, or
-   reformat them. They are the ground truth for headers, cookies, and request
-   bodies that cannot be reconstructed from the response alone.
+### Phase 1 — Discovery (developer-led)
 
-2. **AI reads the examples carefully** — inspect every field in the response,
-   identify the correct fields for NAV, accumulated NAV, date, register code,
-   and product name. Don't assume field names match other sources.
+The developer creates `docs/<source>/` and drops in everything discovered:
 
-3. **AI implements the source** — create or update
-   `src/china_wealth/sources/<source>.py`. Extract all available data; if both
-   unit NAV and accumulated NAV are present, populate both.
+- `README.md` — list page URL, detail page URL, any curl commands captured from
+  DevTools Network tab, notes on encryption or signing observed
+- `examples/` — raw API responses saved from the browser or curl
 
-4. **AI updates the docs** — replace the developer's draft in
-   `docs/<source>/README.md` with accurate, complete documentation: endpoint
-   URLs, request parameters, response field reference table, pagination notes,
-   and any quirks discovered during implementation.
+**Curl commands must be preserved verbatim in the README, forever.** Never remove,
+shorten, or reformat them. They capture headers, cookies, and request bodies that
+cannot be reconstructed from the response alone and are essential for re-running
+requests later.
 
-5. **AI updates the project README** — add the new source to the sources table
-   in `README.md` and update any other sections that list available sources.
+### Phase 2 — Analysis (AI-led, interactive)
 
-6. **AI updates `CLAUDE.md`** — add the source to the sources table, the Legacy
-   TLS note (if applicable), and the API response field reference table.
+The AI reads everything in `docs/<source>/` and asks questions before implementing:
 
-### Adding a new source
+- **If the request body looks encrypted or signed**, ask the developer to share the
+  relevant JS module(s) from the browser bundle. The developer has DevTools open and
+  can copy JS sources directly. If the provided JS references other modules, ask for
+  those too — don't guess at key material or algorithms from partial information.
+- **Probe the live API** with one-off curl/requests calls to test parameters:
+  what pagination params exist, whether date range filtering works, what happens
+  with different page sizes, whether search accepts keywords vs codes, etc.
+  These probes clarify capability before writing docs or code.
+- **Never assume** — if a capability is not confirmed by a real response or a probe,
+  document it as **unknown** or **assumed, unverified**. Specifically:
+  - Do not claim an API returns "full history" unless a `total` field or the date
+    range in the response spans the product's full life.
+  - Do not claim pagination works a certain way unless tested.
+  - Do not claim a field is always present unless seen in multiple examples.
+
+### Phase 3 — Implementation
+
+Once the API is understood:
 
 1. Create `src/china_wealth/sources/<source>.py` subclassing `BaseSource`.
-2. Implement `source` property, `get_latest_price`, and `get_product_info`. Historical methods are optional.
+2. Implement `source` property, `get_latest_price`, and `get_product_info`.
+   Historical methods are optional.
 3. Add `Source = <ClassName>` at the bottom (required for bean-price).
 4. Register in `sources/__init__.py`.
-5. Update `README.md` sources table.
-6. Update `CLAUDE.md` sources table, Legacy TLS note (if applicable), and API response field reference table.
+
+### Phase 4 — Documentation
+
+Update all docs in this order:
+
+1. **`docs/<source>/README.md`** — rewrite using the unified layout (see below).
+   Preserve all original curl examples. Mark anything unverified explicitly.
+2. **`docs/README.md`** — update the capability matrix (list/search and NAV history
+   tables) for the new source.
+3. **`README.md`** — add the source to the correct section of the user-facing table
+   (bank channel / wealth subsidiary / regulatory registry) with accurate
+   搜索 / 详情 / 历史净值 capability columns.
+4. **`CLAUDE.md`** — only update if the dev workflow, rules, or methodology changed.
+
+### Source naming convention
+
+Bank distribution channels: short name only, no `_bank` suffix.
+`cmb` (not `cmb_bank`), `hsbc` (not `hsbc_bank`), `ccb`, `icbc`, `pingan_bank`.
+Wealth management subsidiaries keep the `_wm` suffix: `cmb_wm`, `ccb_wm`, `pingan_wm`, `citic_wm`.
+
+### docs/ layout
+
+Each source has a directory `docs/<source>/` with:
+
+- `README.md` — unified reference following the layout below
+- `examples/` — raw API response samples saved from the browser or curl
+
+The top-level `docs/README.md` is a TOC and capability matrix for all sources.
+Per-source API details, field names, and quirks live in each source's own README.
+
+Each `docs/<source>/README.md` follows this structure:
+
+```
+# <source_key> — <Chinese name> (<English name>)
+Source key | Issuers | Ticker format
+
+## Pages
+  ### List page   — URL, how to find the ticker
+  ### Detail page — URL, where register code appears
+
+## APIs
+  ### <Endpoint name> — <METHOD /path>
+    Code block with original curl command (verbatim, never remove)
+    Simplified request summary (method, URL, body shape)
+    Property table:
+      | Login required       | Yes / No / Unknown                  |
+      | Encryption           | No / Yes — <algo, key source>        |
+      | Signing              | No / Yes — <algo, computation steps> |
+      | Legacy TLS           | No / Yes                             |
+      | Pagination           | <params and behaviour, or Unknown>   |
+      | Search by keyword    | Yes — <param> / No / Unknown         |
+      | Search by code       | Yes — <param> / No / Unknown         |
+      | Arbitrary time range | Yes / No / Unknown                   |
+    Response field reference table
+    Link to example file in examples/
+
+## Notes
+  Quirks, known limitations, items marked as unverified/assumed, TODOs
+```
 
 ### get_product_info vs get_latest_price
 
 `get_product_info` should make the **minimum number of API calls** needed to return name and register code. Do not fetch NAV inside `get_product_info` unless the source's detail API returns it for free in the same response (e.g. citic_wm, pingan_bank). If NAV requires a separate API call, leave `nav`/`nav_date`/`accumulated_nav` as `None` in `get_product_info` and let `get_latest_price` fetch it independently. Users are directed to use the `nav` command for price data.
-
-### chinawealth source (交银施罗德 and others)
-
-`sources/chinawealth.py` delegates fully to `ChinaWealthClient`. Ticker format is `<register_code>_<sub_share_code>` (e.g. `Z7007024000248_182481005A`). A product may have multiple sub-shares with different NAVs — use `china-wealth lookup <register_code>` to list them. NAV history is fetched via `getNetValueList` (not `getProductDetail`).
-
-### CCB sources
-
-**`ccb`** (`sources/ccb.py`) uses the CCB Bank JSON API (`www2.ccb.com`). Ticker is `IvsmPd_ECD` (e.g. `JXLXZD180D121003A`). NAV history is fetched via a two-step flow: `TXCODE=NLCZST` checks availability, then a static `.txt` file at `/newsinfo/finance/<ticker><Txn_Mkt_ID><FndCo_Agnc_Sale_InsID>4009.txt` is fetched. Register code is not exposed (`None`). Requires legacy TLS (`legacy_tls_session()`).
-
-**`ccb_wm`** (`sources/ccb_wm.py`) is implemented via HTML scraping of wealthccb.com. Product pages use a numeric page slug (`9783965`) that differs from the user-facing product ID. Until a lookup API is found, the slug must be passed directly as the ticker. NAV is extracted from `<p class="firtst">` blocks in the server-rendered HTML. The CBIRC register code is NOT exposed on CCB product pages (returns `None`).
 
 ### 国密 (GuoMi) cryptography
 
@@ -128,43 +153,6 @@ Some sources encrypt their API request bodies using Chinese national cryptograph
 from gmssl import sm2, sm3, sm4
 ```
 
-Known usage:
-
-- **`pingan_wm`** — SM4 ECB + PKCS#7 (`gmssl.sm4.CryptSM4`)
-- **`cmb`** — SM4 ECB for request signing (`gmssl.sm4.CryptSM4`); encrypts `"appId|timespan"` to produce the `signature` header
-- **`cmb_wm`** — SM2 asymmetric encryption (`gmssl.sm2.CryptSM2`)
-
 ### Legacy TLS
 
-Some Chinese bank servers require legacy TLS renegotiation disabled in Python 3.10+. Use `legacy_tls_session()` from `china_wealth.http` — it returns a `requests.Session` with `ssl.OP_LEGACY_SERVER_CONNECT` set. Currently used by `citic_wm.py`, `ccb.py`, and `icbc.py`. Other sources use plain `requests.get`.
-
-### docs/ structure
-
-Each source has a directory `docs/<source>/` with:
-
-- `README.md` — unified reference: pages, APIs, auth/encryption/signing/pagination details, response field tables
-- `examples/` — real API response samples
-
-The top-level `docs/README.md` is a TOC with a quick-reference table of all sources, their auth methods, and pagination capabilities.
-
-### API response field reference
-
-Key non-obvious field names discovered from real API responses (see `docs/*/README.md`):
-
-| Source            | Register code field    | NAV field                             | NAV date field            |
-| ----------------- | ---------------------- | ------------------------------------- | ------------------------- |
-| citic_wm detail   | `registCode`           | `nav`                                 | `navDate` (`YYYYMMDD`)    |
-| citic_wm nav list | —                      | `data.productNavList[0].nav`          | `navDate`                 |
-| pingan_bank       | `bankFundRegisterCode` | `latestRate.nav` (float)              | `navDate` (`YYYYMMDD`)    |
-| pingan_wm nav     | —                      | `data[].unitValue`                    | `dataDate` (`YYYY-MM-DD`) |
-| ccb_wm            | N/A (not on page)      | `<p class="firtst">` in 最新净值 block | `最新净值(YYYY-MM-DD)`    |
-| ccb list/detail   | N/A                    | `Unit_Ast_NetVal`                     | `NetVal_Dt` (`YYYYMMDD`)  |
-| ccb nav history   | —                      | `Index_Group[].Exp_YldRto`            | `Qtn_Dt` (`YYYYMMDD`)     |
-| cmb info          | `regCode`              | `netValue` (often empty)              | —                         |
-| cmb nav list      | —                      | `body.data[].znavVal`                 | `znavDat` (`YYYYMMDD`)    |
-| cmb_wm detail     | `prodRegId`            | —                                     | —                         |
-| cmb_wm nav list   | —                      | `nav`                                 | `navDate` (Unix ms)       |
-| chinawealth       | `prodBasicInfoVo.prodRegCode` | `netValueVoList.list[].shareNetVal` | `netValueDate` (`YYYY-MM-DD`) |
-| icbc nav list     | N/A                    | `data.list[].value`                   | `workDate` (`YYYY-MM-DD`) |
-| hsbc detail  | `cdcCde`               | `nav`                                 | `issDate` (`YYYY-MM-DD HH:MM:SS`) |
-| hsbc history | —                      | `performanceList[].unitNetWorth`      | `date` (`YYYY-MM-DD`)     |
+Some Chinese bank servers require legacy TLS renegotiation disabled in Python 3.10+. Use `legacy_tls_session()` from `china_wealth.http` — it returns a `requests.Session` with `ssl.OP_LEGACY_SERVER_CONNECT` set.
